@@ -1,27 +1,38 @@
-import './ComingSoon.css';
+import './Workbook.css';
 
 function Workbook({ onNavigate }) {
   return (
-    <div className="coming-soon-page">
-      <header className="coming-soon-header">
+    <div className="workbook-page">
+      <header className="workbook-header">
         <button className="back-button" onClick={() => onNavigate('home')}>
           ← Back to Home
         </button>
-        <div className="page-logo">Practice Workbook</div>
+        <div className="workbook-logo">Practice Workbook</div>
       </header>
       
-      <main className="coming-soon-content">
-        <div className="coming-soon-icon">📝</div>
-        <h1>Practice Workbook</h1>
-        <p className="coming-soon-text">
-          Practice exercises and workbook materials are coming soon! Check back later for hands-on training materials.
+      <main className="workbook-content">
+        <h1 className="workbook-title">Practice Workbook</h1>
+        <p className="workbook-subtitle">
+          Watch this walkthrough to learn how to use the practice workbook
         </p>
-        <button className="home-button" onClick={() => onNavigate('home')}>
-          Return to Home
-        </button>
+        
+        <div className="workbook-video-section">
+          <div className="video-card">
+            <h3 className="video-card-title">Practice Workbook Tutorial</h3>
+            <div className="video-wrapper">
+              <iframe
+                src="https://www.loom.com/embed/db35a5b03c1c43ab80f46f481fa02be1?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                allowFullScreen
+                className="video-iframe"
+                title="Practice Workbook Tutorial"
+              ></iframe>
+            </div>
+          </div>
+        </div>
       </main>
 
-      <footer className="coming-soon-footer">
+      <footer className="workbook-footer">
         <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
       </footer>
     </div>
