@@ -18,9 +18,20 @@ function LandingPage({ onNavigate }) {
           <p className="hero-subtitle">
             A modern platform for learning and development
           </p>
-          <button className="cta-button" onClick={() => onNavigate('guidelines')}>
-            Get Started
-          </button>
+          <div className="resource-buttons">
+            <button className="resource-button" onClick={() => onNavigate('guidelines')}>
+              <span className="button-icon">📚</span>
+              <span className="button-text">EC Guidelines</span>
+            </button>
+            <button className="resource-button" onClick={() => onNavigate('videos')}>
+              <span className="button-icon">🎥</span>
+              <span className="button-text">Tutorial Videos</span>
+            </button>
+            <button className="resource-button" onClick={() => onNavigate('workbook')}>
+              <span className="button-icon">📝</span>
+              <span className="button-text">Practice Workbook</span>
+            </button>
+          </div>
         </section>
       </main>
 
