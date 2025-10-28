@@ -4,7 +4,7 @@ function Sidebar({ sections, activeSection, onSectionChange }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h2>Training Guide</h2>
+        <h2>Table of Contents</h2>
       </div>
       <nav className="sidebar-nav">
         {sections.map((section) => (

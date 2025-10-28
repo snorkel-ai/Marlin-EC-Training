@@ -1,35 +1,19 @@
 import { useState } from 'react';
 import './App.css';
-import Sidebar from './components/Sidebar';
-import Content from './components/Content';
-import { trainingSections } from './data/trainingData';
+import LandingPage from './components/LandingPage';
+import Guidelines from './components/Guidelines';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('overview');
+  const [currentView, setCurrentView] = useState('home');
 
-  const currentSection = trainingSections.find(section => section.id === activeSection);
+  const handleNavigate = (view) => {
+    setCurrentView(view);
+  };
 
   return (
     <div className="app">
-      <header className="app-header">
-        <div className="logo">Terminus EC Training</div>
-      </header>
-      
-      <div className="app-layout">
-        <Sidebar 
-          sections={trainingSections} 
-          activeSection={activeSection}
-          onSectionChange={setActiveSection}
-        />
-        
-        <main className="app-main">
-          <Content section={currentSection} />
-        </main>
-      </div>
-
-      <footer className="app-footer">
-        <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
-      </footer>
+      {currentView === 'home' && <LandingPage onNavigate={handleNavigate} />}
+      {currentView === 'guidelines' && <Guidelines onNavigate={handleNavigate} />}
     </div>
   );
 }
