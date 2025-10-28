@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './App.css';
 import LandingPage from './components/LandingPage';
-import Guidelines from './components/Guidelines';
+import GuidelineSection from './components/GuidelineSection';
 import Videos from './components/Videos';
 import Workbook from './components/Workbook';
+import { trainingSections } from './data/trainingData';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -12,10 +13,13 @@ function App() {
     setCurrentView(view);
   };
 
+  // Check if currentView is a guideline section
+  const guidelineSection = trainingSections.find(section => section.id === currentView);
+
   return (
     <div className="app">
       {currentView === 'home' && <LandingPage onNavigate={handleNavigate} />}
-      {currentView === 'guidelines' && <Guidelines onNavigate={handleNavigate} />}
+      {guidelineSection && <GuidelineSection section={guidelineSection} onNavigate={handleNavigate} />}
       {currentView === 'videos' && <Videos onNavigate={handleNavigate} />}
       {currentView === 'workbook' && <Workbook onNavigate={handleNavigate} />}
     </div>
