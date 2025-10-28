@@ -15,9 +15,6 @@ function LandingPage({ onNavigate }) {
       <main className="main-content">
         <section className="hero">
           <h1 className="hero-title">Welcome to Terminus EC Training</h1>
-          <p className="hero-subtitle">
-            A modern platform for learning and development
-          </p>
         </section>
 
         <section className="resources-section">
