@@ -16,6 +16,21 @@ function Workbook({ onNavigate }) {
           Watch this walkthrough to learn how to use the practice workbook
         </p>
         
+        <div className="workbook-download-section">
+          <div className="download-card">
+            <div className="download-icon">📓</div>
+            <h3>CI Feedback Training Notebook</h3>
+            <p>Download the Jupyter notebook for hands-on practice with CI feedback training</p>
+            <a 
+              href="/ci_feedback_training.ipynb" 
+              download="ci_feedback_training.ipynb"
+              className="download-button"
+            >
+              Download Notebook
+            </a>
+          </div>
+        </div>
+        
         <div className="workbook-video-section">
           <div className="video-card">
             <h3 className="video-card-title">Practice Workbook Tutorial</h3>
