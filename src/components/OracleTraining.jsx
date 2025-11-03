@@ -16,6 +16,16 @@ function OracleTraining({ onNavigate }) {
           Learn about creating and working with oracle solutions
         </p>
         
+        <div className="video-overview">
+          <p><strong>This video covers:</strong></p>
+          <ol>
+            <li>What the Oracle Agent is</li>
+            <li>How to run it</li>
+            <li>How to debug its output</li>
+            <li>How to submit a debugged task</li>
+          </ol>
+        </div>
+        
         <div className="videos-grid">
           <div className="video-card">
             <h3 className="video-card-title">Oracle Training Tutorial</h3>
