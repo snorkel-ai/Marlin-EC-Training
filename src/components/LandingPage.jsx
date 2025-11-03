@@ -68,11 +68,6 @@ function LandingPage({ onNavigate }) {
               <h3>Example Tasks</h3>
               <p>View sample tasks and implementations</p>
             </button>
-            <button className="guideline-card" onClick={() => onNavigate('ci-quality')}>
-              <div className="card-icon">🔍</div>
-              <h3>CI + Quality Control</h3>
-              <p>Understand testing and validation</p>
-            </button>
             <button className="guideline-card" onClick={() => onNavigate('rates')}>
               <div className="card-icon">💰</div>
               <h3>Rate Schedule</h3>
