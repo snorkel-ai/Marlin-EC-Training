@@ -63,7 +63,7 @@ function LandingPage({ onNavigate }) {
               <span className="button-description">Covers how to run the Oracle Agent and debug any issues</span>
             </button>
             <button className="resource-button" onClick={() => onNavigate('onboarding')}>
-              <span className="button-text">Onboarding Materials</span>
+              <span className="button-text">Onboarding Video and Slides</span>
               <span className="button-description">Access the onboarding presentation slides and video</span>
             </button>
             <button className="resource-button" onClick={() => onNavigate('feedback')}>

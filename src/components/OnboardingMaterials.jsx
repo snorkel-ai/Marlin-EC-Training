@@ -8,11 +8,11 @@ function OnboardingMaterials({ onNavigate }) {
         <button className="back-button" onClick={() => onNavigate('home')}>
           ← Back to Home
         </button>
-        <div className="videos-logo">Onboarding Materials</div>
+        <div className="videos-logo">Onboarding Video and Slides</div>
       </header>
       
       <main className="videos-content">
-        <h1 className="videos-title">Onboarding Materials</h1>
+        <h1 className="videos-title">Onboarding Video and Slides</h1>
         <div className="workbook-intro">
           <p>
             Access the onboarding presentation slides and watch the onboarding video to get started with the Terminus EC project.
