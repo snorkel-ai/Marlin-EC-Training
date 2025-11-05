@@ -109,11 +109,6 @@ function LandingPage({ onNavigate }) {
               <h3>Example Tasks</h3>
               <p>View sample tasks and implementations</p>
             </button>
-            <button className="guideline-card" onClick={() => onNavigate('rates')}>
-              <div className="card-icon">💰</div>
-              <h3>Rate Schedule</h3>
-              <p>View compensation information</p>
-            </button>
           </div>
         </section>
       </main>
