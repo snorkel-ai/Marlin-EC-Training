@@ -63,39 +63,47 @@ function LandingPage({ onNavigate }) {
 
         <section className="resources-section">
           <h2 className="section-title">Training Resources</h2>
+          <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 2rem', color: '#475569', lineHeight: '1.6' }}>
+            Start with the onboarding video and slides, then look at the task walkthrough videos, then OracleAgent, then CI feedback, then local testing info. Then if you'd like you can view the feedback session videos to get info on common mistakes and things to avoid.
+          </p>
           <div className="resource-buttons">
+            <button className="resource-button" onClick={() => onNavigate('onboarding')}>
+              <span className="button-text">Onboarding Video and Slides</span>
+              <span className="button-description">Access the onboarding presentation slides and video</span>
+            </button>
             <button className="resource-button" onClick={() => onNavigate('videos')}>
               <span className="button-text">Task Walkthrough Videos</span>
               <span className="button-description">Walks through the process of creating a task, running it, and creating a solution and tests</span>
-            </button>
-            <button className="resource-button" onClick={() => onNavigate('workbook')}>
-              <span className="button-text">CI Feedback Video and Notebook</span>
-              <span className="button-description">Covers how to effectively utilize feedback from CI checks to iterate on submissions</span>
             </button>
             <button className="resource-button" onClick={() => onNavigate('oracle')}>
               <span className="button-text">OracleAgent Video and Notebook</span>
               <span className="button-description">Covers how to run the Oracle Agent and debug any issues</span>
             </button>
-            <button className="resource-button" onClick={() => onNavigate('onboarding')}>
-              <span className="button-text">Onboarding Video and Slides</span>
-              <span className="button-description">Access the onboarding presentation slides and video</span>
-            </button>
-            <button className="resource-button" onClick={() => onNavigate('feedback')}>
-              <span className="button-text">Feedback Slides</span>
-              <span className="button-description">View feedback presentation slides with common issues and best practices</span>
-            </button>
-            <button className="resource-button" onClick={() => onNavigate('faq')}>
-              <span className="button-text">FAQ</span>
-              <span className="button-description">Frequently asked questions about the project</span>
-            </button>
-            <button className="resource-button" onClick={() => onNavigate('glossary')}>
-              <span className="button-text">Glossary</span>
-              <span className="button-description">Definitions and explanations of key terms</span>
+            <button className="resource-button" onClick={() => onNavigate('workbook')}>
+              <span className="button-text">CI Feedback Video and Notebook</span>
+              <span className="button-description">Covers how to effectively utilize feedback from CI checks to iterate on submissions</span>
             </button>
             <button className="resource-button" onClick={() => onNavigate('local-testing')}>
               <span className="button-text">Local Testing Info</span>
               <span className="button-description">Instructions for testing tasks locally with real agents</span>
             </button>
+            <button className="resource-button" onClick={() => onNavigate('feedback')}>
+              <span className="button-text">Feedback Slides</span>
+              <span className="button-description">View feedback presentation slides with common issues and best practices</span>
+            </button>
+          </div>
+          
+          <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '2px solid #e2e8f0' }}>
+            <div className="resource-buttons">
+              <button className="resource-button" onClick={() => onNavigate('glossary')}>
+                <span className="button-text">Glossary</span>
+                <span className="button-description">Definitions and explanations of key terms</span>
+              </button>
+              <button className="resource-button" onClick={() => onNavigate('faq')}>
+                <span className="button-text">FAQ</span>
+                <span className="button-description">Frequently asked questions about the project</span>
+              </button>
+            </div>
           </div>
         </section>
 
