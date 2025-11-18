@@ -49,6 +49,10 @@ function OnboardingMaterials({ onNavigate }) {
                   height: '100%',
                   objectFit: 'contain'
                 }}
+                onError={(e) => {
+                  console.error('Video load error:', e);
+                  console.error('Video src:', e.target.currentSrc);
+                }}
               >
                 <source src="/Terminus-EC-Training/Onboarding_11-14-2025.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
