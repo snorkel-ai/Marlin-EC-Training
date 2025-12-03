@@ -206,46 +206,54 @@ export const trainingSections = [
     content: (
       <>
         <h2 id="workflow-overview">Environment Setup and Tasking Workflow</h2>
-        
-        <div className="warning-box">
-          <strong>Before Beginning:</strong> Familiarize yourself with Terminal-Bench and its existing tasks here: 
-          <a href="https://www.tbench.ai/registry/terminal-bench-core/0.1.1" target="_blank" rel="noopener noreferrer">
-            https://www.tbench.ai/registry/terminal-bench-core/0.1.1
-          </a>. 
-          Our project, while not a direct contribution to Terminal-Bench, will mimic the style closely.
-        </div>
 
         <h3 id="high-level">High-Level Tasking Workflow</h3>
         <p>
-          Tasking will be performed through the terminus-project project on the Snorkel Expert Platform.
+          Submissions should be made through this private GitHub repository: <a href="https://github.com/snorkel-ai/snorkel-tb-tasks" target="_blank" rel="noopener noreferrer">https://github.com/snorkel-ai/snorkel-tb-tasks</a>
+        </p>
+        <ul>
+          <li>Please DM Puyun or Connor if you don't have access and you weren't onboarded onto the Snorkel Expert Platform.</li>
+        </ul>
+        <p>
           Once you are granted access, you should:
         </p>
         <ol>
-          <li>Clone the open-source Terminal-Bench repo to give you access to the <code>tb</code> commands used for running the agents and programmatic checks locally</li>
-          <li>Go to the training site and download the task file skeleton</li>
-          <li>Rename the task folder to match your intended task name</li>
+          <li>Install uv: <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></li>
+          <li>Clone the repository</li>
+          <li>Create a task in your local environment under tasks directory using the CLI wizard</li>
           <li>Create your task instruction, an Oracle solution that passes, and Python tests</li>
-          <li>Iterate on your submission until all CI/Evals pass</li>
-          <li>Create a ZIP file for your task folder</li>
-          <li>Submit your ZIP file on the Platform</li>
+          <li>Push a branch (e.g. <code>username/&lt;task-id&gt;</code>)</li>
+          <li>Create a pull request against the repository and make sure the title starts with 'Task:'</li>
+          <li>Iterate on that branch until all CI/Evals pass</li>
         </ol>
 
-        <p className="info-box">
-          <strong>Estimated Time:</strong> We expect submission tasks to take 2-5 hours based on task difficulty.
-        </p>
-
-        <h3 id="initial-setup">Initial Setup (one-time)</h3>
+        <h3 id="initial-setup">Initial Setup and Task Creation</h3>
+        <h4>Initial Setup</h4>
         <ol>
-          <li>Clone the Terminal-Bench repository
-            <pre><code>git clone https://github.com/laude-institute/terminal-bench.git</code></pre>
-            <p>This gives you access to the <code>tb</code> commands used for running agents and programmatic checks locally.</p>
+          <li>Install uv:
+            <pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+          </li>
+          <li>Clone the repo:
+            <pre><code>git clone https://github.com/snorkel-ai/snorkel-tb-tasks.git</code></pre>
+          </li>
+          <li>Navigate to the created local directory:
+            <pre><code>cd snorkel-tb-tasks</code></pre>
           </li>
         </ol>
+        <h4>Task Creation</h4>
+        <ol>
+          <li>Run the task creation wizard:
+            <pre><code>uv run stb tasks create</code></pre>
+          </li>
+          <li>Follow the steps given in the terminal to instantiate your task</li>
+        </ol>
+        <p>
+          This will create a new folder for your task in your <code>snorkel-tb-tasks/tasks</code> directory. The contents of the folder contain the necessary file skeleton to complete the task.
+        </p>
 
         <h3 id="completing-task">Completing a Task</h3>
         <ol>
-          <li>Go to the Terminus EC Training Hub and download the ZIP file of the task skeleton</li>
-          <li>Extract and rename your task folder as desired</li>
+          <li>Create your task instruction, an Oracle solution that passes, and Python tests</li>
           <li>Edit the created Dockerfile using a text editor to set up your task environment
             <ul>
               <li>Add any dependencies of the task, such as additional required packages</li>
@@ -313,8 +321,24 @@ tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-
               </li>
             </ul>
           </li>
-          <li>Create a ZIP file of your task folder</li>
-          <li>Submit your task on the Snorkel Expert Platform in the terminus-project project</li>
+          <li>Push a branch (e.g. <code>username/&lt;task-id&gt;</code>)
+            <ul>
+              <li>Create a new branch: <code>git checkout -b username/&lt;task-id&gt;</code></li>
+              <li>Stage your changes: <code>git add tasks/&lt;task-id&gt;</code></li>
+              <li>Commit your changes: <code>git commit -m "Add task: &lt;task-id&gt;"</code></li>
+              <li>Push your branch: <code>git push origin username/&lt;task-id&gt;</code></li>
+            </ul>
+          </li>
+          <li>Create a pull request against the repository and make sure the title starts with 'Task:'
+            <ul>
+              <li>Go to the snorkel-tb-tasks repository on GitHub</li>
+              <li>Click "New Pull Request" and select your branch</li>
+              <li>Make sure the PR title starts with "Task:" (e.g., "Task: Add task-id")</li>
+              <li>Fill out the pull request template with your task details</li>
+              <li>Submit the pull request for review</li>
+            </ul>
+          </li>
+          <li>Iterate on that branch until all CI/Evals pass</li>
         </ol>
 
         <h2 id="videos" style={{ marginTop: '3rem' }}>Task Walkthrough Videos</h2>
@@ -376,9 +400,6 @@ tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-
           </div>
         </div>
 
-        <div className="info-box">
-          <strong>Next Steps:</strong> After completing your task locally, follow the <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = 'expert-platform-walkthrough'; }}>Expert Platform Submission Walkthrough</a> to submit your task on the platform.
-        </div>
       </>
     ),
   },

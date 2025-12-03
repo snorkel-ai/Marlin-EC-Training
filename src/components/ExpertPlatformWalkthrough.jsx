@@ -63,63 +63,9 @@ function ExpertPlatformWalkthrough({ onNavigate }) {
         </div>
 
         <div style={{ position: 'relative', width: '100%' }}>
-          <div className="content-body" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'left' }}>
-            <aside style={{
-              position: 'absolute',
-              right: 'calc((100% - 1200px) / 2 - 240px)',
-              top: 0,
-              width: '180px',
-              paddingRight: '1rem',
-              zIndex: 10,
-              borderRight: '2px solid #e2e8f0'
-            }}>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  style={{
-                    padding: '0.5rem 0.75rem',
-                    textAlign: 'left',
-                    border: 'none',
-                    background: 'transparent',
-                    color: activeSection === section.id ? '#1e40af' : '#64748b',
-                    fontSize: '0.813rem',
-                    fontWeight: activeSection === section.id ? 600 : 500,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    position: 'relative',
-                    paddingLeft: '1rem'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (activeSection !== section.id) {
-                      e.target.style.color = '#1e293b';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (activeSection !== section.id) {
-                      e.target.style.color = '#64748b';
-                    }
-                  }}
-                >
-                  {activeSection === section.id && (
-                    <span style={{
-                      position: 'absolute',
-                      right: '-1rem',
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      width: '2px',
-                      height: '100%',
-                      backgroundColor: '#1e40af'
-                    }}></span>
-                  )}
-                  {section.title}
-                </button>
-              ))}
-            </nav>
-          </aside>
-            
-            <h2 id="workflow">Environment Setup and Tasking Workflow</h2>
+          <div className="content-body" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'left', display: 'flex', gap: '2rem' }}>
+            <div style={{ flex: '1', minWidth: 0 }}>
+              <h2 id="workflow">Environment Setup and Tasking Workflow</h2>
 
             <h3 id="high-level">High-Level Tasking Workflow</h3>
           <p>
@@ -215,7 +161,11 @@ tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-
                 </li>
               </ul>
             </li>
-            <li>Create a ZIP file of your task folder</li>
+            <li>Create a ZIP file of your task folder
+              <ul>
+                <li>Select all the individual files inside the task folder and compress them - do not compress the whole folder directly</li>
+              </ul>
+            </li>
             <li>Submit your task on the Snorkel Expert Platform in the terminus-project project</li>
           </ol>
 
@@ -262,8 +212,60 @@ tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-
                   title="3. Creating tests for your task"
                 ></iframe>
               </div>
+              </div>
             </div>
-          </div>
+            </div>
+            <aside style={{
+              width: '180px',
+              paddingRight: '1rem',
+              flexShrink: 0,
+              borderRight: '2px solid #e2e8f0'
+            }}>
+              <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', position: 'sticky', top: '100px' }}>
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    style={{
+                      padding: '0.5rem 0.75rem',
+                      textAlign: 'left',
+                      border: 'none',
+                      background: 'transparent',
+                      color: activeSection === section.id ? '#1e40af' : '#64748b',
+                      fontSize: '0.813rem',
+                      fontWeight: activeSection === section.id ? 600 : 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      position: 'relative',
+                      paddingLeft: '1rem'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeSection !== section.id) {
+                        e.target.style.color = '#1e293b';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeSection !== section.id) {
+                        e.target.style.color = '#64748b';
+                      }
+                    }}
+                  >
+                    {activeSection === section.id && (
+                      <span style={{
+                        position: 'absolute',
+                        right: '-1rem',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '2px',
+                        height: '100%',
+                        backgroundColor: '#1e40af'
+                      }}></span>
+                    )}
+                    {section.title}
+                  </button>
+                ))}
+              </nav>
+            </aside>
           </div>
         </div>
       </main>

@@ -101,12 +101,6 @@ function LandingPage({ onNavigate }) {
               </ol>
             </div>
           </div>
-          <div style={{ textAlign: 'center', width: '100%', marginBottom: '2rem' }}>
-            <p style={{ margin: '0', textAlign: 'center', display: 'inline-block' }}>
-              Additionally, you may find the Office Hours Videos and Slides<br />
-              helpful for understanding common mistakes and best practices to avoid.
-            </p>
-          </div>
           
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '550px', minWidth: '480px', width: '100%' }}>
