@@ -202,10 +202,10 @@ export const trainingSections = [
   },
   {
     id: 'workflow',
-    title: 'Setup + Workflow',
+    title: 'GitHub Submission Walkthrough',
     content: (
       <>
-        <h2>Environment Setup and Tasking Workflow</h2>
+        <h2 id="workflow-overview">Environment Setup and Tasking Workflow</h2>
         
         <div className="warning-box">
           <strong>Before Beginning:</strong> Familiarize yourself with Terminal-Bench and its existing tasks here: 
@@ -215,7 +215,7 @@ export const trainingSections = [
           Our project, while not a direct contribution to Terminal-Bench, will mimic the style closely.
         </div>
 
-        <h3>High-Level Tasking Workflow</h3>
+        <h3 id="high-level">High-Level Tasking Workflow</h3>
         <p>
           Tasking will be performed through the terminus-project project on the Snorkel Expert Platform.
           Once you are granted access, you should:
@@ -234,7 +234,7 @@ export const trainingSections = [
           <strong>Estimated Time:</strong> We expect submission tasks to take 2-5 hours based on task difficulty.
         </p>
 
-        <h3>Initial Setup (one-time)</h3>
+        <h3 id="initial-setup">Initial Setup (one-time)</h3>
         <ol>
           <li>Clone the Terminal-Bench repository
             <pre><code>git clone https://github.com/laude-institute/terminal-bench.git</code></pre>
@@ -242,7 +242,7 @@ export const trainingSections = [
           </li>
         </ol>
 
-        <h3>Completing a Task</h3>
+        <h3 id="completing-task">Completing a Task</h3>
         <ol>
           <li>Go to the Terminus EC Training Hub and download the ZIP file of the task skeleton</li>
           <li>Extract and rename your task folder as desired</li>
@@ -316,6 +316,65 @@ tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-
           <li>Create a ZIP file of your task folder</li>
           <li>Submit your task on the Snorkel Expert Platform in the terminus-project project</li>
         </ol>
+
+        <h2 id="videos" style={{ marginTop: '3rem' }}>Task Walkthrough Videos</h2>
+        <p style={{ marginBottom: '2rem' }}>
+          Watch these step-by-step videos to learn how to create and test your task:
+        </p>
+        
+        <div className="videos-grid" style={{ marginBottom: '2rem' }}>
+          <div className="video-card">
+            <h3 className="video-card-title">1. Creating a Task</h3>
+            <div className="video-wrapper">
+              <iframe
+                src="https://www.loom.com/embed/92c2e195ac1c4b1e9b1177668dfcb81a?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                allowFullScreen
+                className="video-iframe"
+                title="1. Creating a Task"
+              ></iframe>
+            </div>
+          </div>
+          
+          <div className="video-card">
+            <h3 className="video-card-title">2. Running your task</h3>
+            <div className="video-wrapper">
+              <iframe
+                src="https://www.loom.com/embed/22449b76123d41e6abff0efb39d0b960?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                allowFullScreen
+                className="video-iframe"
+                title="2. Running your task"
+              ></iframe>
+            </div>
+          </div>
+          
+          <div className="video-card">
+            <h3 className="video-card-title">3. Creating a solution.sh</h3>
+            <div className="video-wrapper">
+              <iframe
+                src="https://www.loom.com/embed/140f2cf8f16d404abf5cbd7dcc66b7cb?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                allowFullScreen
+                className="video-iframe"
+                title="3. Creating a solution.sh"
+              ></iframe>
+            </div>
+          </div>
+          
+          <div className="video-card">
+            <h3 className="video-card-title">4. Creating tests for your task</h3>
+            <div className="video-wrapper">
+              <iframe
+                src="https://www.loom.com/embed/a00541ff2787464c84bf4601415ee624?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                allowFullScreen
+                className="video-iframe"
+                title="4. Creating tests for your task"
+              ></iframe>
+            </div>
+          </div>
+        </div>
 
         <div className="info-box">
           <strong>Next Steps:</strong> After completing your task locally, follow the <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = 'expert-platform-walkthrough'; }}>Expert Platform Submission Walkthrough</a> to submit your task on the platform.

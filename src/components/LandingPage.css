@@ -23,7 +23,7 @@
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #1e40af;
 }
 
 .nav-links {
@@ -42,7 +42,7 @@
 }
 
 .nav-links a:hover {
-  color: #2563eb;
+  color: #1e40af;
 }
 
 .nav-links button {
@@ -50,7 +50,7 @@
 }
 
 .nav-links button:hover {
-  color: #2563eb;
+  color: #1e40af;
 }
 
 /* Announcement Banner */
@@ -152,7 +152,7 @@
 }
 
 .overview-section a {
-  color: #2563eb;
+  color: #1e40af;
   text-decoration: none;
   font-weight: 500;
 }
@@ -163,18 +163,18 @@
 
 .overview-link {
   display: inline-block;
-  color: #2563eb;
+  color: #1e40af;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  border: 2px solid #2563eb;
+  border: 2px solid #1e40af;
   border-radius: 6px;
   transition: all 0.2s;
 }
 
 .overview-link:hover {
-  background-color: #2563eb;
+  background-color: #1e40af;
   color: #ffffff;
   text-decoration: none;
 }
@@ -228,9 +228,9 @@
 }
 
 .resource-button:hover {
-  border-color: #2563eb;
+  border-color: #1e40af;
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 8px 16px rgba(30, 64, 175, 0.15);
 }
 
 .button-text {
@@ -268,9 +268,9 @@
 }
 
 .guideline-card:hover {
-  border-color: #2563eb;
+  border-color: #1e40af;
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 8px 16px rgba(30, 64, 175, 0.15);
 }
 
 .card-icon {

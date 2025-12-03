@@ -19,13 +19,13 @@
 .workbook-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #1e40af;
 }
 
 .back-button {
   background: none;
   border: none;
-  color: #2563eb;
+  color: #1e40af;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -74,7 +74,7 @@
 
 .notebook-download-link {
   display: inline-block;
-  color: #2563eb;
+  color: #1e40af;
   font-weight: 600;
   text-decoration: none;
   font-size: 1.125rem;
@@ -103,7 +103,7 @@
 
 .download-card {
   background-color: #eff6ff;
-  border: 2px solid #2563eb;
+  border: 2px solid #1e40af;
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -134,7 +134,7 @@
 
 .download-button {
   display: inline-block;
-  background-color: #2563eb;
+  background-color: #1e40af;
   color: white;
   padding: 0.875rem 2rem;
   font-size: 1rem;

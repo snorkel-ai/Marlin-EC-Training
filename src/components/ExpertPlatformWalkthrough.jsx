@@ -1,148 +1,270 @@
+import { useState, useEffect } from 'react';
 import './Videos.css';
 import './Content.css';
+import './Sidebar.css';
 
 function ExpertPlatformWalkthrough({ onNavigate }) {
+  const [activeSection, setActiveSection] = useState('');
+
+  const sections = [
+    { id: 'workflow', title: 'Environment Setup and Tasking Workflow' },
+    { id: 'high-level', title: 'High-Level Tasking Workflow' },
+    { id: 'initial-setup', title: 'Initial Setup (one-time)' },
+    { id: 'completing-task', title: 'Completing a Task' },
+    { id: 'videos', title: 'Task Walkthrough Videos' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i].id);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="videos-page">
       <header className="videos-header">
         <button className="back-button" onClick={() => onNavigate('home')}>
           ← Back to Home
         </button>
-        <div className="videos-logo">Platform Workflow</div>
+        <div className="videos-logo">Expert Platform Submission Walkthrough</div>
       </header>
 
-      <main className="videos-content">
-        <h1 className="videos-title">Platform Workflow</h1>
+      <main className="videos-content" style={{ position: 'relative' }}>
+        <h1 className="videos-title">Expert Platform Submission Walkthrough</h1>
         <div className="workbook-intro">
           <p>
             Follow these step-by-step instructions to submit your task on the Snorkel Expert Platform.
           </p>
         </div>
 
-        <div className="content-body" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'left' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <div className="content-body" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'left' }}>
+            <aside style={{
+              position: 'absolute',
+              right: 'calc((100% - 1200px) / 2 - 240px)',
+              top: 0,
+              width: '180px',
+              paddingRight: '1rem',
+              zIndex: 10,
+              borderRight: '2px solid #e2e8f0'
+            }}>
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  style={{
+                    padding: '0.5rem 0.75rem',
+                    textAlign: 'left',
+                    border: 'none',
+                    background: 'transparent',
+                    color: activeSection === section.id ? '#1e40af' : '#64748b',
+                    fontSize: '0.813rem',
+                    fontWeight: activeSection === section.id ? 600 : 500,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    position: 'relative',
+                    paddingLeft: '1rem'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeSection !== section.id) {
+                      e.target.style.color = '#1e293b';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeSection !== section.id) {
+                      e.target.style.color = '#64748b';
+                    }
+                  }}
+                >
+                  {activeSection === section.id && (
+                    <span style={{
+                      position: 'absolute',
+                      right: '-1rem',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      width: '2px',
+                      height: '100%',
+                      backgroundColor: '#1e40af'
+                    }}></span>
+                  )}
+                  {section.title}
+                </button>
+              ))}
+            </nav>
+          </aside>
+            
+            <h2 id="workflow">Environment Setup and Tasking Workflow</h2>
+
+            <h3 id="high-level">High-Level Tasking Workflow</h3>
+          <p>
+            Tasking will be performed through the terminus-project project on the Snorkel Expert Platform.
+            Once you are granted access, you should:
+          </p>
+          <ol>
+            <li>Clone the open-source Terminal-Bench repo to give you access to the <code>tb</code> commands used for running the agents and programmatic checks locally</li>
+            <li>Go to the training site and download the task file skeleton</li>
+            <li>Rename the task folder to match your intended task name</li>
+            <li>Create your task instruction, an Oracle solution that passes, and Python tests</li>
+            <li>Iterate on your submission until all CI/Evals pass</li>
+            <li>Create a ZIP file for your task folder</li>
+            <li>Submit your ZIP file on the Platform</li>
+          </ol>
+
+          <h3 id="initial-setup">Initial Setup (one-time)</h3>
+          <ol>
+            <li>Clone the Terminal-Bench repository
+              <pre><code>git clone https://github.com/laude-institute/terminal-bench.git</code></pre>
+              <p>This gives you access to the <code>tb</code> commands used for running agents and programmatic checks locally.</p>
+            </li>
+          </ol>
+
+          <h3 id="completing-task">Completing a Task</h3>
+          <ol>
+            <li>Go to the Terminus EC Training Hub and download the ZIP file of the task skeleton</li>
+            <li>Extract and rename your task folder as desired</li>
+            <li>Edit the created Dockerfile using a text editor to set up your task environment
+              <ul>
+                <li>Add any dependencies of the task, such as additional required packages</li>
+                <li>If you require a multi-container environment or other custom configuration, see the documentation for more information on how to customize your docker-compose.yaml</li>
+              </ul>
+            </li>
+            <li>Docker Troubleshooting:
+              <ul>
+                <li>Ensure you have a recent installation of Docker Desktop</li>
+                <li>On MacOS, enable the option in Advanced Settings: "Allow the default Docker socket to be used (requires password)."</li>
+                <li>Try the following:
+                  <pre><code>sudo dscl . create /Groups/docker
+sudo dseditgroup -o edit -a $USER -t user docker</code></pre>
+                </li>
+              </ul>
+            </li>
+            <li>Enter your task container in interactive mode:
+              <pre><code>tb tasks interact -t &lt;task-name&gt;</code></pre>
+            </li>
+            <li>While interacting with your task container, test your solution idea to make sure that it works as expected
+              <ul>
+                <li>Once solution is verified, record it and exit the container</li>
+              </ul>
+            </li>
+            <li>Modify the solution file (solution.sh) with the verified commands from the previous step
+              <ul>
+                <li>This file will be used by the OracleAgent to ensure the task is solvable</li>
+                <li>If you need to run commands that are not possible to run with a bash script (e.g. vim), use a solution.yaml file to configure interactive commands</li>
+              </ul>
+            </li>
+            <li>Update the tests/test_outputs.py file to verify task completion
+              <ul>
+                <li>Create pytest unit tests to ensure that the task was completed correctly</li>
+                <li>If tests require any file dependencies, place them in the tests/ directory</li>
+              </ul>
+            </li>
+            <li>Test your task solution passes and meets all the requirements specified in the tests:
+              <pre><code>tb run --agent oracle --task-id &lt;task-name&gt;</code></pre>
+              <p>Note that you will need to clone the Terminal-Bench repo in order to run these tb commands.</p>
+            </li>
+            <li>Test your task solution with real agent
+              <ul>
+                <li>Receive API key from Snorkel via email</li>
+                <li>Update environment variables:
+                  <pre><code>export OPENAI_API_KEY=&lt;Portkey API key&gt;
+export OPENAI_BASE_URL=https://api.portkey.ai/v1</code></pre>
+                </li>
+                <li>Two models are available currently - GPT-5 and Claude Sonnet 4.5:
+                  <pre><code># GPT-5
+tb run --agent terminus-2 --model openai/@openai-tbench/gpt-5 --task-id &lt;task_id&gt;
+
+# Claude Sonnet 4.5
+tb run --agent terminus-2 --model openai/@anthropic-tbench/claude-sonnet-4-5-20250929 --task-id &lt;task_id&gt;</code></pre>
+                </li>
+              </ul>
+            </li>
+            <li>Run CI/LLMaJ locally on your task
+              <ul>
+                <li>Two models are available currently - GPT-5 and Claude Sonnet 4.5:
+                  <pre><code># GPT-5
+tb tasks check &lt;task_id&gt; --model openai/@openai/gpt-5
+
+# Claude Sonnet 4.5
+tb tasks check &lt;task_id&gt; --model openai/@anthropic-tbench/claude-sonnet-4-5-20250929</code></pre>
+                </li>
+              </ul>
+            </li>
+            <li>Create a ZIP file of your task folder</li>
+            <li>Submit your task on the Snorkel Expert Platform in the terminus-project project</li>
+          </ol>
+
+          <h2 id="videos" style={{ marginTop: '3rem' }}>Task Walkthrough Videos</h2>
+          <p style={{ marginBottom: '2rem' }}>
+            Watch these step-by-step videos to learn how to create and test your task:
+          </p>
           
-          <h2>Part 1: Download Task Skeleton</h2>
-          <p>
-            Go to the Terminus EC Training Hub and download the ZIP file of the task skeleton.
-            Rename your task folder as desired, then implement your task locally (unchanged from GitHub repo flow).
-          </p>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_12_img_1.jpeg" 
-              alt="Training Hub download page"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
+          <div className="videos-grid" style={{ marginBottom: '2rem' }}>
+            <div className="video-card">
+              <h3 className="video-card-title">1. Running your task</h3>
+              <div className="video-wrapper">
+                <iframe
+                  src="https://www.loom.com/embed/22449b76123d41e6abff0efb39d0b960?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="video-iframe"
+                  title="1. Running your task"
+                ></iframe>
+              </div>
+            </div>
+            
+            <div className="video-card">
+              <h3 className="video-card-title">2. Creating a solution.sh</h3>
+              <div className="video-wrapper">
+                <iframe
+                  src="https://www.loom.com/embed/140f2cf8f16d404abf5cbd7dcc66b7cb?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="video-iframe"
+                  title="2. Creating a solution.sh"
+                ></iframe>
+              </div>
+            </div>
+            
+            <div className="video-card">
+              <h3 className="video-card-title">3. Creating tests for your task</h3>
+              <div className="video-wrapper">
+                <iframe
+                  src="https://www.loom.com/embed/a00541ff2787464c84bf4601415ee624?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="video-iframe"
+                  title="3. Creating tests for your task"
+                ></iframe>
+              </div>
+            </div>
           </div>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_12_img_2.jpeg" 
-              alt="Task skeleton download"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
           </div>
-
-          <h2>Part 2: Start Submission on Platform</h2>
-          <p>
-            Go to your homepage on the Snorkel Expert Platform and click "Start" on the submission node for terminus-project.
-            This will load the Submission interface where you can drag and drop or browse to upload your task file.
-          </p>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_13_img_1.jpeg" 
-              alt="Platform homepage with Start button"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_13_img_2.jpeg" 
-              alt="Submission interface"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-
-          <h2>Part 3: Run Fast CI Checks</h2>
-          <p>
-            After uploading the file and clicking the "Check Feedback" button, the fast CI checks will run on your file and return a summary of passes and failures.
-          </p>
-          <ul>
-            <li>Note that this takes a minute or two to run</li>
-            <li>If the checks all pass (green), you can continue to the next step</li>
-            <li>If some of your checks fail (red), you need to iterate on your task locally and then re-upload and run the checks again</li>
-          </ul>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_14_img_1.jpeg" 
-              alt="Check Feedback button"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_14_img_2.jpeg" 
-              alt="CI check results"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-
-          <h2>Part 4: Submit After Checks Pass</h2>
-          <p>
-            Nothing will appear in these fields on the right at this stage - these will be used later.
-            Once all Fast Static Checks pass, click Submit - do NOT check the "Send to Reviewer" box at this point in time.
-          </p>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_15_img_1.jpeg" 
-              alt="Submission interface before submit"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_15_img_2.jpeg" 
-              alt="Submit button"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-
-          <h2>Part 5: Review Agent Runs and LLM Checks</h2>
-          <p>
-            After submitting, after 20-30 minutes, the task will appear on the right side under "Tasks to be revised" - click Revise here.
-            Now these two fields will be populated with the results of the agent runs and the LLM quality checks.
-            If these don't pass, you should iterate on your task and submit again.
-          </p>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_16_img_1.jpeg" 
-              alt="Tasks to be revised section"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_16_img_2.jpeg" 
-              alt="Agent runs and LLM check results"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-
-          <h2>Part 6: Send to Human Review</h2>
-          <p>
-            Once all checks pass, send the task to human review by checking the "Send to Reviewer" box and then clicking Submit.
-            After a human reviews, they will either accept or send back for revision - if they send back, it will again appear on the right side and you will need to iterate on your task and re-submit.
-          </p>
-          <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-            <img 
-              src="/Terminus-EC-Training/platform_workflow_images/page_17_img_1.jpeg" 
-              alt="Send to Reviewer checkbox"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-            />
-          </div>
-
-          <div className="info-box" style={{ marginTop: '3rem' }}>
-            <strong>Important:</strong> Make sure all Fast Static Checks pass before submitting, and wait for agent runs and LLM checks to complete before sending to reviewer.
-          </div>
-
         </div>
       </main>
 

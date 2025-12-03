@@ -1,4 +1,5 @@
 import './Content.css';
+import './Videos.css';
 
 function Content({ section }) {
   if (!section) return null;

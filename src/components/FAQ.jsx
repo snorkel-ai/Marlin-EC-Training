@@ -63,10 +63,10 @@ function FAQ({ onNavigate }) {
                 <strong>Make a debugging-style task:</strong> When an agent has to figure out the root cause of an issue, it inherently requires reasoning.
               </li>
               <li style={{ marginBottom: '0.75rem' }}>
-                <strong>Make tasks requiring special/niche knowledge:</strong> Knowledge is publicly available but LLMs have not been well-trained on it due to niche nature. Example: <a href="https://github.com/snorkel-ai/snorkel-tb-tasks/pull/103" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'none' }}>Blockchains/NFT task</a>
+                <strong>Make tasks requiring special/niche knowledge:</strong> Knowledge is publicly available but LLMs have not been well-trained on it due to niche nature. Example: <a href="https://github.com/snorkel-ai/snorkel-tb-tasks/pull/103" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', textDecoration: 'none' }}>Blockchains/NFT task</a>
               </li>
               <li style={{ marginBottom: '0.75rem' }}>
-                <strong>Use a bespoke rule buried in common rules:</strong> The task.yaml still has to clearly define it, but a bespoke rule seems to confuse an agent. Example: <a href="https://github.com/snorkel-ai/snorkel-tb-tasks/pull/174#discussion_r2497044356" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'none' }}>Bespoke rule example</a>
+                <strong>Use a bespoke rule buried in common rules:</strong> The task.yaml still has to clearly define it, but a bespoke rule seems to confuse an agent. Example: <a href="https://github.com/snorkel-ai/snorkel-tb-tasks/pull/174#discussion_r2497044356" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', textDecoration: 'none' }}>Bespoke rule example</a>
               </li>
               <li style={{ marginBottom: '0.75rem' }}>
                 <strong>Develop a complex, multi-step task:</strong> Each step has a certain amount of chance that an agent fails, making the overall failure rate higher.

@@ -19,13 +19,13 @@
 .videos-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #1e40af;
 }
 
 .back-button {
   background: none;
   border: none;
-  color: #2563eb;
+  color: #1e40af;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -50,7 +50,7 @@
 .video-card {
   background-color: #ffffff;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
   display: flex;
@@ -95,8 +95,8 @@
 /* Videos Grid */
 .videos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .video-card-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 1rem;
@@ -194,7 +194,7 @@
 }
 
 .faq-item:hover {
-  border-color: #2563eb;
+  border-color: #1e40af;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
 }
 

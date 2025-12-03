@@ -1,7 +1,7 @@
 .content {
   flex: 1;
   padding: 2rem 3rem;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -74,7 +74,7 @@
 
 .info-box {
   background-color: #eff6ff;
-  border-left: 4px solid #2563eb;
+  border-left: 4px solid #1e40af;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
   border-radius: 4px;
@@ -103,7 +103,7 @@
 
 .checklist-item::before {
   content: "✓";
-  color: #2563eb;
+  color: #1e40af;
   font-weight: bold;
   margin-right: 0.75rem;
   flex-shrink: 0;
