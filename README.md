@@ -1,4 +1,4 @@
-# Terminus EC Training
+# Marlin EC Training
 
 A modern React landing page for the Terminus EC Training platform.
 
