@@ -316,6 +316,8 @@ function LandingPage({ onNavigate }) {
   src={"Marlin-EC-Training/public/media/videos/turorial-one.mp4"}
   password="8bMf%@X+"
 />
+
+
                   </div>
                 </div>
               </div>
