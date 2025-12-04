@@ -314,9 +314,8 @@ function LandingPage({ onNavigate }) {
                     </h4>
          <ProtectedVideo 
   src={"Marlin-EC-Training/public/media/videos/turorial-one.mp4"}
-  password="8bMf%@X+"
-/>
-
+  password="8bMf%@X+"/>
+  
 
                   </div>
                 </div>
