@@ -310,12 +310,12 @@ function LandingPage({ onNavigate }) {
 
                   <div>
                     <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
-                      Onboarding Video
+                      Onboarding Video - check #ec-marlin-support-v2 for the password
                     </h4>
-                    <ProtectedVideo 
-                      src="/media/videos/GMT20251204-220142_Recording.cutfile.20251204223140071_1832x982.mp4"
-                      password="8bMf%@X+"
-                    />
+                   <ProtectedVideo 
+  src={`${import.meta.env.BASE_URL}media/videos/GMT20251204-220142_Recording.cutfile.20251204223140071_1832x982.mp4`}
+  password="8bMf%@X+"
+/>
                   </div>
                 </div>
               </div>
