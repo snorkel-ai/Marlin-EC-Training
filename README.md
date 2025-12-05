@@ -20,7 +20,7 @@ A modern React landing page for the Terminus EC Training platform.
 
 ```bash
 # Clone the repository
-git clone https://github.com/Chongnator/Marlin-EC-Training.git
+git clone https://github.com/snorkel-ai/Marlin-EC-Training.git
 cd Marlin-EC-Training
 
 # Install dependencies
