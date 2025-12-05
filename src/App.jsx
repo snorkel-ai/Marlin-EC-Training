@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import './App.css';
 import LandingPage from './components/LandingPage';
-import GuidelineSection from './components/GuidelineSection';
-import Videos from './components/Videos';
-import Workbook from './components/Workbook';
-import OracleTraining from './components/OracleTraining';
-import OnboardingMaterials from './components/OnboardingMaterials';
-import FeedbackSlides from './components/FeedbackSlides';
 import FAQ from './components/FAQ';
 import Glossary from './components/Glossary';
-import LocalTestingInfo from './components/LocalTestingInfo';
-import EnvironmentSetup from './components/EnvironmentSetup';
-import ExpertPlatformWalkthrough from './components/ExpertPlatformWalkthrough';
-import { trainingSections } from './data/trainingData';
+import Overview from './components/Overview';
+import PRSelection from './components/PRSelection';
+import PromptPreparation from './components/PromptPreparation';
+import ModelWorkspace from './components/ModelWorkspace';
+import RulesAndRequirements from './components/RulesAndRequirements';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -21,23 +16,16 @@ function App() {
     setCurrentView(view);
   };
 
-  // Check if currentView is a guideline section
-  const guidelineSection = trainingSections.find(section => section.id === currentView);
-
   return (
     <div className="app">
       {currentView === 'home' && <LandingPage onNavigate={handleNavigate} />}
-      {guidelineSection && <GuidelineSection section={guidelineSection} onNavigate={handleNavigate} />}
-      {currentView === 'videos' && <Videos onNavigate={handleNavigate} />}
-      {currentView === 'workbook' && <Workbook onNavigate={handleNavigate} />}
-      {currentView === 'oracle' && <OracleTraining onNavigate={handleNavigate} />}
-      {currentView === 'onboarding' && <OnboardingMaterials onNavigate={handleNavigate} />}
-      {currentView === 'environment-setup' && <EnvironmentSetup onNavigate={handleNavigate} />}
-      {currentView === 'feedback' && <FeedbackSlides onNavigate={handleNavigate} />}
       {currentView === 'faq' && <FAQ onNavigate={handleNavigate} />}
       {currentView === 'glossary' && <Glossary onNavigate={handleNavigate} />}
-      {currentView === 'local-testing' && <LocalTestingInfo onNavigate={handleNavigate} />}
-      {currentView === 'expert-platform-walkthrough' && <ExpertPlatformWalkthrough onNavigate={handleNavigate} />}
+      {currentView === 'overview' && <Overview onNavigate={handleNavigate} />}
+      {currentView === 'prselection' && <PRSelection onNavigate={handleNavigate} />}
+      {currentView === 'promptpreparation' && <PromptPreparation onNavigate={handleNavigate} />}
+      {currentView === 'modelworkspace' && <ModelWorkspace onNavigate={handleNavigate} />}
+      {currentView === 'rulesandrequirements' && <RulesAndRequirements onNavigate={handleNavigate} />}
     </div>
   );
 }
