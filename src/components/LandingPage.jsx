@@ -109,7 +109,7 @@ function ProtectedVideo({ src, password }) {
   );
 }
 
-function LandingPage({ onNavigate }) {
+function LandingPage({ onNavigate, onLogout }) {
   return (
     <div className="landing-page">
       <header className="header">
@@ -123,6 +123,22 @@ function LandingPage({ onNavigate }) {
             <li><a href="#resources">Training Resources</a></li>
             <li><button onClick={() => onNavigate('glossary')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>Glossary</button></li>
             <li><button onClick={() => onNavigate('faq')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>FAQ</button></li>
+            <li>
+              <button 
+                onClick={onLogout}
+                style={{
+                  background: 'none',
+                  border: '1px solid #dc2626',
+                  color: '#dc2626',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 500
+                }}
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
@@ -312,42 +328,36 @@ function LandingPage({ onNavigate }) {
                     <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
                       Onboarding Video - check #ec-marlin-support-v2 for the password
                     </h4>
-                  <ProtectedVideo
-  src={`${import.meta.env.BASE_URL}media/videos/video.mp4`}
-  password="8bMf%@X+"
-/>
-
-
-
-
+                    <ProtectedVideo
+                      src={`${import.meta.env.BASE_URL}media/videos/video.mp4`}
+                      password="8bMf%@X+"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-           
 
             <div className="resource-buttons">
               <button className="resource-button" onClick={() => onNavigate('overview')}>
-                <span className="button-text">Overview </span>
+                <span className="button-text">Overview</span>
                 <span className="button-description">Provides a high-level explanation of Phase 3 & 4 and how the full workflow fits together.</span>
               </button>
               <button className="resource-button" onClick={() => onNavigate('prselection')}>
-                <span className="button-text">PR Selection </span>
+                <span className="button-text">PR Selection</span>
                 <span className="button-description">Covers how to choose a valid repository and pull request with the right level of complexity.</span>
               </button>
-               <button className="resource-button" onClick={() => onNavigate('promptpreparation')}>
-                <span className="button-text">Prompt Preparation </span>
+              <button className="resource-button" onClick={() => onNavigate('promptpreparation')}>
+                <span className="button-text">Prompt Preparation</span>
                 <span className="button-description">Explains how to outline expected behavior, edge cases, tests, and write a strong prompt.</span>
               </button>
-               <button className="resource-button" onClick={() => onNavigate('modelworkspace')}>
-                <span className="button-text">Model Workspace </span>
+              <button className="resource-button" onClick={() => onNavigate('modelworkspace')}>
+                <span className="button-text">Model Workspace</span>
                 <span className="button-description">Shows how to run the model, iterate across turns, review updates, and finalize your submission.</span>
               </button>
               <button className="resource-button" onClick={() => onNavigate('rulesandrequirements')}>
-                <span className="button-text">Rules & Requirements </span>
+                <span className="button-text">Rules & Requirements</span>
                 <span className="button-description">Details OS requirements, allowed tools, time limits, and project policies you must follow.</span>
               </button>
-              
             </div>
           </section>
         </div>
