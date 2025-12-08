@@ -10,7 +10,7 @@ import { auth, db } from '../firebase';
 const AuthContext = createContext();
 
 
-const TIMEOUT_DURATION = 15 * 60 * 1000;
+const TIMEOUT_DURATION = 2 * 60 * 1000;
 
 export function useAuth() {
   return useContext(AuthContext);
