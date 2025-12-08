@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyA6KgmU6DE_dQY9VM5Wn8dM-yhE3IGjYs4",
+  authDomain: "marlin-ec-training.firebaseapp.com",
+  projectId: "marlin-ec-training",
+  storageBucket: "marlin-ec-training.firebasestorage.app",
+  messagingSenderId: "909399010808",
+  appId: "1:909399010808:web:f433c10f7b5eafe22f7a0d"
 };
 
 const app = initializeApp(firebaseConfig);
