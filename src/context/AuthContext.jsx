@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { 
   signInWithEmailAndPassword, 
   signOut, 
@@ -8,6 +8,9 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
 const AuthContext = createContext();
+
+
+const TIMEOUT_DURATION = 15 * 60 * 1000;
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -42,6 +45,32 @@ export function AuthProvider({ children }) {
   function logout() {
     return signOut(auth);
   }
+
+  // Auto-logout after inactivity
+  useEffect(() => {
+    if (!currentUser) return;
+
+    let timeoutId;
+
+    const resetTimeout = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        logout();
+      }, TIMEOUT_DURATION);
+    };
+
+    // Reset timeout on user activity
+    const events = ['mousedown', 'keydown', 'scroll', 'touchstart'];
+    events.forEach(event => window.addEventListener(event, resetTimeout));
+
+    // Start the timeout
+    resetTimeout();
+
+    return () => {
+      clearTimeout(timeoutId);
+      events.forEach(event => window.removeEventListener(event, resetTimeout));
+    };
+  }, [currentUser]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
