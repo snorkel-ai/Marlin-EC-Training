@@ -107,7 +107,7 @@ function Login({ onLoginSuccess }) {
       </main>
 
       <footer className="content-card-footer">
-        <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
+        <p>&copy; 2025 Marlin EC Training. All rights reserved.</p>
       </footer>
     </div>
   );
