@@ -2,8 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { 
   signInWithEmailAndPassword, 
   signOut, 
-  onAuthStateChanged,
-  createUserWithEmailAndPassword
+  onAuthStateChanged
 } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
@@ -19,32 +18,27 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Check if email is whitelisted
   async function isWhitelisted(email) {
-    const q = query(collection(db, 'whitelist'), where('email', '==', email.toLowerCase()));
-    const snapshot = await getDocs(q);
-    return !snapshot.empty;
-  }
-
-  // Sign up (with whitelist check)
-  async function signup(email, password) {
-    const allowed = await isWhitelisted(email);
-    if (!allowed) {
-      throw new Error('This email is not authorized to access this platform.');
+    try {
+      const q = query(collection(db, 'whitelist'), where('email', '==', email.toLowerCase()));
+      const snapshot = await getDocs(q);
+      return !snapshot.empty;
+    } catch (err) {
+      console.error('Whitelist check failed:', err);
+      return false;
     }
-    return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  // Login (with whitelist check)
   async function login(email, password) {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const allowed = await isWhitelisted(email);
     if (!allowed) {
+      await signOut(auth);
       throw new Error('This email is not authorized to access this platform.');
     }
-    return signInWithEmailAndPassword(auth, email, password);
+    return userCredential;
   }
 
-  // Logout
   function logout() {
     return signOut(auth);
   }
@@ -52,7 +46,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // Double-check whitelist on auth state change
         const allowed = await isWhitelisted(user.email);
         if (allowed) {
           setCurrentUser(user);
@@ -72,7 +65,6 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     login,
-    signup,
     logout,
     error
   };
