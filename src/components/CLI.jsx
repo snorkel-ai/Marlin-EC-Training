@@ -80,7 +80,7 @@ cd <REPO-NAME>`}
   src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
   alt="Login screen" 
   style={{ 
-    maxWidth: '150px', 
+    maxWidth: '100px', 
     width: '100%', 
     borderRadius: '8px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
