@@ -189,6 +189,35 @@ function LandingPage({ onNavigate, onLogout }) {
 
           <p className="overview-closing">Thank you for being part of the Snorkel Expert community. We look forward to working with you as we push the boundaries of AI-assisted software engineering through Project Marlin.</p>
 
+           <h2 className="section-title">Guidelines</h2>
+
+            <div className="resource-buttons">
+              <button className="resource-button" onClick={() => onNavigate('overview')}>
+                <span className="button-text">Overview</span>
+                <span className="button-description">Provides a high-level explanation of Phase 3 & 4 and how the full workflow fits together.</span>
+              </button>
+              <button className="resource-button" onClick={() => onNavigate('prselection')}>
+                <span className="button-text">PR Selection</span>
+                <span className="button-description">Covers how to choose a valid repository and pull request with the right level of complexity.</span>
+              </button>
+              <button className="resource-button" onClick={() => onNavigate('promptpreparation')}>
+                <span className="button-text">Prompt Preparation</span>
+                <span className="button-description">Explains how to outline expected behavior, edge cases, tests, and write a strong prompt.</span>
+              </button>
+              <button className="resource-button" onClick={() => onNavigate('modelworkspace')}>
+                <span className="button-text">Model Workspace</span>
+                <span className="button-description">Shows how to run the model, iterate across turns, review updates, and finalize your submission.</span>
+              </button>
+              <button className="resource-button" onClick={() => onNavigate('rulesandrequirements')}>
+                <span className="button-text">Rules & Requirements</span>
+                <span className="button-description">Details OS requirements, allowed tools, time limits, and project policies you must follow.</span>
+              </button>
+               <button className="resource-button" onClick={() => onNavigate('cli')}>
+                <span className="button-text">CLI Setup</span>
+                <span className="button-description">How to setup the CLI tool to start tasking.</span>
+              </button>
+            </div>
+
         </section>
 
         <div style={{ borderTop: '2px solid #e2e8f0', marginTop: '3rem', paddingTop: '2rem' }}>
@@ -337,28 +366,6 @@ function LandingPage({ onNavigate, onLogout }) {
               </div>
             </div>
 
-            <div className="resource-buttons">
-              <button className="resource-button" onClick={() => onNavigate('overview')}>
-                <span className="button-text">Overview</span>
-                <span className="button-description">Provides a high-level explanation of Phase 3 & 4 and how the full workflow fits together.</span>
-              </button>
-              <button className="resource-button" onClick={() => onNavigate('prselection')}>
-                <span className="button-text">PR Selection</span>
-                <span className="button-description">Covers how to choose a valid repository and pull request with the right level of complexity.</span>
-              </button>
-              <button className="resource-button" onClick={() => onNavigate('promptpreparation')}>
-                <span className="button-text">Prompt Preparation</span>
-                <span className="button-description">Explains how to outline expected behavior, edge cases, tests, and write a strong prompt.</span>
-              </button>
-              <button className="resource-button" onClick={() => onNavigate('modelworkspace')}>
-                <span className="button-text">Model Workspace</span>
-                <span className="button-description">Shows how to run the model, iterate across turns, review updates, and finalize your submission.</span>
-              </button>
-              <button className="resource-button" onClick={() => onNavigate('rulesandrequirements')}>
-                <span className="button-text">Rules & Requirements</span>
-                <span className="button-description">Details OS requirements, allowed tools, time limits, and project policies you must follow.</span>
-              </button>
-            </div>
           </section>
         </div>
       </main>
