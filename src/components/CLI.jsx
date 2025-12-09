@@ -27,21 +27,21 @@ function CLI({ onNavigate }) {
         <section className="content-card-section">
           <h2>2. Install Required Dependencies</h2>
           <p>The CLI tool relies on tmux to display and manage live model sessions. Install it before continuing.</p>
-          
+
           <h3>macOS (Homebrew)</h3>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`brew install tmux`}
+            {`brew install tmux`}
           </pre>
 
           <h3>Linux</h3>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`sudo apt update
+            {`sudo apt update
 sudo apt install tmux`}
           </pre>
 
           <h3>Verify installation</h3>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`tmux -V`}
+            {`tmux -V`}
           </pre>
         </section>
 
@@ -49,7 +49,7 @@ sudo apt install tmux`}
           <h2>3. Clone the GitHub Repository</h2>
           <p>Clone the repository you will be modifying. All CLI tool operations must occur within the repository root.</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`git clone <REPO-URL>
+            {`git clone <REPO-URL>
 cd <REPO-NAME>`}
           </pre>
         </section>
@@ -64,9 +64,10 @@ cd <REPO-NAME>`}
         </section>
 
         <section className="content-card-section">
-          <h2>5. Access the CLI Tool Download Page</h2>
+          <h2>5. Access to the Anthropic tool</h2>
           <p>Open the following URL:</p>
           <p><a href="https://feedback.anthropic.com/claude_code?email_login=true" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>https://feedback.anthropic.com/claude_code?email_login=true</a></p>
+          
         </section>
 
         <section className="content-card-section">
@@ -75,6 +76,16 @@ cd <REPO-NAME>`}
             <li>Enter your Alias email address.</li>
             <li>A verification code will be sent to your Alias inbox.</li>
             <li>Enter the code to complete login.</li>
+            <img 
+  src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
+  alt="Login screen" 
+  style={{ 
+    maxWidth: '150px', 
+    width: '100%', 
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+  }} 
+/>
           </ul>
           <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626' }}>
             ❌ Do not use "Sign in with Google." If authentication fails on the first attempt, simply repeat the login.
@@ -83,6 +94,7 @@ cd <REPO-NAME>`}
 
         <section className="content-card-section">
           <h2>7. Download the Appropriate CLI Tool Build</h2>
+          <img src={`${import.meta.env.BASE_URL}media/images/version.png`} alt="" />
           <p>Select the binary that matches your operating system and CPU architecture:</p>
           <ul>
             <li>macOS (Intel)</li>
@@ -96,12 +108,12 @@ cd <REPO-NAME>`}
           <h2>8. Move and Prepare the CLI Tool</h2>
           <p>From within the root of your cloned repository, move the downloaded file into place and make it executable:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`mv ~/Downloads/<downloaded-filename> claude-hfi
+            {`mv ~/Downloads/<downloaded-filename> claude-hfi
 chmod +x claude-hfi`}
           </pre>
           <p>Example:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`mv ~/Downloads/darwin-arm64 claude-hfi
+            {`mv ~/Downloads/darwin-arm64 claude-hfi
 chmod +x claude-hfi
 
 ls
@@ -116,11 +128,11 @@ claude-hfi    README.md`}
           <h2>9. Launch the CLI Tool in VS Code Mode</h2>
           <p>Run the following command from the repository root:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`./claude-hfi --vscode`}
+            {`./claude-hfi --vscode`}
           </pre>
           <p>This initializes the tool, performs authentication if required, and prepares the environment. Two separate VS Code windows (Trajectory A and Trajectory B) will be opened automatically during execution.</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-{`./claude-hfi --vscode
+            {`./claude-hfi --vscode
 
 Trajectory A:
   Worktree: /Users/chong/.cache/claude-hfi/-Users-chong-Documents-Project-Test/A
@@ -143,7 +155,7 @@ Please enter the interface code:`}
           <h2>10. Enter the Interface Code</h2>
           <p>When prompted for the Interface Code, enter:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`cc_agentic_coding`}
+            {`cc_agentic_coding`}
           </pre>
           <p>This enables the correct workflow mode for the project.</p>
         </section>
@@ -152,11 +164,11 @@ Please enter the interface code:`}
           <h2>11. Attach to tmux Sessions</h2>
           <p>In each VS Code window, open the integrated terminal and attach to the appropriate tmux session:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`tmux attach -t <session-id>-A`}
+            {`tmux attach -t <session-id>-A`}
           </pre>
           <p>and</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`tmux attach -t <session-id>-B`}
+            {`tmux attach -t <session-id>-B`}
           </pre>
           <p>These sessions display live model output, including command execution, file generation, testing activity, and any required user interaction.</p>
           <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
@@ -169,7 +181,7 @@ Please enter the interface code:`}
           <p>Paste the full prompt you completed during Prompt-Preparation. Press Enter to begin model execution.</p>
           <p>The CLI tool will start two independent trajectories, each in its own VS Code instance.</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-{`> Create a riddle and add it to readme.md
+            {`> Create a riddle and add it to readme.md
 
 Waiting for trajectories to complete.
 Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible tool permission requests.`}
@@ -180,7 +192,7 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
           <h2>13. Wait for Trajectory Completion</h2>
           <p>In the main terminal, the tool will display:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`Waiting for trajectories to complete...`}
+            {`Waiting for trajectories to complete...`}
           </pre>
           <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626' }}>
             ❌ Do not proceed until both trajectories have finished running.
@@ -193,7 +205,7 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
           <p style={{ backgroundColor: '#fef3c7', padding: '0.75rem', borderRadius: '6px', color: '#92400e' }}>
             ⚠️ Important: If you are working entirely inside VS Code, you must use Git Diff to inspect all file changes. VS Code does not automatically highlight which lines or files have changed.
           </p>
-          
+
           <h3>Review Procedure</h3>
           <ol>
             <li>Open the VS Code Source Control panel.</li>
@@ -209,12 +221,12 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
             ⚠️ Thorough file review is mandatory. Missing or incorrect diff inspection is a common cause of rejected submissions.
           </p>
           <section className="content-card-section">
-  <h2>15. Compare Trajectory Versions</h2>
-  <p>After both trajectories complete, compare the differences between Version A and Version B:</p>
-  
-  <h3>Version A:</h3>
-  <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-{`git diff
+            <h2>15. Compare Trajectory Versions</h2>
+            <p>After both trajectories complete, compare the differences between Version A and Version B:</p>
+
+            <h3>Version A:</h3>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
+              {`git diff
 
 --- a/README.md
 +++ b/README.md
@@ -228,11 +240,11 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
 +You can enter but can't go inside.
 +
 +What am I?`}
-  </pre>
+            </pre>
 
-  <h3>Version B:</h3>
-  <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-{`git diff
+            <h3>Version B:</h3>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
+              {`git diff
 
 diff --git a/README.md b/README.md
 index 8ae0569..d73214a 100644
@@ -247,19 +259,19 @@ index 8ae0569..d73214a 100644
 +I have no body, but I come alive with wind. What am I?
 +
 +*Answer: An echo*`}
-  </pre>
+            </pre>
 
-  <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
-    💡 Review both versions carefully and select the one that best meets the acceptance criteria.
-  </p>
-</section>
+            <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
+              💡 Review both versions carefully and select the one that best meets the acceptance criteria.
+            </p>
+          </section>
         </section>
 
         <section className="content-card-section">
           <h2>16. Exit tmux Sessions</h2>
           <p>Once review is complete, close each tmux session:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`exit`}
+            {`exit`}
           </pre>
         </section>
 
@@ -267,15 +279,15 @@ index 8ae0569..d73214a 100644
           <h2>17. Uninstall / Cleanup</h2>
           <p>To remove the CLI tool from a repository:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`rm claude-hfi`}
+            {`rm claude-hfi`}
           </pre>
           <p>To clear cached worktrees:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`rm -rf ~/.cache/claude-hfi`}
+            {`rm -rf ~/.cache/claude-hfi`}
           </pre>
           <p>To kill all tmux sessions:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-{`tmux kill-server`}
+            {`tmux kill-server`}
           </pre>
         </section>
 
