@@ -1,10 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { 
+  signInWithEmailAndPassword,
   signOut, 
   onAuthStateChanged,
   sendSignInLinkToEmail,
   isSignInWithEmailLink,
-  signInWithEmailLink
+  signInWithEmailLink,
+  GoogleAuthProvider,
+  signInWithPopup
 } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
@@ -15,6 +18,8 @@ const actionCodeSettings = {
   url: window.location.origin + '/Marlin-EC-Training/',
   handleCodeInApp: true
 };
+
+const googleProvider = new GoogleAuthProvider();
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -39,6 +44,21 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Email/Password login
+  async function loginWithPassword(email, password) {
+    setError('');
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
+    const allowed = await isWhitelisted(email);
+    if (!allowed) {
+      await signOut(auth);
+      throw new Error('This email is not authorized to access this platform.');
+    }
+    
+    return userCredential;
+  }
+
+  // Email link login
   async function sendLoginLink(email) {
     setError('');
     const allowed = await isWhitelisted(email);
@@ -60,6 +80,9 @@ export function AuthProvider({ children }) {
       const result = await signInWithEmailLink(auth, email, window.location.href);
       window.localStorage.removeItem('emailForSignIn');
       
+      // Clean up the URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+      
       const allowed = await isWhitelisted(email);
       if (!allowed) {
         await signOut(auth);
@@ -71,10 +94,25 @@ export function AuthProvider({ children }) {
     return null;
   }
 
+  // Google Sign-In
+  async function loginWithGoogle() {
+    setError('');
+    const result = await signInWithPopup(auth, googleProvider);
+    
+    const allowed = await isWhitelisted(result.user.email);
+    if (!allowed) {
+      await signOut(auth);
+      throw new Error('This email is not authorized to access this platform.');
+    }
+    
+    return result;
+  }
+
   function logout() {
     return signOut(auth);
   }
 
+  // Check for email link on page load
   useEffect(() => {
     if (isSignInWithEmailLink(auth, window.location.href)) {
       completeSignIn().catch(err => {
@@ -95,8 +133,10 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    loginWithPassword,
     sendLoginLink,
     completeSignIn,
+    loginWithGoogle,
     logout,
     error
   };

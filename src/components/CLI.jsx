@@ -50,14 +50,38 @@ sudo apt install tmux`}
           </pre>
         </section>
 
-        <section className="content-card-section">
-          <h2>3. Clone the GitHub Repository</h2>
-          <p>Clone the repository you will be modifying. All CLI tool operations must occur within the repository root.</p>
-          <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-            {`git clone <REPO-URL>
-cd <REPO-NAME>`}
-          </pre>
-        </section>
+       <section className="content-card-section">
+  <h2>3. Download and Prepare the Repository</h2>
+  <p>After your Prompt-Preparation submission is accepted, you will receive an email with a link to download the repository tarball.</p>
+  
+  <img 
+    src={`${import.meta.env.BASE_URL}media/images/submission-email.png`} 
+    alt="Submission email" 
+    style={{ 
+      maxWidth: '800px', 
+      width: '100%', 
+      borderRadius: '8px',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+      marginBottom: '1rem'
+    }} 
+  />
+
+  <p>Download the tarball using the <strong>repo link</strong> from the email, then unpack and initialize it:</p>
+  <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
+    {`# Download the tarball from the email link
+# Then unpack it:
+tar -xvf <downloaded-file>.tar
+
+# Navigate into the unpacked directory
+cd <repo-folder>
+
+# Initialize git in the repository
+git init`}
+  </pre>
+  <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
+    📁 Make sure to run <code>git init</code> inside the root of the unpacked directory. This is required for the CLI tool to track changes.
+  </p>
+</section>
 
         <section className="content-card-section">
           <h2>4. Log Into Your Alias Email</h2>
