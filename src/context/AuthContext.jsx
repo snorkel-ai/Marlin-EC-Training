@@ -1,16 +1,20 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { 
-  signInWithEmailAndPassword, 
   signOut, 
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendSignInLinkToEmail,
+  isSignInWithEmailLink,
+  signInWithEmailLink
 } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
 const AuthContext = createContext();
 
-
-const TIMEOUT_DURATION = 100 * 60 * 1000;
+const actionCodeSettings = {
+  url: window.location.origin + '/Marlin-EC-Training/',
+  handleCodeInApp: true
+};
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -23,7 +27,10 @@ export function AuthProvider({ children }) {
 
   async function isWhitelisted(email) {
     try {
-      const q = query(collection(db, 'whitelist'), where('email', '==', email.toLowerCase()));
+      const q = query(
+        collection(db, 'whitelist'),
+        where('email', '==', email.toLowerCase())
+      );
       const snapshot = await getDocs(q);
       return !snapshot.empty;
     } catch (err) {
@@ -32,59 +39,54 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function login(email, password) {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  async function sendLoginLink(email) {
+    setError('');
     const allowed = await isWhitelisted(email);
     if (!allowed) {
-      await signOut(auth);
       throw new Error('This email is not authorized to access this platform.');
     }
-    return userCredential;
+    await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+    window.localStorage.setItem('emailForSignIn', email);
+  }
+
+  async function completeSignIn() {
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+      let email = window.localStorage.getItem('emailForSignIn');
+      
+      if (!email) {
+        email = window.prompt('Please provide your email for confirmation');
+      }
+      
+      const result = await signInWithEmailLink(auth, email, window.location.href);
+      window.localStorage.removeItem('emailForSignIn');
+      
+      const allowed = await isWhitelisted(email);
+      if (!allowed) {
+        await signOut(auth);
+        throw new Error('This email is not authorized to access this platform.');
+      }
+      
+      return result;
+    }
+    return null;
   }
 
   function logout() {
     return signOut(auth);
   }
 
-  // Auto-logout after inactivity
   useEffect(() => {
-    if (!currentUser) return;
-
-    let timeoutId;
-
-    const resetTimeout = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        logout();
-      }, TIMEOUT_DURATION);
-    };
-
-    // Reset timeout on user activity
-    const events = ['mousedown', 'keydown', 'scroll', 'touchstart'];
-    events.forEach(event => window.addEventListener(event, resetTimeout));
-
-    // Start the timeout
-    resetTimeout();
-
-    return () => {
-      clearTimeout(timeoutId);
-      events.forEach(event => window.removeEventListener(event, resetTimeout));
-    };
-  }, [currentUser]);
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+      completeSignIn().catch(err => {
+        console.error('Sign in failed:', err);
+        setError(err.message);
+      });
+    }
+  }, []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const allowed = await isWhitelisted(user.email);
-        if (allowed) {
-          setCurrentUser(user);
-        } else {
-          await signOut(auth);
-          setCurrentUser(null);
-        }
-      } else {
-        setCurrentUser(null);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
       setLoading(false);
     });
 
@@ -93,7 +95,8 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    login,
+    sendLoginLink,
+    completeSignIn,
     logout,
     error
   };

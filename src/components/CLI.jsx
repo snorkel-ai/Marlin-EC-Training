@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import './ContentCards.css';
 
 function CLI({ onNavigate }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="content-card-page">
       <header className="content-card-header">
@@ -67,7 +72,6 @@ cd <REPO-NAME>`}
           <h2>5. Access to the Anthropic tool</h2>
           <p>Open the following URL:</p>
           <p><a href="https://feedback.anthropic.com/claude_code?email_login=true" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>https://feedback.anthropic.com/claude_code?email_login=true</a></p>
-          
         </section>
 
         <section className="content-card-section">
@@ -76,18 +80,19 @@ cd <REPO-NAME>`}
             <li>Enter your Alias email address.</li>
             <li>A verification code will be sent to your Alias inbox.</li>
             <li>Enter the code to complete login.</li>
-            <img 
-  src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
-  alt="Login screen" 
-  style={{ 
-    maxWidth: '500px', 
-    width: '100%', 
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-  }} 
-/>
           </ul>
-          <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626' }}>
+          <img 
+            src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
+            alt="Login screen" 
+            style={{ 
+              maxWidth: '500px', 
+              width: '100%', 
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              marginTop: '1rem'
+            }} 
+          />
+          <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626', marginTop: '1rem' }}>
             ❌ Do not use "Sign in with Google." If authentication fails on the first attempt, simply repeat the login.
           </p>
         </section>
@@ -95,15 +100,16 @@ cd <REPO-NAME>`}
         <section className="content-card-section">
           <h2>7. Download the Appropriate CLI Tool Build</h2>
           <img 
-  src={`${import.meta.env.BASE_URL}media/images/version.png`} 
-  alt="Version comparison" 
-  style={{ 
-    maxWidth: '800px', 
-    width: '100%', 
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-  }} 
-/>
+            src={`${import.meta.env.BASE_URL}media/images/version.png`} 
+            alt="Version comparison" 
+            style={{ 
+              maxWidth: '800px', 
+              width: '100%', 
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              marginBottom: '1rem'
+            }} 
+          />
           <p>Select the binary that matches your operating system and CPU architecture:</p>
           <ul>
             <li>macOS (Intel)</li>
@@ -129,7 +135,7 @@ ls
 claude-hfi    README.md`}
           </pre>
           <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
-            📁 Every repository you work on must contain its own copy of <code>claude-hfi</code> placed at the root.
+            📁 Every repository you work on must contain its own copy of <code>claude-hfi</code> placed at the root. You will need to repeat this step (moving the tool to the repo root) for each new repository you work on.
           </p>
         </section>
 
@@ -156,6 +162,9 @@ HFI - Human Feedback Interface
 Please enter the interface code:`}
           </pre>
           <p style={{ backgroundColor: '#fef3c7', padding: '0.75rem', borderRadius: '6px', color: '#92400e' }}>
+            ⚠️ Recommendation: Run this command from a terminal outside of VS Code (e.g., the built-in macOS Terminal or iTerm). Otherwise, the two new VS Code windows for Trajectory A and Trajectory B may not open correctly.
+          </p>
+          <p style={{ backgroundColor: '#fef3c7', padding: '0.75rem', borderRadius: '6px', color: '#92400e', marginTop: '0.5rem' }}>
             ⚠️ Important: If you are working entirely inside VS Code, you must use Git Diff to inspect all file changes. VS Code does not automatically highlight which lines or files have changed. You must manually review differences using the Source Control panel or "Compare with Previous" functionality.
           </p>
         </section>
@@ -180,7 +189,10 @@ Please enter the interface code:`}
             {`tmux attach -t <session-id>-B`}
           </pre>
           <p>These sessions display live model output, including command execution, file generation, testing activity, and any required user interaction.</p>
-          <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
+          <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626' }}>
+            ⚠️ Make sure you run the correct tmux attach command in the correct VS Code window! Trajectory A's command should be run in Trajectory A's VS Code window, and Trajectory B's command in Trajectory B's window.
+          </p>
+          <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af', marginTop: '0.5rem' }}>
             💡 If tmux reports the session name is invalid, use tab completion to identify the correct session ID.
           </p>
         </section>
@@ -229,13 +241,15 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
           <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626' }}>
             ⚠️ Thorough file review is mandatory. Missing or incorrect diff inspection is a common cause of rejected submissions.
           </p>
-          <section className="content-card-section">
-            <h2>15. Compare Trajectory Versions</h2>
-            <p>After both trajectories complete, compare the differences between Version A and Version B:</p>
+        </section>
 
-            <h3>Version A:</h3>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-              {`git diff
+        <section className="content-card-section">
+          <h2>15. Compare Trajectory Versions</h2>
+          <p>After both trajectories complete, compare the differences between Version A and Version B:</p>
+
+          <h3>Version A:</h3>
+          <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
+            {`git diff
 
 --- a/README.md
 +++ b/README.md
@@ -249,11 +263,11 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
 +You can enter but can't go inside.
 +
 +What am I?`}
-            </pre>
+          </pre>
 
-            <h3>Version B:</h3>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
-              {`git diff
+          <h3>Version B:</h3>
+          <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
+            {`git diff
 
 diff --git a/README.md b/README.md
 index 8ae0569..d73214a 100644
@@ -268,12 +282,11 @@ index 8ae0569..d73214a 100644
 +I have no body, but I come alive with wind. What am I?
 +
 +*Answer: An echo*`}
-            </pre>
+          </pre>
 
-            <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
-              💡 Review both versions carefully and select the one that best meets the acceptance criteria.
-            </p>
-          </section>
+          <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af' }}>
+            💡 Review both versions carefully and select the one that best meets the acceptance criteria.
+          </p>
         </section>
 
         <section className="content-card-section">
@@ -303,7 +316,7 @@ index 8ae0569..d73214a 100644
       </main>
 
       <footer className="content-card-footer">
-        <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
+        <p>&copy; 2025 Marlin EC Training. All rights reserved.</p>
       </footer>
     </div>
   );
