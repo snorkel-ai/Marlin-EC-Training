@@ -80,7 +80,7 @@ cd <REPO-NAME>`}
   src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
   alt="Login screen" 
   style={{ 
-    maxWidth: '100px', 
+    maxWidth: '500px', 
     width: '100%', 
     borderRadius: '8px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
@@ -94,7 +94,16 @@ cd <REPO-NAME>`}
 
         <section className="content-card-section">
           <h2>7. Download the Appropriate CLI Tool Build</h2>
-          <img src={`${import.meta.env.BASE_URL}media/images/version.png`} alt="" />
+          <img 
+  src={`${import.meta.env.BASE_URL}media/images/version.png`} 
+  alt="Version comparison" 
+  style={{ 
+    maxWidth: '800px', 
+    width: '100%', 
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+  }} 
+/>
           <p>Select the binary that matches your operating system and CPU architecture:</p>
           <ul>
             <li>macOS (Intel)</li>
