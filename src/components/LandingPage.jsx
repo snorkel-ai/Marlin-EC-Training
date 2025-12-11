@@ -53,7 +53,7 @@ function ProtectedVideo({ src, password }) {
             {error}
           </p>
         )}
-        <form onSubmit={handleUnlock} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '250px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '250px', margin: '0 auto' }}>
           <input
             type="password"
             value={inputPassword}
@@ -68,7 +68,8 @@ function ProtectedVideo({ src, password }) {
             }}
           />
           <button
-            type="submit"
+            type="button"
+            onClick={handleUnlock}
             style={{
               padding: '0.75rem',
               borderRadius: '6px',
@@ -82,7 +83,7 @@ function ProtectedVideo({ src, password }) {
           >
             Unlock Video
           </button>
-        </form>
+        </div>
       </div>
     );
   }
@@ -319,6 +320,7 @@ function LandingPage({ onNavigate, onLogout }) {
             </div>
 
             <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
+              {/* Onboarding Session 1 Card */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '550px', minWidth: '480px', width: '100%' }}>
                 <div style={{
                   background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
@@ -361,6 +363,43 @@ function LandingPage({ onNavigate, onLogout }) {
                       src={`${import.meta.env.BASE_URL}media/videos/video.mp4`}
                       password="8bMf%@X+"
                     />
+                  </div>
+                </div>
+              </div>
+
+              {/* Onboarding Session 2 Card */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '550px', minWidth: '480px', width: '100%' }}>
+                <div style={{
+                  background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+                  borderRadius: '12px',
+                  padding: '2rem',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+                  width: '100%'
+                }}>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#ffffff', marginBottom: '1.5rem', textAlign: 'center' }}>
+                   Tutorial
+                  </h3>
+
+                  <div>
+                    <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
+                      CLI Tool Walkthrough
+                    </h4>
+                    <div style={{ position: 'relative', paddingBottom: '64.94708994708994%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
+                      <iframe
+                        src="https://www.loom.com/embed/888ac13d11c24d1099f7ff6b6eaa334b"
+                        frameBorder="0"
+                        webkitallowfullscreen="true"
+                        mozallowfullscreen="true"
+                        allowFullScreen
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%'
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
