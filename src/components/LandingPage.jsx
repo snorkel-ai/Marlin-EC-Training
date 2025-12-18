@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import './LandingPage.css';
 import './Content.css';
 import './Workbook.css';
@@ -111,6 +112,8 @@ function ProtectedVideo({ src, password }) {
 }
 
 function LandingPage({ onNavigate, onLogout }) {
+  const { userRole } = useAuth();
+
   return (
     <div className="landing-page">
       <header className="header">
@@ -124,7 +127,78 @@ function LandingPage({ onNavigate, onLogout }) {
             <li><a href="#resources">Training Resources</a></li>
             <li><button onClick={() => onNavigate('glossary')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>Glossary</button></li>
             <li><button onClick={() => onNavigate('faq')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>FAQ</button></li>
-            <li>
+            
+            {/* Reviewer-only nav item */}
+            {userRole === 'swe' && (
+              <li>
+                <button 
+                  onClick={() => onNavigate('sweguidelines')} 
+                  style={{ 
+                    background: 'none', 
+                    border: 'none', 
+                    color: '#7c3aed', 
+                    textDecoration: 'none', 
+                    fontWeight: 600, 
+                    cursor: 'pointer', 
+                    fontSize: '1rem', 
+                    fontFamily: 'inherit' 
+                  }}
+                >
+                  SWE Guidelines
+                </button>
+              </li>
+            )}
+            
+             {/* Reviewer-only nav item */}
+            {userRole === 'reviewer' && (
+              <li>
+                <button 
+                  onClick={() => onNavigate('')} 
+                  style={{ 
+                    background: 'none', 
+                    border: 'none', 
+                    color: '#7c3aed', 
+                    textDecoration: 'none', 
+                    fontWeight: 600, 
+                    cursor: 'pointer', 
+                    fontSize: '1rem', 
+                    fontFamily: 'inherit' 
+                  }}
+                >
+                   Reviewer Guidelines
+                </button>
+              </li>
+            )}
+            <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              {/* Role badge */}
+              {userRole === 'swe' && (
+                <span style={{
+                  background: '#7c3aed',
+                  color: '#ffffff',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase'
+                }}>
+                  SWE
+                </span>
+              )}
+                {/* Role badge */}
+              {userRole === 'reviewer' && (
+                <span style={{
+                  background: '#7c3aed',
+                  color: '#ffffff',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase'
+                }}>
+                   Reviewer
+                </span>
+              )}
+              
               <button 
                 onClick={onLogout}
                 style={{

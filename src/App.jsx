@@ -11,6 +11,7 @@ import PromptPreparation from './components/PromptPreparation';
 import ModelWorkspace from './components/ModelWorkspace';
 import RulesAndRequirements from './components/RulesAndRequirements';
 import CLI from './components/CLI';
+import SWEGuidelines from './components/SWEGuidelines';
 function AppContent() {
   const [currentView, setCurrentView] = useState('home');
   const { currentUser, logout } = useAuth();
@@ -34,7 +35,8 @@ function AppContent() {
       {currentView === 'promptpreparation' && <PromptPreparation onNavigate={handleNavigate} />}
       {currentView === 'modelworkspace' && <ModelWorkspace onNavigate={handleNavigate} />}
       {currentView === 'rulesandrequirements' && <RulesAndRequirements onNavigate={handleNavigate} />}
-       {currentView === 'cli' && <CLI onNavigate={handleNavigate} />}
+      {currentView === 'cli' && <CLI onNavigate={handleNavigate} />}
+      {currentView === 'sweguidelines' && <SWEGuidelines onNavigate={handleNavigate} />}
     </div>
   );
 }

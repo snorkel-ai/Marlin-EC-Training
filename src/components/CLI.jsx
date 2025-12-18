@@ -390,6 +390,92 @@ index 8ae0569..d73214a 100644
           </pre>
         </section>
 
+        {/* Troubleshooting Section */}
+        <section className="content-card-section" style={{ borderTop: '3px solid #dc2626', paddingTop: '2rem', marginTop: '3rem' }}>
+          <h2 style={{ color: '#dc2626' }}>🔧 Troubleshooting</h2>
+
+          {/* Issue 1 */}
+          <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #dc2626' }}>
+            <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>VS Code Window Closes After Launching the CLI</h3>
+            
+            <p><strong>Issue:</strong> When launching the CLI tool, two VS Code windows (Trajectory A and Trajectory B) briefly open, but one of them closes automatically, leaving only one trajectory visible.</p>
+            
+            <p style={{ marginTop: '1rem' }}><strong>Observed Behavior:</strong></p>
+            <ul>
+              <li>Both VS Code windows initially open as expected.</li>
+              <li>Shortly after launch, either Trajectory A or Trajectory B closes.</li>
+              <li>This behavior did not occur in earlier versions of the tool.</li>
+              <li>The issue has been observed across multiple submissions.</li>
+            </ul>
+
+            <p style={{ marginTop: '1rem' }}><strong>Known Context:</strong></p>
+            <ul>
+              <li>VS Code was fully closed prior to running the CLI (closed via <code>Cmd + Q</code> on macOS).</li>
+              <li>It is unclear whether this behavior is caused by local VS Code settings or the CLI tool itself.</li>
+            </ul>
+
+            <p style={{ marginTop: '1rem', marginBottom: '0.5rem' }}><strong>Workaround:</strong></p>
+            <ol>
+              <li>Open a new VS Code window manually: <code>File → New Window</code></li>
+              <li>Then: <code>File → Open Folder</code></li>
+              <li>Navigate to the trajectory worktree, typically located at:</li>
+            </ol>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>
+              {`~/.cache/claude-hfi/<project-path>/A`}
+            </pre>
+            <p>or</p>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
+              {`~/.cache/claude-hfi/<project-path>/B`}
+            </pre>
+            <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af', marginTop: '1rem' }}>
+              Both worktrees are still created correctly, even if one window closes automatically.
+            </p>
+          </div>
+
+          {/* Issue 2 */}
+          <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #dc2626' }}>
+            <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>Lost Main Terminal Session During Execution</h3>
+            
+            <p><strong>Issue:</strong> The main CLI terminal session is lost or closed during execution, but:</p>
+            <ul>
+              <li>VS Code windows remain open</li>
+              <li>tmux sessions are still attached and running</li>
+            </ul>
+
+            <p style={{ marginTop: '1rem' }}><strong>Recommended Solution:</strong> Use the CLI's continue option to resume from the latest state.</p>
+            <p>Run the following command from the repository root:</p>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
+              {`./claude-hfi --continue --vscode`}
+            </pre>
+
+            <p style={{ marginTop: '1rem' }}><strong>Notes:</strong></p>
+            <ul>
+              <li>The <code>--continue</code> flag must be used together with <code>--vscode</code>.</li>
+              <li>Running <code>./claude-hfi --continue</code> without <code>--vscode</code> may result in a "No such file or directory" error, even if the binary exists.</li>
+              <li>This command resumes from the most recent saved state and does not require restarting the task from the beginning.</li>
+            </ul>
+          </div>
+
+          {/* Issue 3 */}
+          <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', borderLeft: '4px solid #dc2626' }}>
+            <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>Verifying You Are Attached to the Correct tmux Session</h3>
+            
+            <p>If you are unsure whether a VS Code terminal is attached to the correct tmux session, run the following command inside each trajectory terminal:</p>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
+              {`tmux display-message -p '#S'`}
+            </pre>
+
+            <p style={{ marginTop: '1rem' }}>This prints the current tmux session name, allowing you to confirm whether you are attached to:</p>
+            <ul>
+              <li>the Trajectory A session, or</li>
+              <li>the Trajectory B session</li>
+            </ul>
+            <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af', marginTop: '1rem' }}>
+              This can be useful when reconnecting after interruptions or reopening VS Code windows.
+            </p>
+          </div>
+        </section>
+
       </main>
 
       <footer className="content-card-footer">
