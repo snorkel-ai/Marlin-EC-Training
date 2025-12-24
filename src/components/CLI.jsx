@@ -394,6 +394,76 @@ index 8ae0569..d73214a 100644
         <section className="content-card-section" style={{ borderTop: '3px solid #dc2626', paddingTop: '2rem', marginTop: '3rem' }}>
           <h2 style={{ color: '#dc2626' }}>🔧 Troubleshooting</h2>
 
+          {/* MAIN HIGHLIGHT - Multi-Turn Workflow */}
+          <div style={{ backgroundColor: '#fef2f2', borderRadius: '12px', padding: '2rem', marginBottom: '2rem', border: '3px solid #dc2626', boxShadow: '0 4px 12px rgba(220, 38, 38, 0.15)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+              <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+              <h3 style={{ color: '#dc2626', margin: 0, fontSize: '1.35rem', fontWeight: 700 }}>Multi-Turn Workflow Requires Restarting the CLI Between Turns</h3>
+            </div>
+            
+            <p style={{ backgroundColor: '#fee2e2', padding: '1rem', borderRadius: '8px', color: '#991b1b', fontWeight: 600, marginBottom: '1.5rem' }}>
+              <strong>⚡ Key Takeaway:</strong> The current multi-turn workflow requires quitting and restarting the CLI between turns to maintain stability.
+            </p>
+
+            <p><strong>Issue:</strong> In some cases, attempting to proceed directly to a second (or later) turn within the same CLI session can result in unstable behavior, including VS Code or tmux inconsistencies.</p>
+
+            <p style={{ marginTop: '1rem' }}><strong>Workaround (Confirmed Working):</strong> Explicitly exit and relaunch the CLI tool between turns using the <code>--continue</code> flag.</p>
+
+            <div style={{ position: 'relative', paddingBottom: '64.86%', height: 0, marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
+              <iframe 
+                src="https://www.loom.com/embed/6537574a3bb64ee0aba07dcf2feca433" 
+                frameBorder="0" 
+                allowFullScreen
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              ></iframe>
+            </div>
+
+            <p style={{ marginTop: '1.5rem', marginBottom: '0.75rem', fontWeight: 600, fontSize: '1.1rem' }}>Recommended Multi-Turn Process:</p>
+            <ol>
+              <li>Start the CLI tool normally:
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                  {`./claude-hfi --vscode`}
+                </pre>
+              </li>
+              <li>Complete the first turn as usual:
+                <ul style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                  <li>Review both trajectories</li>
+                  <li>Submit preference feedback</li>
+                  <li>Press Enter on "submit feedback"</li>
+                </ul>
+              </li>
+              <li><strong style={{ color: '#dc2626' }}>Do not enter a second-turn prompt.</strong> When prompted for the next turn, immediately exit the tool:
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                  {`Ctrl + C`}
+                </pre>
+              </li>
+              <li>Relaunch the CLI using the continue flag:
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                  {`./claude-hfi --vscode --continue`}
+                </pre>
+              </li>
+              <li>Enter the second-turn prompt and complete the turn normally.</li>
+              <li>After submitting feedback for that turn, again:
+                <ul style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+                  <li>Press <code>Ctrl + C</code> to exit</li>
+                  <li>Relaunch with <code>--continue</code></li>
+                </ul>
+              </li>
+              <li>Repeat this exit → relaunch cycle for as many turns as necessary.</li>
+            </ol>
+
+            <p style={{ marginTop: '1.5rem' }}><strong>Additional Notes:</strong></p>
+            <ul>
+              <li>tmux sessions generally persist correctly across restarts when using <code>--continue</code>.</li>
+              <li>Any VS Code instability observed during this process may be environment-specific rather than tool-related.</li>
+              <li>If unexpected tmux behavior occurs, verify session attachment using:
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>
+                  {`tmux display-message -p '#S'`}
+                </pre>
+              </li>
+            </ul>
+          </div>
+
           {/* Issue 1 */}
           <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #dc2626' }}>
             <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>VS Code Window Closes After Launching the CLI</h3>
@@ -457,7 +527,7 @@ index 8ae0569..d73214a 100644
           </div>
 
           {/* Issue 3 */}
-          <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', borderLeft: '4px solid #dc2626' }}>
+          <div style={{ backgroundColor: '#fef2f2', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #dc2626' }}>
             <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>Verifying You Are Attached to the Correct tmux Session</h3>
             
             <p>If you are unsure whether a VS Code terminal is attached to the correct tmux session, run the following command inside each trajectory terminal:</p>
@@ -474,6 +544,7 @@ index 8ae0569..d73214a 100644
               This can be useful when reconnecting after interruptions or reopening VS Code windows.
             </p>
           </div>
+
         </section>
 
       </main>

@@ -22,95 +22,6 @@ function CollapsiblePhase({ title, children, defaultOpen = false }) {
   );
 }
 
-function ProtectedVideo({ src, password }) {
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [inputPassword, setInputPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleUnlock = (e) => {
-    e.preventDefault();
-    if (inputPassword === password) {
-      setIsUnlocked(true);
-      setError('');
-    } else {
-      setError('Incorrect password');
-    }
-  };
-
-  if (!isUnlocked) {
-    return (
-      <div style={{
-        background: '#1e293b',
-        borderRadius: '8px',
-        padding: '2rem',
-        textAlign: 'center'
-      }}>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔒</div>
-        <p style={{ color: '#ffffff', marginBottom: '1rem', fontWeight: 500 }}>
-          This video is password protected
-        </p>
-        {error && (
-          <p style={{ color: '#f87171', marginBottom: '1rem', fontSize: '0.9rem' }}>
-            {error}
-          </p>
-        )}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '250px', margin: '0 auto' }}>
-          <input
-            type="password"
-            value={inputPassword}
-            onChange={(e) => setInputPassword(e.target.value)}
-            placeholder="Enter password"
-            style={{
-              padding: '0.75rem',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '1rem',
-              textAlign: 'center'
-            }}
-          />
-          <button
-            type="button"
-            onClick={handleUnlock}
-            style={{
-              padding: '0.75rem',
-              borderRadius: '6px',
-              border: 'none',
-              background: '#3b82f6',
-              color: '#ffffff',
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontSize: '1rem'
-            }}
-          >
-            Unlock Video
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="video-wrapper">
-      <video
-        controls
-        preload="metadata"
-        className="video-iframe"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain'
-        }}
-      >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
-}
-
 function LandingPage({ onNavigate, onLogout }) {
   const { userRole } = useAuth();
 
@@ -431,12 +342,26 @@ function LandingPage({ onNavigate, onLogout }) {
 
                   <div>
                     <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
-                      Onboarding Video - check #ec-marlin-support-v2 for the password
+                      Onboarding Video
                     </h4>
-                    <ProtectedVideo
-                      src={`${import.meta.env.BASE_URL}media/videos/video.mp4`}
-                      password="8bMf%@X+"
-                    />
+                    <div className="video-wrapper">
+                      <video
+                        controls
+                        preload="metadata"
+                        className="video-iframe"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain'
+                        }}
+                      >
+                        <source src={`${import.meta.env.BASE_URL}media/videos/video.mp4`} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -461,6 +386,28 @@ function LandingPage({ onNavigate, onLogout }) {
                     <div style={{ position: 'relative', paddingBottom: '64.94708994708994%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
                       <iframe
                         src="https://www.loom.com/embed/888ac13d11c24d1099f7ff6b6eaa334b"
+                        frameBorder="0"
+                        webkitallowfullscreen="true"
+                        mozallowfullscreen="true"
+                        allowFullScreen
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%'
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: '1.5rem' }}>
+                    <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
+                      Multi-Turn Workflow
+                    </h4>
+                    <div style={{ position: 'relative', paddingBottom: '64.86%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
+                      <iframe
+                        src="https://www.loom.com/embed/6537574a3bb64ee0aba07dcf2feca433"
                         frameBorder="0"
                         webkitallowfullscreen="true"
                         mozallowfullscreen="true"
