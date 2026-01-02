@@ -159,17 +159,7 @@ function LandingPage({ onNavigate, onLogout }) {
           <CollapsiblePhase title="Phase 4: CLI Tool">
             <div className="phase-item">
               <p>Once you complete all earlier steps, you will gain access to the client's annotation platform—where you will guide an AI model to produce a production-ready pull request.</p>
-              <p>Compensation for accepted submissions at this stage is <strong>$490 per PR</strong> (subject to change).</p>
-              <p style={{ marginTop: '1rem' }}>
-                <a
-                  href="https://docs.google.com/document/d/1jlH-ixP13eb04uUu9aAXmjlSzMX_90DEJzMyszfPRd0/edit?tab=t.dos1l1i9606y#heading=h.lx0ka1j213ku"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: '#1e40af', fontWeight: 600, textDecoration: 'underline' }}
-                >
-                  📄 View Phase 4 Guidelines
-                </a>
-              </p>
+              
             </div>
           </CollapsiblePhase>
 
