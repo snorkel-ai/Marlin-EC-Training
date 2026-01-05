@@ -27,11 +27,11 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userRole, setUserRole] = useState(null);
+  const [userRoles, setUserRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  async function getWhitelistAndRole(email) {
+  async function getWhitelistAndRoles(email) {
     try {
       const q = query(
         collection(db, 'whitelist'),
@@ -41,17 +41,32 @@ export function AuthProvider({ children }) {
       
       if (snapshot.empty) {
         console.error("User is not in whitelist, access denied");
-        return { allowed: false, role: null };
+        return { allowed: false, roles: [] };
       }
       
       const doc = snapshot.docs[0];
       const data = doc.data();
-      return { allowed: true, role: data.role || null };
+      
+      // Handle both string and array formats for role/roles
+      const role = data.role || data.roles || [];
+      const rolesArray = Array.isArray(role) ? role : (role ? [role] : []);
+      
+      return { allowed: true, roles: rolesArray };
       
     } catch (err) {
       console.error('Whitelist check failed:', err);
-      return { allowed: false, role: null };
+      return { allowed: false, roles: [] };
     }
+  }
+
+  // Helper function to check if user has a specific role
+  function hasRole(role) {
+    return userRoles.includes(role);
+  }
+
+  // Helper function to check if user has any of the specified roles
+  function hasAnyRole(roles) {
+    return roles.some(role => userRoles.includes(role));
   }
 
   // Email/Password login
@@ -63,7 +78,7 @@ export function AuthProvider({ children }) {
   // Email link login
   async function sendLoginLink(email) {
     setError('');
-    const { allowed } = await getWhitelistAndRole(email);
+    const { allowed } = await getWhitelistAndRoles(email);
     if (!allowed) {
       throw new Error('This email is not authorized to access this platform.');
     }
@@ -94,7 +109,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
-    setUserRole(null);
+    setUserRoles([]);
     return signOut(auth);
   }
 
@@ -115,29 +130,29 @@ export function AuthProvider({ children }) {
 
       if (!user) {
         setCurrentUser(null);
-        setUserRole(null);
+        setUserRoles([]);
         setLoading(false);
         return;
       }
 
       try {
-        const { allowed, role } = await getWhitelistAndRole(user.email);
+        const { allowed, roles } = await getWhitelistAndRoles(user.email);
         
         if (allowed) {
           setCurrentUser(user);
-          setUserRole(role);
+          setUserRoles(roles);
           setError('');
         } else {
           await signOut(auth);
           setCurrentUser(null);
-          setUserRole(null);
+          setUserRoles([]);
           setError('This email is not authorized to access this platform.');
         }
       } catch (err) {
         console.error('Auth check failed:', err);
         await signOut(auth);
         setCurrentUser(null);
-        setUserRole(null);
+        setUserRoles([]);
         setError('Failed to verify access. Please try again later.');
       } finally {
         setLoading(false);
@@ -149,7 +164,9 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    userRole,
+    userRoles,
+    hasRole,
+    hasAnyRole,
     loginWithPassword,
     sendLoginLink,
     completeSignIn,

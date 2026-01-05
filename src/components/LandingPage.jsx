@@ -23,7 +23,7 @@ function CollapsiblePhase({ title, children, defaultOpen = false }) {
 }
 
 function LandingPage({ onNavigate, onLogout }) {
-  const { userRole } = useAuth();
+  const { hasRole } = useAuth();
 
   return (
     <div className="landing-page">
@@ -39,8 +39,8 @@ function LandingPage({ onNavigate, onLogout }) {
             <li><button onClick={() => onNavigate('glossary')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>Glossary</button></li>
             <li><button onClick={() => onNavigate('faq')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>FAQ</button></li>
             
-            {/* Reviewer-only nav item */}
-            {userRole === 'swe' && (
+            {/* SWE-only nav item */}
+            {hasRole('swe') && (
               <li>
                 <button 
                   onClick={() => onNavigate('sweguidelines')} 
@@ -60,11 +60,11 @@ function LandingPage({ onNavigate, onLogout }) {
               </li>
             )}
             
-             {/* Reviewer-only nav item */}
-            {userRole === 'reviewer' && (
+            {/* Generalist-only nav item */}
+            {hasRole('generalist') && (
               <li>
                 <button 
-                  onClick={() => onNavigate('')} 
+                  onClick={() => onNavigate('generalistguidelines')} 
                   style={{ 
                     background: 'none', 
                     border: 'none', 
@@ -76,15 +76,50 @@ function LandingPage({ onNavigate, onLogout }) {
                     fontFamily: 'inherit' 
                   }}
                 >
-                   Reviewer Guidelines
+                  Generalist Guidelines
                 </button>
               </li>
             )}
+
+            {/* Admin-only nav item */}
+            {hasRole('admin') && (
+              <li>
+                <button 
+                  onClick={() => onNavigate('adminpanel')} 
+                  style={{ 
+                    background: 'none', 
+                    border: 'none', 
+                    color: '#dc2626', 
+                    textDecoration: 'none', 
+                    fontWeight: 600, 
+                    cursor: 'pointer', 
+                    fontSize: '1rem', 
+                    fontFamily: 'inherit' 
+                  }}
+                >
+                  Admin Panel
+                </button>
+              </li>
+            )}
+
             <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              {/* Role badge */}
-              {userRole === 'swe' && (
+              {/* Role badges - can show multiple */}
+              {hasRole('admin') && (
                 <span style={{
-                  background: '#7c3aed',
+                  background: '#dc2626',
+                  color: '#ffffff',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase'
+                }}>
+                  Admin
+                </span>
+              )}
+              {hasRole('swe') && (
+                <span style={{
+                  background: '#2563eb',
                   color: '#ffffff',
                   padding: '0.25rem 0.75rem',
                   borderRadius: '9999px',
@@ -95,8 +130,7 @@ function LandingPage({ onNavigate, onLogout }) {
                   SWE
                 </span>
               )}
-                {/* Role badge */}
-              {userRole === 'reviewer' && (
+              {hasRole('generalist') && (
                 <span style={{
                   background: '#7c3aed',
                   color: '#ffffff',
@@ -106,7 +140,7 @@ function LandingPage({ onNavigate, onLogout }) {
                   fontWeight: 600,
                   textTransform: 'uppercase'
                 }}>
-                   Reviewer
+                  Generalist
                 </span>
               )}
               
@@ -213,10 +247,6 @@ function LandingPage({ onNavigate, onLogout }) {
                     <h4 className="resource-hub-card-title">☕ Essential Resources</h4>
                     <ul className="resource-hub-list">
                       <li><a href="https://expert.snorkel.ai" target="_blank" rel="noopener noreferrer">Snorkel Expert Platform</a></li>
-                      <li><a href="https://snorkelai.box.com/s/vmz4anv385k09v4cix4qi232fitnx8i8" target="_blank" rel="noopener noreferrer">Project Phases Overview</a></li>
-                      <li><a href="https://app.excalidraw.com/l/1UKEa5PGBzD/3mwwSL3RRB9" target="_blank" rel="noopener noreferrer">Project Phases Visual Diagram</a></li>
-                      <li><a href="https://docs.google.com/document/d/1jlH-ixP13eb04uUu9aAXmjlSzMX_90DEJzMyszfPRd0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Phase 3 & 4 Guidelines</a></li>
-                      <li><a href="#resources">Phase 3 & 4 Onboarding Slides (TBA)</a></li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a></li>
                     </ul>
                   </div>
@@ -245,7 +275,6 @@ function LandingPage({ onNavigate, onLogout }) {
                       <li><a href="https://snorkel-team.enterprise.slack.com/archives/C0A1GKLJQVA" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>#ec-marlin-support-v2</a> — Slack channel for project questions</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">Marlin Issue Tracker</a> — Report platform problems</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a> — Suggest repos/PRs</li>
-                      <li><a href="mailto:hr@hireart.com">HR/Payroll Support</a> — hr@hireart.com</li>
                       <li><a href="https://snorkel.freshdesk.com/support/tickets/new" target="_blank" rel="noopener noreferrer">Expert Support Ticket</a> — General support</li>
                     </ul>
                   </div>

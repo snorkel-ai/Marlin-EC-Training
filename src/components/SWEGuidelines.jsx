@@ -3,13 +3,13 @@ import { useAuth } from '../context/AuthContext';
 import './Guidelines.css';
 
 function SWEGuidelines({ onNavigate }) {
-  const { userRole } = useAuth();
+  const { hasRole } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (userRole !== 'swe') {
+if (!hasRole('swe') && !hasRole('admin')) {
     return (
       <div className="access-denied">
         <h1>Access Denied</h1>

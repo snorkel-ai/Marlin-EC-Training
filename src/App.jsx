@@ -12,6 +12,8 @@ import ModelWorkspace from './components/ModelWorkspace';
 import RulesAndRequirements from './components/RulesAndRequirements';
 import CLI from './components/CLI';
 import SWEGuidelines from './components/SWEGuidelines';
+import AdminPanel  from './components/AdminPanel';
+
 function AppContent() {
   const [currentView, setCurrentView] = useState('home');
   const { currentUser, logout } = useAuth();
@@ -37,6 +39,7 @@ function AppContent() {
       {currentView === 'rulesandrequirements' && <RulesAndRequirements onNavigate={handleNavigate} />}
       {currentView === 'cli' && <CLI onNavigate={handleNavigate} />}
       {currentView === 'sweguidelines' && <SWEGuidelines onNavigate={handleNavigate} />}
+       {currentView === 'adminpanel' && <AdminPanel onNavigate={handleNavigate} />}
     </div>
   );
 }
