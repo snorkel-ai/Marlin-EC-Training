@@ -373,7 +373,7 @@ function LandingPage({ onNavigate, onLogout }) {
 
               <div style={{ marginTop: '3rem' }}>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e293b', marginBottom: '1.5rem', textAlign: 'center' }}>
-                  🐟 Phase 3 & 4 Resources Hub
+                   Resources Hub
                 </h3>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
@@ -383,30 +383,12 @@ function LandingPage({ onNavigate, onLogout }) {
                     <h4 className="resource-hub-card-title">☕ Essential Resources</h4>
                     <ul className="resource-hub-list">
                       <li><a href="https://expert.snorkel.ai" target="_blank" rel="noopener noreferrer">Snorkel Expert Platform</a></li>
-                      <li><a href="https://snorkelai.box.com/s/vmz4anv385k09v4cix4qi232fitnx8i8" target="_blank" rel="noopener noreferrer">Project Phases Overview</a></li>
-                      <li><a href="https://app.excalidraw.com/l/1UKEa5PGBzD/3mwwSL3RRB9" target="_blank" rel="noopener noreferrer">Project Phases Visual Diagram</a></li>
-                      <li><a href="https://docs.google.com/document/d/1jlH-ixP13eb04uUu9aAXmjlSzMX_90DEJzMyszfPRd0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Phase 3 & 4 Guidelines</a></li>
-                      <li><a href="#resources">Phase 3 & 4 Onboarding Slides (TBA)</a></li>
+                      
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a></li>
                     </ul>
                   </div>
 
-                  {/* Phase Info Card */}
-                  <div className="resource-hub-card">
-                    <h4 className="resource-hub-card-title">📋 Phase Breakdown</h4>
-                    <div style={{ marginBottom: '1rem' }}>
-                      <strong style={{ color: '#1e40af' }}>Phase 3:</strong>
-                      <p style={{ margin: '0.25rem 0 0.75rem', color: '#64748b', fontSize: '0.95rem' }}>
-                        Complete Marlin-PR-Selection and Marlin-Prompt-Preparation on the Expert platform to practice before the final task.
-                      </p>
-                    </div>
-                    <div>
-                      <strong style={{ color: '#1e40af' }}>Phase 4:</strong>
-                      <p style={{ margin: '0.25rem 0 0', color: '#64748b', fontSize: '0.95rem' }}>
-                        Proceed to the CLI Tool to submit tasks on the platform.
-                      </p>
-                    </div>
-                  </div>
+                  
 
                   {/* Support Card */}
                   <div className="resource-hub-card">
@@ -415,7 +397,7 @@ function LandingPage({ onNavigate, onLogout }) {
                       <li><a href="https://snorkel-team.enterprise.slack.com/archives/C0A1GKLJQVA" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>#ec-marlin-support-v2</a> — Slack channel for project questions</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">Marlin Issue Tracker</a> — Report platform problems</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a> — Suggest repos/PRs</li>
-                      <li><a href="mailto:hr@hireart.com">HR/Payroll Support</a> — hr@hireart.com</li>
+                      
                       <li><a href="https://snorkel.freshdesk.com/support/tickets/new" target="_blank" rel="noopener noreferrer">Expert Support Ticket</a> — General support</li>
                     </ul>
                   </div>
