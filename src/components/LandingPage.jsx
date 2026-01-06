@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './LandingPage.css';
 import './Content.css';
@@ -24,6 +24,41 @@ function CollapsiblePhase({ title, children, defaultOpen = false }) {
 
 function LandingPage({ onNavigate, onLogout }) {
   const { hasRole } = useAuth();
+  
+  // Image viewer state
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  const handleZoomIn = () => setScale(s => Math.min(s + 0.25, 3));
+  const handleZoomOut = () => setScale(s => Math.max(s - 0.25, 0.5));
+  const handleReset = () => { setScale(1); setPosition({ x: 0, y: 0 }); };
+
+  const handleMouseDown = (e) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
+    }
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
+
+  const handleWheel = (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      setScale(s => Math.min(s + 0.1, 3));
+    } else {
+      setScale(s => Math.max(s - 0.1, 0.5));
+    }
+  };
 
   return (
     <div className="landing-page">
@@ -169,31 +204,132 @@ function LandingPage({ onNavigate, onLogout }) {
 
           <p className="overview-intro">We're excited to welcome you to Project Marlin, an initiative focused on advancing AI-assisted software engineering through high-quality Python development and structured collaboration with state-of-the-art AI models.</p>
 
-          <CollapsiblePhase title="Phase 3: Preparation">
-            <div className="phase-item">
-              <h4>Marlin-PR-Selection (Snorkel Platform)</h4>
-              <p>In this step, you will choose a repository and an associated pull request from a curated list. This selection forms the foundation of your practice submission in the next step.</p>
+          {/* Workflow SVG image with zoom/pan */}
+          <div style={{ width: '100%', maxWidth: '1200px', margin: '2rem auto' }}>
+            {/* Zoom controls */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+              <button 
+                onClick={handleZoomOut}
+                style={{ padding: '0.5rem 1rem', backgroundColor: '#1e40af', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}
+              >
+                −
+              </button>
+              <button 
+                onClick={handleReset}
+                style={{ padding: '0.5rem 1rem', backgroundColor: '#64748b', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 500, fontSize: '0.875rem' }}
+              >
+                Reset ({Math.round(scale * 100)}%)
+              </button>
+              <button 
+                onClick={handleZoomIn}
+                style={{ padding: '0.5rem 1rem', backgroundColor: '#1e40af', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}
+              >
+                +
+              </button>
             </div>
+            
+            {/* Image container */}
+            <div 
+              ref={containerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onWheel={handleWheel}
+              style={{ 
+                overflow: 'hidden', 
+                borderRadius: '12px', 
+                border: '1px solid #e2e8f0',
+                cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default',
+                backgroundColor: '#f8fafc'
+              }}
+            >
+              <img 
+                src={`${import.meta.env.BASE_URL}media/images/Workflow.svg`} 
+                alt="Project Marlin Workflow"
+                draggable={false}
+                style={{ 
+                  width: '100%', 
+                  display: 'block',
+                  transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
+                  transformOrigin: 'center center',
+                  transition: isDragging ? 'none' : 'transform 0.1s ease-out'
+                }}
+              />
+            </div>
+            <p style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+              Use scroll wheel to zoom • Drag to pan when zoomed in
+            </p>
+          </div>
+
+          <CollapsiblePhase title="Step 1: Assessment">
             <div className="phase-item">
-              <h4>Marlin-Prompt-Preparation (Snorkel Platform)</h4>
-              <p>This task prepares you for the full workflow used on the client platform. You will answer a structured set of questions covering:</p>
+              <p>This step checks whether you're ready to participate.</p>
               <ul>
-                <li>The purpose of the selected repository</li>
-                <li>The impact and scope of the chosen PR</li>
-                <li>Current vs. expected behavior</li>
-                <li>Relevant edge cases</li>
-                <li>Anticipated file updates</li>
-                <li>Test cases and acceptance criteria</li>
-                <li>A drafted model prompt with complexity and effort estimates</li>
+                <li>You'll complete an initial assessment on the <a href="https://experts.snorkel-ai.com/home" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 500 }}>Snorkel platform</a>.</li>
+                <li>Your submission is reviewed for quality and understanding.</li>
+                <li>If you pass, you move on.</li>
+                <li>If you don't pass, you'll be offboarded and won't continue.</li>
               </ul>
-              <p>This phase ensures you have a clear, well-reasoned plan before moving into the final task.</p>
+              <p style={{ fontWeight: 600, color: '#1e40af', marginTop: '1rem' }}>Only ECs who pass this step can move forward.</p>
             </div>
           </CollapsiblePhase>
 
-          <CollapsiblePhase title="Phase 4: CLI Tool">
+          <CollapsiblePhase title="Step 2: Prompt Prep (PR Selection & Planning)">
             <div className="phase-item">
-              <p>Once you complete all earlier steps, you will gain access to the client's annotation platform—where you will guide an AI model to produce a production-ready pull request.</p>
+              <p>In this step, you choose a PR and plan your work — you are not working in the client tools yet.</p>
               
+              <h4>What you do</h4>
+              <ul>
+                <li>Select a repository and PR from a curated list in Prompt Prep.</li>
+                <li>Submit a planning write-up explaining how you would complete the task.</li>
+              </ul>
+
+              <h4>Your submission includes:</h4>
+              <ul>
+                <li>What the repository does</li>
+                <li>What the PR is trying to change</li>
+                <li>Current vs. expected behavior</li>
+                <li>Important edge cases</li>
+                <li>Files you expect to touch</li>
+                <li>How you would test the change</li>
+                <li>A draft prompt you would use with the model</li>
+                <li>An estimate of effort and complexity</li>
+              </ul>
+
+              <h4>What happens next</h4>
+              <ul>
+                <li>We review your submission for quality and originality.</li>
+                <li>If approved, you'll receive an email giving you permission to continue.</li>
+                <li>If it's low quality, you may be asked to revise.</li>
+                <li>Repeated low-quality submissions may lead to offboarding.</li>
+              </ul>
+
+              <p style={{ fontWeight: 600, color: '#1e40af', marginTop: '1rem' }}>This step makes sure you have a solid plan before doing the actual task.</p>
+            </div>
+          </CollapsiblePhase>
+
+          <CollapsiblePhase title="Step 3: CLI Task & Final Review">
+            <div className="phase-item">
+              <p>Once your Prompt Prep submission is approved, you can complete the real task.</p>
+              
+              <h4>What you do</h4>
+              <ul>
+                <li>Use the client's CLI tool to guide the model in producing a production-ready PR.</li>
+                <li>Work in the CLI until the task is complete.</li>
+                <li>Return to the <a href="https://experts.snorkel-ai.com/home" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 500 }}>Snorkel platform</a> and submit a Prompt Review:</li>
+                <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
+                  <li>Confirm the task is complete</li>
+                  <li>Link the PR you worked on</li>
+                  <li>Confirm it matches what you planned in Step 2</li>
+                </ul>
+              </ul>
+
+              <h4>What happens next</h4>
+              <ul>
+                <li>We review your submission for quality and spam.</li>
+                <li>Approved submissions complete the process.</li>
+              </ul>
             </div>
           </CollapsiblePhase>
 
@@ -247,6 +383,10 @@ function LandingPage({ onNavigate, onLogout }) {
                     <h4 className="resource-hub-card-title">☕ Essential Resources</h4>
                     <ul className="resource-hub-list">
                       <li><a href="https://expert.snorkel.ai" target="_blank" rel="noopener noreferrer">Snorkel Expert Platform</a></li>
+                      <li><a href="https://snorkelai.box.com/s/vmz4anv385k09v4cix4qi232fitnx8i8" target="_blank" rel="noopener noreferrer">Project Phases Overview</a></li>
+                      <li><a href="https://app.excalidraw.com/l/1UKEa5PGBzD/3mwwSL3RRB9" target="_blank" rel="noopener noreferrer">Project Phases Visual Diagram</a></li>
+                      <li><a href="https://docs.google.com/document/d/1jlH-ixP13eb04uUu9aAXmjlSzMX_90DEJzMyszfPRd0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Phase 3 & 4 Guidelines</a></li>
+                      <li><a href="#resources">Phase 3 & 4 Onboarding Slides (TBA)</a></li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a></li>
                     </ul>
                   </div>
@@ -275,6 +415,7 @@ function LandingPage({ onNavigate, onLogout }) {
                       <li><a href="https://snorkel-team.enterprise.slack.com/archives/C0A1GKLJQVA" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>#ec-marlin-support-v2</a> — Slack channel for project questions</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">Marlin Issue Tracker</a> — Report platform problems</li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a> — Suggest repos/PRs</li>
+                      <li><a href="mailto:hr@hireart.com">HR/Payroll Support</a> — hr@hireart.com</li>
                       <li><a href="https://snorkel.freshdesk.com/support/tickets/new" target="_blank" rel="noopener noreferrer">Expert Support Ticket</a> — General support</li>
                     </ul>
                   </div>
