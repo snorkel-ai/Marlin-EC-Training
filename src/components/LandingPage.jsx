@@ -460,27 +460,7 @@ function LandingPage({ onNavigate, onLogout }) {
                     Onboarding Session 1
                   </h3>
 
-                  <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-                    <a
-                      href="https://docs.google.com/document/d/1jlH-ixP13eb04uUu9aAXmjlSzMX_90DEJzMyszfPRd0/edit?tab=t.dos1l1i9606y#heading=h.lx0ka1j213ku"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-block',
-                        backgroundColor: '#ffffff',
-                        color: '#1e40af',
-                        padding: '0.875rem 2rem',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                        borderRadius: '8px',
-                        transition: 'all 0.3s',
-                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)'
-                      }}
-                    >
-                      View Phase 3 & 4 Guidelines
-                    </a>
-                  </div>
+                
 
                   <div>
                     <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#ffffff', marginBottom: '1rem', textAlign: 'center' }}>
