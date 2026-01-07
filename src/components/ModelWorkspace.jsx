@@ -1,82 +1,95 @@
 import './ContentCards.css';
 
-function PromptPreparation({ onNavigate }) {
+function ModelWorkspace({ onNavigate }) {
   return (
     <div className="content-card-page">
       <header className="content-card-header">
         <button className="content-card-back-button" onClick={() => onNavigate('home')}>
           ← Back to Home
         </button>
-        <h1 className="content-card-title">Prompt Preparation</h1>
+        <h1 className="content-card-title">Execution & Finalization</h1>
       </header>
 
       <main className="content-card-main">
-        
+
+        <section className="content-card-section">
+          <h2>Tutorial Video</h2>
+          <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
+            <iframe src="https://www.loom.com/embed/d368f4ece5d248a3af7ed53edca7ed20" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+          </div>
+        </section>
+
         <section className="content-card-section">
           <h2>Purpose of This Stage</h2>
-          <p>Prompt Preparation is where you build a complete understanding of the task, document your reasoning, and prepare the model's instruction prompt.</p>
-          <p>This step is critical — it determines the quality of the final PR.</p>
+          <p>Execution & Finalization is where the planned work is carried out, evaluated, and finalized.</p>
+          <p>In this stage, you use the provided tools to run the task, review the model's outputs, iterate as needed, and select the best result. This is where planning is tested against real code changes, and where correctness, completeness, and judgment matter most.</p>
+          <p>This step determines what is ultimately submitted for review.</p>
         </section>
 
         <section className="content-card-section">
           <h2>Key Components You Must Complete</h2>
           
-          <h3>1. Context Setting</h3>
+          <h3>1. Task Execution</h3>
           <ul>
-            <li>What the repo does</li>
-            <li>What the PR is trying to change or fix</li>
-            <li>Why the change matters</li>
+            <li>Run the task using the provided CLI and tools</li>
+            <li>Generate model responses based on your prepared prompt</li>
+            <li>Ensure execution follows the intent defined in the preparation stage</li>
           </ul>
 
-          <h3>2. Task Approach</h3>
+          <h3>2. Output Review</h3>
           <ul>
-            <li>Current behavior vs. expected behavior</li>
-            <li>Required file updates</li>
-            <li>Dependencies or functions affected</li>
-            <li>Edge cases (explicit, measurable, testable)</li>
-            <li>New or updated test cases</li>
-            <li>Acceptance criteria</li>
+            <li>Review all generated code changes carefully</li>
+            <li>Compare outputs against the expected behavior</li>
+            <li>Identify missing logic, incorrect assumptions, or unintended changes</li>
+            <li>Verify that updates follow the repository's structure and conventions</li>
           </ul>
 
-          <h3>3. Prompt Definition</h3>
+          <h3>3. Iteration and Refinement</h3>
           <ul>
-            <li>A self-contained prompt describing exactly what the model must do</li>
-            <li>Clear, objective instructions</li>
-            <li>No role-based prompting</li>
-            <li>Fully structured, not conversational</li>
+            <li>Iterate on the prompt if outputs are incomplete or incorrect</li>
+            <li>Discard approaches that do not meet requirements</li>
+            <li>Refine the solution across turns until it satisfies the acceptance criteria</li>
+          </ul>
+          <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
+            <p style={{ margin: 0, color: '#92400e' }}>
+              ⚠️ Iterations must be intentional and justified. Re-running prompts without clear reasoning is strongly discouraged.
+            </p>
+          </div>
+
+          <h3 style={{ marginTop: '1.5rem' }}>4. Response Selection</h3>
+          <ul>
+            <li>Compare the multiple model responses provided</li>
+            <li>Select the response that best implements the intended behavior</li>
+            <li>Be prepared to clearly justify why this response was chosen over the alternative</li>
           </ul>
 
-          <h3>4. Effort & Complexity</h3>
+          <h3>5. Finalization and Submission</h3>
           <ul>
-            <li>Estimate engineering difficulty</li>
-            <li>Describe why the PR is non-trivial</li>
+            <li>Perform a final line-by-line review of all modified files</li>
+            <li>Confirm that only relevant changes were made</li>
+            <li>Ensure behavior, edge cases, and tests (if applicable) are handled correctly</li>
+            <li>Claim and submit your work for review</li>
           </ul>
         </section>
 
         <section className="content-card-section">
-          <h2>Quality Expectations</h2>
-          <p>Your answers must be:</p>
-          <ul>
-            <li>Specific</li>
-            <li>Measurable</li>
-            <li>Technically grounded</li>
-            <li>Free of vague language</li>
-            <li>Fully aligned (expected behavior ↔ tests ↔ edge cases)</li>
-          </ul>
-        </section>
-
-        <section className="content-card-section">
-          <h2>Time Limit</h2>
-          <p>You have 4 hours to complete Prompt Preparation once started.</p>
+          <h2>Use of LLMs and External Tools</h2>
+          <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
+            <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+              🚫 The use of external LLMs or automated tools outside the provided platform is strictly prohibited.
+            </p>
+          </div>
+          <p>Relying on external LLMs to analyze code, generate reasoning, or draft explanations undermines the purpose of this stage. Submissions that show signs of heavy or direct LLM usage may be rejected during review.</p>
+          <p>This stage evaluates your technical judgment and decision-making. The model outputs you review should come only from the provided tools, and all reasoning and evaluation must be your own.</p>
         </section>
 
       </main>
 
       <footer className="content-card-footer">
-        <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
+        <p>&copy; 2025 Marlin EC Training. All rights reserved.</p>
       </footer>
     </div>
   );
 }
 
-export default PromptPreparation;
+export default ModelWorkspace;

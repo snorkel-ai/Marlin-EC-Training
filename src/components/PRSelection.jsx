@@ -25,18 +25,19 @@ function PRSelection({ onNavigate }) {
         </section>
 
         <section className="content-card-section">
+          <h2>Tutorial Video</h2>
+          <div style={{ position: 'relative', paddingBottom: '62.42774566473989%', height: 0, borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
+            <iframe src="https://www.loom.com/embed/a212b65a295c4593bad11ac8bb94055e" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+          </div>
+        </section>
+
+        <section className="content-card-section">
           <h2>Step 1: Understand the Interface</h2>
           
           <img 
             src={`${import.meta.env.BASE_URL}media/images/PR-Selection.png`} 
             alt="PR Selection Interface" 
-            style={{ 
-              maxWidth: '100%', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1.5rem'
-            }} 
+            style={{ maxWidth: '100%', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginBottom: '1.5rem' }} 
           />
 
           <p>The application interface is a "split-screen" layout:</p>
@@ -50,13 +51,7 @@ function PRSelection({ onNavigate }) {
           <h2>Step 2: Review and Identify a Suitable PR</h2>
           <p>Read through the repositories and pull requests to identify one you feel comfortable with.</p>
           
-          <div style={{ 
-            backgroundColor: '#fef3c7', 
-            padding: '1rem 1.25rem', 
-            borderRadius: '8px', 
-            borderLeft: '4px solid #f59e0b',
-            marginTop: '1rem'
-          }}>
+          <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
             <p style={{ margin: 0, color: '#92400e', fontWeight: 500 }}>
               ⚠️ Double check that the pull request is sufficiently complex:
             </p>
@@ -81,13 +76,7 @@ function PRSelection({ onNavigate }) {
           <h2>Step 4: Wait for Processing</h2>
           <p>Wait <strong>1-2 minutes</strong> for Snorkel systems to process your choice before moving onto <strong>Marlin-Prompt-Preparation</strong>.</p>
           
-          <div style={{ 
-            backgroundColor: '#dbeafe', 
-            padding: '1rem 1.25rem', 
-            borderRadius: '8px', 
-            borderLeft: '4px solid #3b82f6',
-            marginTop: '1rem'
-          }}>
+          <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #3b82f6', marginTop: '1rem' }}>
             <p style={{ margin: 0, color: '#1e40af' }}>
               💡 <strong>Tip:</strong> Use this time to start thinking about how you'll approach the prompt preparation phase.
             </p>

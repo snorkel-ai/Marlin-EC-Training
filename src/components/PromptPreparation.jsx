@@ -11,69 +11,58 @@ function PromptPreparation({ onNavigate }) {
       </header>
 
       <main className="content-card-main">
-        
+
         <section className="content-card-section">
-          <h2>Purpose of This Stage</h2>
-          <p>Prompt Preparation is where you build a complete understanding of the task, document your reasoning, and prepare the model's instruction prompt.</p>
-          <p>This step is critical — it determines the quality of the final PR.</p>
+          <h2>Tutorial Video</h2>
+          <div style={{ position: 'relative', paddingBottom: '56.84210526315789%', height: 0, borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
+            <iframe src="https://www.loom.com/embed/2280f00825ec460e836575df2544aeb2" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+          </div>
         </section>
 
         <section className="content-card-section">
-          <h2>Key Components You Must Complete</h2>
-          
-          <h3>1. Context Setting</h3>
-          <ul>
-            <li>What the repo does</li>
-            <li>What the PR is trying to change or fix</li>
-            <li>Why the change matters</li>
-          </ul>
+          <h2>What You Need to Prepare</h2>
+        </section>
 
+        <section className="content-card-section">
+          <h3>1. Repository and Pull Request Context</h3>
+          <p>Provide the background needed to understand the task.</p>
+          <p>Explain what the repository does, what the selected pull request is intended to change or fix, and why that change is necessary. This should be written clearly enough that someone unfamiliar with the codebase can understand the purpose and intent of the work.</p>
+          <p>Focus on behavior and impact rather than implementation history.</p>
+        </section>
+
+        <section className="content-card-section">
           <h3>2. Task Approach</h3>
-          <ul>
-            <li>Current behavior vs. expected behavior</li>
-            <li>Required file updates</li>
-            <li>Dependencies or functions affected</li>
-            <li>Edge cases (explicit, measurable, testable)</li>
-            <li>New or updated test cases</li>
-            <li>Acceptance criteria</li>
-          </ul>
+          <p>Describe how the change should be implemented and how correctness will be evaluated.</p>
+          <p>Explain the current behavior and how it should differ after the change. Identify the files, functions, or components involved, and note any dependencies or interactions that may be affected.</p>
+          <p>Call out relevant edge cases explicitly. These should be concrete and verifiable, not hypothetical. If tests need to be added or updated, describe what they should cover and how they validate the expected behavior.</p>
+          <p>Define acceptance criteria that clearly indicate when the task should be considered complete.</p>
+        </section>
 
+        <section className="content-card-section">
           <h3>3. Prompt Definition</h3>
-          <ul>
-            <li>A self-contained prompt describing exactly what the model must do</li>
-            <li>Clear, objective instructions</li>
-            <li>No role-based prompting</li>
-            <li>Fully structured, not conversational</li>
-          </ul>
+          <p>Write the prompt that will be used during execution.</p>
+          <p>The prompt must be self-contained and describe exactly what the model is expected to do. Instructions should be clear, objective, and structured. Avoid conversational language and do not use role-based prompting.</p>
+          <p>Someone reading the prompt alone should be able to understand the task without additional context.</p>
+        </section>
 
-          <h3>4. Effort & Complexity</h3>
-          <ul>
-            <li>Estimate engineering difficulty</li>
-            <li>Describe why the PR is non-trivial</li>
-          </ul>
+        <section className="content-card-section">
+          <h3>4. Effort and Complexity</h3>
+          <p>Briefly describe the level of engineering effort required.</p>
+          <p>Explain why the pull request is non-trivial. This may include the number of files involved, the complexity of the logic, interactions between components, or the need to handle edge cases carefully.</p>
+          <p>The goal is to demonstrate that the task requires real analysis and deliberate engineering decisions.</p>
         </section>
 
         <section className="content-card-section">
           <h2>Quality Expectations</h2>
-          <p>Your answers must be:</p>
-          <ul>
-            <li>Specific</li>
-            <li>Measurable</li>
-            <li>Technically grounded</li>
-            <li>Free of vague language</li>
-            <li>Fully aligned (expected behavior ↔ tests ↔ edge cases)</li>
-          </ul>
-        </section>
-
-        <section className="content-card-section">
-          <h2>Time Limit</h2>
-          <p>You have 4 hours to complete Prompt Preparation once started.</p>
+          <p>Your responses should be precise and technically grounded.</p>
+          <p>Avoid vague language. Claims about behavior should be testable, and descriptions of edge cases, tests, and acceptance criteria should align with one another. Inconsistencies between expected behavior, validation, and testing will lead to issues during execution.</p>
+          <p>Work should reflect your own reasoning and understanding of the codebase.</p>
         </section>
 
       </main>
 
       <footer className="content-card-footer">
-        <p>&copy; 2025 Terminus EC Training. All rights reserved.</p>
+        <p>&copy; 2025 Marlin EC Training. All rights reserved.</p>
       </footer>
     </div>
   );
