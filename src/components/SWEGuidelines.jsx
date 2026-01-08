@@ -9,7 +9,7 @@ function SWEGuidelines({ onNavigate }) {
     window.scrollTo(0, 0);
   }, []);
 
-if (!hasRole('swe') && !hasRole('admin')) {
+  if (!hasRole('swe') && !hasRole('admin')) {
     return (
       <div className="access-denied">
         <h1>Access Denied</h1>
@@ -20,7 +20,6 @@ if (!hasRole('swe') && !hasRole('admin')) {
       </div>
     );
   }
-  
 
   return (
     <div className="guidelines">
@@ -28,198 +27,213 @@ if (!hasRole('swe') && !hasRole('admin')) {
         <button className="back-button" onClick={() => onNavigate('home')}>
           ← Back to Home
         </button>
-        
       </header>
 
       <main className="guidelines-main" style={{ marginLeft: 0 }}>
         <div className="guide-container">
-          <h1 className="guide-title">SWE Reviewer Guide</h1>
-          <p className="guide-subtitle">How to Review Marlin-Prompt-Review-V2 Submissions</p>
+          <h1 className="guide-title">SWE Reviewer Guidelines</h1>
+          <p className="guide-subtitle">Marlin – Prompt Review (V2)</p>
 
-          {/* Reviewer Interface Overview */}
+          {/* Password Notice */}
+          <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginBottom: '1.5rem' }}>
+            <p style={{ margin: 0, color: '#1e40af', fontWeight: 600 }}>
+              🔐 <strong>Password:</strong> <code style={{ backgroundColor: '#bfdbfe', padding: '0.25rem 0.5rem', borderRadius: '4px' }}>swereviewer</code>
+            </p>
+          </div>
+
+          {/* Walkthrough Video */}
           <section className="guide-section">
-            <h2 className="section-heading">Reviewer Interface Overview</h2>
-
-            <div className="info-card">
-              <h3>Accept / Reject Selector</h3>
-            
-               <img 
-            src={`${import.meta.env.BASE_URL}media/images/4.png`}  
-            style={{ 
-              maxWidth: '800px', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1rem'
-            }} 
-          />
-            </div>
-
-            <div className="info-card">
-              <h3>Evaluation Fields</h3>
-              <ul className="guide-list">
-                <li><strong>What evals did you agree with / were able to confirm?</strong></li>
-                <li><strong>What evals did you disagree with / disprove?</strong></li>
-                <li>Pros/cons/justification elements you investigated and whether you confirmed or disagreed.</li>
-              </ul>
-            </div>
-
-            <div className="info-card">
-              <h3>Rejection Notes Field</h3>
-                <img 
-            src={`${import.meta.env.BASE_URL}media/images/5.png`}  
-            style={{ 
-              maxWidth: '800px', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1rem'
-            }} 
-          />
+            <h2 className="section-heading">Walkthrough Video</h2>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
+              <iframe src="https://www.loom.com/embed/389774afcf99474ea9a05d7e70b79e48" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
             </div>
           </section>
 
-          {/* Your Responsibilities */}
+          {/* Introduction */}
           <section className="guide-section">
-            <h2 className="section-heading">Your Responsibilities as an SWE Reviewer</h2>
-            <p>As a reviewer, your job is to validate the technical accuracy of a submitter's work. This includes:</p>
-            <ul className="guide-list">
-              <li>Checking whether the chosen model turn is valid.</li>
-              <li>Verifying claims in the submitter's pros/cons and justification sections.</li>
-              <li>Confirming or disproving evaluations (evals) based on diffs, logic, and expected behavior.</li>
-              <li>Ensuring the submission is internally consistent and aligned with the project workflow.</li>
-            </ul>
+            <h2 className="section-heading">Welcome</h2>
+            <p>Thank you for helping review Marlin Prompt Review submissions. The SWE Review step is a fast, focused quality check designed to catch clear, high-impact issues before a submission reaches full audit.</p>
             <div className="callout callout-warning">
-              <strong>⏱️ Time Limit:</strong> This review is time-boxed to ~15 minutes. Focus on correctness, clarity, and consistency.
+              <strong>⏱️ Time Limit:</strong> Each review is time-boxed to approximately <strong>15 minutes</strong>. You are not expected to find every issue. Your goal is to validate the most important technical claims, confirm or dispute automated evaluations, and ensure the submitter's reasoning is sound and internally consistent.
             </div>
           </section>
 
-          {/* What You Must Investigate */}
+          {/* Purpose */}
           <section className="guide-section">
-            <h2 className="section-heading">What You Must Investigate</h2>
-
-            <div className="callout callout-danger">
-              <h3>1. Serious Technical Issues</h3>
-              <p>Examples include:</p>
-              <ul className="guide-list">
-                <li>Incorrect, missing, or incomplete file updates.</li>
-                <li>Logic errors or broken behavior in the proposed changes.</li>
-                <li>Tests that fail or would fail based on the modifications.</li>
-                <li>Claims that contradict the actual diff or model output.</li>
-                <li>Features requested in the PR or prompt that were not implemented.</li>
-              </ul>
-            </div>
-
-            <div className="callout callout-info">
-              <h3>2. Evaluation Accuracy</h3>
-              <p><strong>If evals flagged issues:</strong></p>
-              <ul className="guide-list">
-                <li>Start with the most severe ones and confirm or dispute them.</li>
-              </ul>
-              <p><strong>If evals did not flag issues:</strong></p>
-              <ul className="guide-list">
-                <li>Select a few of the submitter's own pros/cons or justification items and check whether their claims are technically correct.</li>
-              </ul>
-            </div>
+            <h2 className="section-heading">Purpose of the SWE Review</h2>
+            <p>The SWE Review serves as an early quality filter in a multi-stage review process. By identifying obvious technical or reasoning issues early, you help reduce unnecessary work in later stages and enable faster feedback to submitters.</p>
+            <p><strong>This step prioritizes correctness, clarity, and consistency—not completeness.</strong></p>
           </section>
 
-          {/* Accept vs Reject */}
+          {/* What You Are NOT Expected to Do */}
           <section className="guide-section">
-            <h2 className="section-heading">How to Decide "Accept" vs. "Reject"</h2>
-
-            <div className="decision-grid">
-              <div className="decision-card decision-accept">
-                <h3>✅ Accept when:</h3>
-                <ul className="guide-list">
-                  <li>The submitter's reasoning is technically sound.</li>
-                  <li>Their chosen model turn is appropriate and defensible.</li>
-                  <li>Their justifications match the actual diffs and behavior.</li>
-                  <li>No major missed errors or contradictions exist.</li>
-                  <li>All required fields are filled out clearly and consistently.</li>
-                </ul>
-              </div>
-
-              <div className="decision-card decision-reject">
-                <h3>❌ Reject when:</h3>
-                <ul className="guide-list">
-                  <li>The reasoning contains clear technical misunderstandings.</li>
-                  <li>Major model errors were missed or incorrectly evaluated.</li>
-                  <li>The submission contradicts the diffs, tests, or expected behavior.</li>
-                  <li>Pros/cons, eval ratings, and justification do not align.</li>
-                  <li>Critical claims made by the submitter are demonstrably incorrect.</li>
-                </ul>
-              </div>
-            </div>
+            <h2 className="section-heading">What You Are NOT Expected to Do</h2>
+            <p>Because this review is time-limited, you do not need to:</p>
+            <ul className="guide-list">
+              <li>Install or run the repository</li>
+              <li>Execute tests locally</li>
+              <li>Deeply analyze every model turn</li>
+              <li>Flag or diagnose LLM usage (handled in later review stages)</li>
+            </ul>
+            <p>If something appears suspicious, you may note it, but this is not required for acceptance or rejection at this stage.</p>
           </section>
 
-          {/* How to Fill Out Each Field */}
+          {/* Using the Reviewer Interface */}
           <section className="guide-section">
-            <h2 className="section-heading">How to Fill Out Each Field</h2>
+            <h2 className="section-heading">Using the Reviewer Interface</h2>
+            
+            <div className="info-card">
+              <h3>Automated Evaluations</h3>
+              <p>You may see automated evaluation feedback when one of our eval tools flags a potential issue. These tools are experimental—some evals will be correct, while others may be incomplete or incorrect. <strong>Part of your role is to validate whether the flagged issue is real.</strong></p>
+              <img src={`${import.meta.env.BASE_URL}media/images/evals.png`} style={{ maxWidth: '500px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '1rem' }} alt="Automated Evaluations" />
+            </div>
 
             <div className="info-card">
-              <h3>1. Pros/Cons/Justification Elements You Investigated</h3>
-              <p>Describe which elements you checked and whether you confirmed or disagreed.</p>
+              <h3>Diff Viewer</h3>
+              <p>You have access to a diff viewer showing file-level changes for each model turn. This is often the fastest and most reliable way to verify eval results or claims made in the submitter's pros, cons, or justification.</p>
+              <img src={`${import.meta.env.BASE_URL}media/images/Diff.png`} style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '1rem' }} alt="Diff Viewer" />
+            </div>
+
+            <div className="info-card">
+              <h3>Conversation View</h3>
+              <p>The conversation view shows the original prompt, model responses, preference ratings, and written reasoning. In most cases, you do not need to read full model outputs—focus instead on the diffs and the claims being made about them.</p>
+              <img src={`${import.meta.env.BASE_URL}media/images/sxs.png`} style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '1rem' }} alt="Conversation View" />
+            </div>
+          </section>
+
+          {/* What to Focus On */}
+          <section className="guide-section">
+            <h2 className="section-heading">What to Focus On During Your Review</h2>
+            <p>Start with any automated eval failures and determine whether they are valid. If no evals are flagged, select a small number of high-impact claims made by the submitter and verify their technical accuracy.</p>
+            
+            <div className="callout callout-danger">
+              <h3>Pay Special Attention To:</h3>
+              <ul className="guide-list">
+                <li>Incorrect, missing, or incomplete file changes</li>
+                <li>Logic errors or broken behavior implied by the diff</li>
+                <li>Claims that contradict the actual code changes</li>
+                <li>Requested features or constraints that were not implemented</li>
+                <li>Inconsistencies between ratings, preferences, and written justification</li>
+              </ul>
+            </div>
+            <p><em>You are not expected to verify everything—focus on the areas most likely to reveal meaningful problems.</em></p>
+          </section>
+
+          {/* Accepting vs Rejecting */}
+          <section className="guide-section">
+            <h2 className="section-heading">Accepting vs. Rejecting a Submission</h2>
+            <p>You should reject a submission <strong>only when there are clear, serious problems</strong>. These include major technical misunderstandings, incorrect evaluation of model behavior, contradictions between reasoning and evidence, or violations of core project rules.</p>
+            <p>If an issue is debatable or you are uncertain, it is generally better to <strong>accept the submission and clearly explain your uncertainty in the notes</strong>. The final adjudicator will use your findings to make the ultimate decision.</p>
+          </section>
+
+          {/* Rejection-Worthy Reasons */}
+          <section className="guide-section">
+            <h2 className="section-heading">Rejection-Worthy Reasons</h2>
+            <p>A submission should be rejected only when one or more of the following are clearly and confidently true:</p>
+
+            <div className="decision-card decision-reject" style={{ marginBottom: '1.5rem' }}>
+              <h3>❌ Incorrect Overall Preference</h3>
+              <p>The overall preference for a turn you evaluated is clearly and significantly incorrect, and that incorrect choice is supported by reasoning that does not match the actual evidence.</p>
+            </div>
+
+            <div className="decision-card decision-reject" style={{ marginBottom: '1.5rem' }}>
+              <h3>❌ Core Project Guidelines Not Followed</h3>
+              <ul className="guide-list">
+                <li>The prompt uses role-based prompting</li>
+                <li>The prompt directly refers to the PR</li>
+                <li>Later turns introduce new core requirements that should reasonably have been part of the original prompt</li>
+              </ul>
+            </div>
+
+            <div className="decision-card decision-reject" style={{ marginBottom: '1.5rem' }}>
+              <h3>❌ Significant Contradictions</h3>
+              <p>Contradictions that cannot be explained by nuance or reasonable differences of opinion:</p>
+              <ul className="guide-list">
+                <li>Turn 1 explicitly instructs the model not to add comments, but the cons section criticizes the model for not adding comments</li>
+                <li>Turn 1 asks for a new test file to be added, while turn 2 asks for that same test file to be deleted</li>
+              </ul>
+            </div>
+
+            <div className="decision-card decision-reject">
+              <h3>❌ Spam or Fabricated Reasoning</h3>
+              <ul className="guide-list">
+                <li>Pros, cons, or justifications that are completely disconnected from the actual diff or model output</li>
+                <li>Praising a model for work it did not do (e.g., claiming a model added tests when no tests were added)</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Issues You Can Flag */}
+          <section className="guide-section">
+            <h2 className="section-heading">Issues You Can Flag (Accept, but Add Notes)</h2>
+            <p>Some issues are important to note but are not sufficient on their own to justify rejection. In these cases, you should <strong>accept the submission and clearly document your concerns</strong> for the final adjudicator.</p>
+            
+            <div className="decision-card decision-accept">
+              <h3>✅ Accept with Notes When:</h3>
+              <ul className="guide-list">
+                <li>Signs of LLM use</li>
+                <li>Disagreement with individual side-by-side (SxS) scores</li>
+                <li>SxS scores that appear suspiciously similar to each other</li>
+                <li>Any rejection-worthy concern where you are not 100% confident</li>
+              </ul>
+            </div>
+
+            <div className="callout callout-info" style={{ marginTop: '1rem' }}>
+              <strong>Important:</strong> Agreeing with an automated eval failure is not enough, by itself, to reject a submission. Always ensure the failure clearly fits one of the rejection-worthy categories before rejecting.
+            </div>
+          </section>
+
+          {/* Writing Your Review Notes */}
+          <section className="guide-section">
+            <h2 className="section-heading">Writing Your Review Notes</h2>
+            <p>In your review fields, clearly describe what you checked and whether you agreed or disagreed, grounding your conclusions in concrete evidence from diffs or expected behavior.</p>
+            
+            <div className="info-card">
+              <h3>Example Format</h3>
               <div className="code-example">
                 <p>• Submitter claimed Option A updated file X correctly → <strong>Disagreed</strong>; diff shows missing change.</p>
+                <p>• Eval flagged missing tests → <strong>Confirmed via diff</strong>.</p>
                 <p>• Submitter stated Option B added redundant logic → <strong>Confirmed</strong>.</p>
               </div>
             </div>
 
-            <div className="info-card">
-              <h3>2. Evals You Disagreed With / Disproved</h3>
-              <p>Use this to correct incorrect evaluation results.</p>
-              <div className="code-example">
-                <p>• Eval flagged missing tests, but tests are present → <strong>Disproved</strong>.</p>
-                <p>• Eval passed file-structure check, but file placement is incorrect → <strong>Disagreed</strong>.</p>
-              </div>
+            <div className="callout callout-warning" style={{ marginTop: '1rem' }}>
+              <strong>If You Reject:</strong> You must write clear, professional, and actionable rejection notes explaining why the submission cannot be accepted. These notes are visible to the submitter. If the reasoning appears generic or non-technical, you may describe those observable issues, but <strong>do not speculate about or diagnose LLM usage</strong>.
             </div>
 
             <div className="info-card">
-              <h3>3. Evals You Agreed With / Were Able to Confirm</h3>
-              <p>Indicate which evals are correct and validated.</p>
-              <div className="code-example">
-                <p>• Eval correctly identified missing error handling → <strong>Confirmed via diff</strong>.</p>
-                <p>• Eval flagged incorrect import path → <strong>Confirmed</strong>.</p>
-              </div>
+              <h3>Rejection Notes Field</h3>
+              <img src={`${import.meta.env.BASE_URL}media/images/5.png`} style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '0.5rem' }} alt="Rejection notes" />
             </div>
           </section>
 
-          {/* Rejection Notes */}
+          {/* How Your Review Is Evaluated */}
           <section className="guide-section">
-            <h2 className="section-heading">Rejection Notes (When Applicable)</h2>
-            <p>If you choose Reject, you must write clear, constructive notes explaining:</p>
-            <ul className="guide-list">
-              <li>Why the submission cannot be accepted.</li>
-              <li>Which specific mistakes or inconsistencies caused the rejection.</li>
-              <li>How the submitter can improve in future reviews.</li>
-            </ul>
-            <p><em>This section is visible to the submitter, so keep it professional, precise, and actionable.</em></p>
-
+            <h2 className="section-heading">How Your Review Is Evaluated</h2>
+            <p>You are <strong>not evaluated on whether you accept or reject</strong> a submission. Instead, we assess the accuracy, clarity, and usefulness of your written evaluations.</p>
+            
             <div className="info-card">
-              <h3>Examples of acceptable rejection explanations:</h3>
-              <div className="code-example">
-                <p>• The submission missed core issues in the model's diff, including missing feature implementation and incorrect logic paths.</p>
-                <p>• Several evals were marked as correct, but investigation showed incorrect conclusions.</p>
-                <p>• Pros/cons did not match the preference ratings, creating inconsistency in the reasoning.</p>
-              </div>
+              <h3>We Want to See Evidence That You:</h3>
+              <ul className="guide-list">
+                <li>Validated eval results honestly</li>
+                <li>Investigated high-impact claims</li>
+                <li>Explained your conclusions clearly</li>
+                <li>Worked effectively within the 15-minute time limit</li>
+              </ul>
             </div>
-
-            <div className="callout callout-warning">
-              <strong>⚠️ Clarification on LLM-related issues:</strong>
-              <p>If the writing shows clear signs that the submitter did not perform the technical evaluation themselves, you may include this in the Rejection Notes, but only as part of explaining why their reasoning was invalid (e.g., generic, non-technical, or contradictory analysis). You should not diagnose LLM use directly—only describe observable issues.</p>
-            </div>
+            <p><em>Missing lower-priority issues is expected and will not be held against you.</em></p>
           </section>
 
           {/* Final Checklist */}
           <section className="guide-section">
             <h2 className="section-heading">Final Reviewer Checklist</h2>
-            <p>Before submitting your review, ensure you:</p>
+            <p>Before submitting, confirm that you:</p>
             <ul className="checklist">
-              <li>Investigated at least the most important technical claims.</li>
-              <li>Confirmed or disputed evals with evidence.</li>
-              <li>Checked alignment between ratings, pros/cons, and justification.</li>
-              <li>Provided a clear and defensible Accept/Reject decision.</li>
-              <li>Wrote constructive Rejection Notes when rejecting.</li>
+              <li>Investigated at least one high-impact technical claim or eval</li>
+              <li>Confirmed or disputed eval results with evidence</li>
+              <li>Checked alignment between ratings, reasoning, and diffs</li>
+              <li>Made a defensible Accept or Reject decision</li>
+              <li>Wrote clear notes explaining your findings</li>
             </ul>
           </section>
         </div>
