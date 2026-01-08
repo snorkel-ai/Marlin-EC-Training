@@ -13,6 +13,14 @@ function ModelWorkspace({ onNavigate }) {
       <main className="content-card-main">
 
         <section className="content-card-section">
+          <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginBottom: '1.5rem' }}>
+            <p style={{ margin: 0, color: '#1e40af', fontWeight: 600 }}>
+              📋 <strong>Important:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
+            </p>
+          </div>
+        </section>
+
+        <section className="content-card-section">
           <h2>Tutorial Video</h2>
           <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
             <iframe src="https://www.loom.com/embed/d368f4ece5d248a3af7ed53edca7ed20" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
