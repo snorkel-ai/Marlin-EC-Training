@@ -153,32 +153,37 @@ function LandingPage({ onNavigate, onLogout }) {
           </CollapsiblePhase>
 
           {/* Step 4: Execution & Finalization */}
-          <CollapsiblePhase title="Step 4: Execution & Finalization">
-            <div className="phase-item">
-              <p>This is where the planned work is carried out.</p>
-              <p>You'll run the task using the provided tools, review the generated changes, and iterate as needed until the result matches your intent. You'll compare multiple outputs, discard incorrect approaches, and refine the solution across turns.</p>
-              <p>Once complete, you'll select the stronger of the two model responses and submit your work for review.</p>
-              <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginTop: '1rem' }}>
-                <p style={{ margin: 0, color: '#1e40af', fontWeight: 500 }}>
-                  📋 <strong>Note:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
-                </p>
-              </div>
-              <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
-                <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>
-                  ⚠️ <strong>Important:</strong> Do not check out the PR branch (e.g. <code style={{ backgroundColor: '#fde68a', padding: '0.125rem 0.375rem', borderRadius: '4px' }}>pr-833</code>) when working on a Marlin submission. PR branches already contain the requested changes.
-                </p>
-                <p style={{ margin: 0, color: '#92400e' }}>
-                  Always use the pre-PR repository state provided in the approval email after Prompt-Preparation. If you're unsure you're on the correct version, ask in Slack before proceeding.
-                </p>
-              </div>
-              <div style={{ marginTop: '1.5rem' }}>
-                <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
-                <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
-                  <iframe src="https://www.loom.com/embed/d368f4ece5d248a3af7ed53edca7ed20" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
-                </div>
-              </div>
-            </div>
-          </CollapsiblePhase>
+         <CollapsiblePhase title="Step 4: Execution & Finalization">
+  <div className="phase-item">
+    <p>This is where the planned work is carried out.</p>
+    <p>You'll run the task using the provided tools, review the generated changes, and iterate as needed until the result matches your intent. You'll compare multiple outputs, discard incorrect approaches, and refine the solution across turns.</p>
+    <p>Once complete, you'll select the stronger of the two model responses and submit your work for review.</p>
+    <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginTop: '1rem' }}>
+      <p style={{ margin: 0, color: '#1e40af', fontWeight: 500 }}>
+        📋 <strong>Note:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
+      </p>
+    </div>
+    <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+      <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+        🔄 <strong>Minimum 3 turns required.</strong> Your submission must include at least three turns of iteration with the model. Single-turn or two-turn submissions will not be accepted.
+      </p>
+    </div>
+    <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
+      <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>
+        ⚠️ <strong>Important:</strong> Do not check out the PR branch (e.g. <code style={{ backgroundColor: '#fde68a', padding: '0.125rem 0.375rem', borderRadius: '4px' }}>pr-833</code>) when working on a Marlin submission. PR branches already contain the requested changes.
+      </p>
+      <p style={{ margin: 0, color: '#92400e' }}>
+        Always use the pre-PR repository state provided in the approval email after Prompt-Preparation. If you're unsure you're on the correct version, ask in Slack before proceeding.
+      </p>
+    </div>
+    <div style={{ marginTop: '1.5rem' }}>
+      <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
+      <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
+        <iframe src="https://www.loom.com/embed/d368f4ece5d248a3af7ed53edca7ed20" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+      </div>
+    </div>
+  </div>
+</CollapsiblePhase>
 
           <p className="overview-closing">Thank you for being part of the Snorkel Expert community. We look forward to working with you as we push the boundaries of AI-assisted software engineering through Project Marlin.</p>
 

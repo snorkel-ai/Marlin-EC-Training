@@ -80,6 +80,11 @@ function ModelWorkspace({ onNavigate }) {
             <li>Discard approaches that do not meet requirements</li>
             <li>Refine the solution across turns until it satisfies the acceptance criteria</li>
           </ul>
+          <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+            <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+              🔄 <strong>Minimum 3 turns required.</strong> Your submission must include at least three turns of iteration with the model. Single-turn or two-turn submissions will not be accepted.
+            </p>
+          </div>
           <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
             <p style={{ margin: 0, color: '#92400e' }}>
               ⚠️ Iterations must be intentional and justified. Re-running prompts without clear reasoning is strongly discouraged.
