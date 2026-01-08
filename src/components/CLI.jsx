@@ -98,13 +98,7 @@ sudo apt install tmux`}
           <img 
             src={`${import.meta.env.BASE_URL}media/images/submission-email.png`} 
             alt="Submission email" 
-            style={{ 
-              maxWidth: '800px', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1rem'
-            }} 
+            style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginBottom: '1rem' }} 
           />
 
           <p>Download the tarball using the <strong>repo link</strong> from the email, then unpack and initialize it:</p>
@@ -125,22 +119,13 @@ git init`}
         </section>
 
         <section className="content-card-section">
-          <h2>5. Log Into Your Alias Email</h2>
-          <p>Navigate to: <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af' }}>https://mail.google.com</a></p>
-          <p>Sign in using the provided Alias email credentials.</p>
-          <p style={{ backgroundColor: '#fef3c7', padding: '0.75rem', borderRadius: '6px', color: '#92400e' }}>
-            Complete MFA setup and create a new password. This email should only be used to authenticate into the tool.
-          </p>
-        </section>
-
-        <section className="content-card-section">
-          <h2>6. Access the Anthropic Tool</h2>
+          <h2>5. Access the Anthropic Tool</h2>
           <p>Open the following URL:</p>
           <p><a href="https://feedback.anthropic.com/claude_code?email_login=true" target="_blank" rel="noopener noreferrer" style={{ color: '#1e40af', fontWeight: 600 }}>https://feedback.anthropic.com/claude_code?email_login=true</a></p>
         </section>
 
         <section className="content-card-section">
-          <h2>7. Authenticate Using Your Alias Email</h2>
+          <h2>6. Authenticate Using Your Alias Email</h2>
           <ul>
             <li>Enter your Alias email address.</li>
             <li>A verification code will be sent to your Alias inbox.</li>
@@ -149,13 +134,7 @@ git init`}
           <img 
             src={`${import.meta.env.BASE_URL}media/images/Login.png`} 
             alt="Login screen" 
-            style={{ 
-              maxWidth: '500px', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginTop: '1rem'
-            }} 
+            style={{ maxWidth: '500px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '1rem' }} 
           />
           <p style={{ backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: '6px', color: '#dc2626', marginTop: '1rem' }}>
             Do not use "Sign in with Google." If authentication fails on the first attempt, simply repeat the login.
@@ -163,17 +142,11 @@ git init`}
         </section>
 
         <section className="content-card-section">
-          <h2>8. Download the Appropriate CLI Tool Build</h2>
+          <h2>7. Download the Appropriate CLI Tool Build</h2>
           <img 
             src={`${import.meta.env.BASE_URL}media/images/version.png`} 
             alt="Version comparison" 
-            style={{ 
-              maxWidth: '800px', 
-              width: '100%', 
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1rem'
-            }} 
+            style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginBottom: '1rem' }} 
           />
           <p>Select the binary that matches your operating system and CPU architecture:</p>
           <ul>
@@ -185,7 +158,7 @@ git init`}
         </section>
 
         <section className="content-card-section">
-          <h2>9. Move and Prepare the CLI Tool</h2>
+          <h2>8. Move and Prepare the CLI Tool</h2>
           <p>From within the root of your cloned repository, move the downloaded file into place and make it executable:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`mv ~/Downloads/<downloaded-filename> claude-hfi
@@ -205,7 +178,7 @@ claude-hfi    README.md`}
         </section>
 
         <section className="content-card-section">
-          <h2>10. Launch the CLI Tool in VS Code Mode</h2>
+          <h2>9. Launch the CLI Tool in VS Code Mode</h2>
           <p>Run the following command from the repository root:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`./claude-hfi --vscode`}
@@ -235,7 +208,7 @@ Please enter the interface code:`}
         </section>
 
         <section className="content-card-section">
-          <h2>11. Resume a Previous Session</h2>
+          <h2>10. Resume a Previous Session</h2>
           <p>If you closed your session and want to continue working on a previous task, use the <code>--continue</code> flag:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`./claude-hfi --continue`}
@@ -247,7 +220,7 @@ Please enter the interface code:`}
         </section>
 
         <section className="content-card-section">
-          <h2>12. Enter the Interface Code</h2>
+          <h2>11. Enter the Interface Code</h2>
           <p>When prompted for the Interface Code, enter:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`cc_agentic_coding`}
@@ -256,7 +229,7 @@ Please enter the interface code:`}
         </section>
 
         <section className="content-card-section">
-          <h2>13. Attach to tmux Sessions</h2>
+          <h2>12. Attach to tmux Sessions</h2>
           <p>In each VS Code window, open the integrated terminal and attach to the appropriate tmux session:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`tmux attach -t <session-id>-A`}
@@ -275,7 +248,7 @@ Please enter the interface code:`}
         </section>
 
         <section className="content-card-section">
-          <h2>14. Provide Your Initial Prompt</h2>
+          <h2>13. Provide Your Initial Prompt</h2>
           <p>Paste the full prompt you completed during Prompt-Preparation. Press Enter to begin model execution.</p>
           <p>The CLI tool will start two independent trajectories, each in its own VS Code instance.</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem' }}>
@@ -287,7 +260,7 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
         </section>
 
         <section className="content-card-section">
-          <h2>15. Wait for Trajectory Completion</h2>
+          <h2>14. Wait for Trajectory Completion</h2>
           <p>In the main terminal, the tool will display:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`Waiting for trajectories to complete...`}
@@ -298,7 +271,7 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
         </section>
 
         <section className="content-card-section">
-          <h2>16. Review All Generated Files</h2>
+          <h2>15. Review All Generated Files</h2>
           <p>When execution completes, carefully review the outputs of both trajectories.</p>
           <p style={{ backgroundColor: '#fef3c7', padding: '0.75rem', borderRadius: '6px', color: '#92400e' }}>
             Important: If you are working entirely inside VS Code, you must use Git Diff to inspect all file changes. VS Code does not automatically highlight which lines or files have changed.
@@ -321,7 +294,7 @@ Check tmux session "2ba1f138-...-A" and session "2ba1f138-...-B" for possible to
         </section>
 
         <section className="content-card-section">
-          <h2>17. Compare Trajectory Versions</h2>
+          <h2>16. Compare Trajectory Versions</h2>
           <p>After both trajectories complete, compare the differences between Version A and Version B:</p>
 
           <h3>Version A:</h3>
@@ -367,7 +340,7 @@ index 8ae0569..d73214a 100644
         </section>
 
         <section className="content-card-section">
-          <h2>18. Exit tmux Sessions</h2>
+          <h2>17. Exit tmux Sessions</h2>
           <p>Once review is complete, close each tmux session:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`exit`}
@@ -375,7 +348,7 @@ index 8ae0569..d73214a 100644
         </section>
 
         <section className="content-card-section">
-          <h2>19. Uninstall / Cleanup</h2>
+          <h2>18. Uninstall / Cleanup</h2>
           <p>To remove the CLI tool from a repository:</p>
           <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
             {`rm claude-hfi`}
@@ -410,20 +383,13 @@ index 8ae0569..d73214a 100644
             <p style={{ marginTop: '1rem' }}><strong>Workaround (Confirmed Working):</strong> Explicitly exit and relaunch the CLI tool between turns using the <code>--continue</code> flag.</p>
 
             <div style={{ position: 'relative', paddingBottom: '64.86%', height: 0, marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
-              <iframe 
-                src="https://www.loom.com/embed/6537574a3bb64ee0aba07dcf2feca433" 
-                frameBorder="0" 
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              ></iframe>
+              <iframe src="https://www.loom.com/embed/6537574a3bb64ee0aba07dcf2feca433" frameBorder="0" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}></iframe>
             </div>
 
             <p style={{ marginTop: '1.5rem', marginBottom: '0.75rem', fontWeight: 600, fontSize: '1.1rem' }}>Recommended Multi-Turn Process:</p>
             <ol>
               <li>Start the CLI tool normally:
-                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-                  {`./claude-hfi --vscode`}
-                </pre>
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>{`./claude-hfi --vscode`}</pre>
               </li>
               <li>Complete the first turn as usual:
                 <ul style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
@@ -433,14 +399,10 @@ index 8ae0569..d73214a 100644
                 </ul>
               </li>
               <li><strong style={{ color: '#dc2626' }}>Do not enter a second-turn prompt.</strong> When prompted for the next turn, immediately exit the tool:
-                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-                  {`Ctrl + C`}
-                </pre>
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>{`Ctrl + C`}</pre>
               </li>
               <li>Relaunch the CLI using the continue flag:
-                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>
-                  {`./claude-hfi --vscode --continue`}
-                </pre>
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem', marginBottom: '0.5rem' }}>{`./claude-hfi --vscode --continue`}</pre>
               </li>
               <li>Enter the second-turn prompt and complete the turn normally.</li>
               <li>After submitting feedback for that turn, again:
@@ -457,9 +419,7 @@ index 8ae0569..d73214a 100644
               <li>tmux sessions generally persist correctly across restarts when using <code>--continue</code>.</li>
               <li>Any VS Code instability observed during this process may be environment-specific rather than tool-related.</li>
               <li>If unexpected tmux behavior occurs, verify session attachment using:
-                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>
-                  {`tmux display-message -p '#S'`}
-                </pre>
+                <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>{`tmux display-message -p '#S'`}</pre>
               </li>
             </ul>
           </div>
@@ -490,13 +450,9 @@ index 8ae0569..d73214a 100644
               <li>Then: <code>File → Open Folder</code></li>
               <li>Navigate to the trajectory worktree, typically located at:</li>
             </ol>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>
-              {`~/.cache/claude-hfi/<project-path>/A`}
-            </pre>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto', marginTop: '0.5rem' }}>{`~/.cache/claude-hfi/<project-path>/A`}</pre>
             <p>or</p>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-              {`~/.cache/claude-hfi/<project-path>/B`}
-            </pre>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>{`~/.cache/claude-hfi/<project-path>/B`}</pre>
             <p style={{ backgroundColor: '#dbeafe', padding: '0.75rem', borderRadius: '6px', color: '#1e40af', marginTop: '1rem' }}>
               Both worktrees are still created correctly, even if one window closes automatically.
             </p>
@@ -514,9 +470,7 @@ index 8ae0569..d73214a 100644
 
             <p style={{ marginTop: '1rem' }}><strong>Recommended Solution:</strong> Use the CLI's continue option to resume from the latest state.</p>
             <p>Run the following command from the repository root:</p>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-              {`./claude-hfi --continue --vscode`}
-            </pre>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>{`./claude-hfi --continue --vscode`}</pre>
 
             <p style={{ marginTop: '1rem' }}><strong>Notes:</strong></p>
             <ul>
@@ -531,9 +485,7 @@ index 8ae0569..d73214a 100644
             <h3 style={{ color: '#dc2626', marginBottom: '1rem' }}>Verifying You Are Attached to the Correct tmux Session</h3>
             
             <p>If you are unsure whether a VS Code terminal is attached to the correct tmux session, run the following command inside each trajectory terminal:</p>
-            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>
-              {`tmux display-message -p '#S'`}
-            </pre>
+            <pre style={{ backgroundColor: '#1e293b', color: '#e2e8f0', padding: '1rem', borderRadius: '8px', overflowX: 'auto' }}>{`tmux display-message -p '#S'`}</pre>
 
             <p style={{ marginTop: '1rem' }}>This prints the current tmux session name, allowing you to confirm whether you are attached to:</p>
             <ul>
