@@ -138,6 +138,11 @@ function LandingPage({ onNavigate, onLogout }) {
               <p>Before running any tools, you plan the work.</p>
               <p>You'll describe what the repository does, what the pull request is intended to change, and write a prompt that will guide the model in implementing those changes using the CLI tool.</p>
               <p>The goal of this step is to remove ambiguity and define a prompt that clearly describes the expected outcome.</p>
+              <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+                <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+                  🚫 <strong>Do not use role-based prompting.</strong> Avoid phrases like "You are a senior software engineer..." or "Act as an expert developer...". Write clear, direct instructions that describe exactly what needs to be done.
+                </p>
+              </div>
               <div style={{ marginTop: '1.5rem' }}>
                 <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
                 <div style={{ position: 'relative', paddingBottom: '56.84210526315789%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>

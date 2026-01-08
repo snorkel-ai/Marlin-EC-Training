@@ -43,6 +43,11 @@ function PromptPreparation({ onNavigate }) {
           <p>Write the prompt that will be used during execution.</p>
           <p>The prompt must be self-contained and describe exactly what the model is expected to do. Instructions should be clear, objective, and structured. Avoid conversational language and do not use role-based prompting.</p>
           <p>Someone reading the prompt alone should be able to understand the task without additional context.</p>
+          <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+            <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+              🚫 <strong>Do not use role-based prompting.</strong> Avoid phrases like "You are a senior software engineer..." or "Act as an expert developer...". Write clear, direct instructions that describe exactly what needs to be done.
+            </p>
+          </div>
         </section>
 
         <section className="content-card-section">
