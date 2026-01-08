@@ -158,6 +158,14 @@ function LandingPage({ onNavigate, onLogout }) {
                   📋 <strong>Note:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
                 </p>
               </div>
+              <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
+                <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>
+                  ⚠️ <strong>Important:</strong> Do not check out the PR branch (e.g. <code style={{ backgroundColor: '#fde68a', padding: '0.125rem 0.375rem', borderRadius: '4px' }}>pr-833</code>) when working on a Marlin submission. PR branches already contain the requested changes.
+                </p>
+                <p style={{ margin: 0, color: '#92400e' }}>
+                  Always use the pre-PR repository state provided in the approval email after Prompt-Preparation. If you're unsure you're on the correct version, ask in Slack before proceeding.
+                </p>
+              </div>
               <div style={{ marginTop: '1.5rem' }}>
                 <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
                 <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>

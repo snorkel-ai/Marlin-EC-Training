@@ -13,9 +13,31 @@ function ModelWorkspace({ onNavigate }) {
       <main className="content-card-main">
 
         <section className="content-card-section">
-          <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginBottom: '1.5rem' }}>
+          <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginBottom: '1rem' }}>
             <p style={{ margin: 0, color: '#1e40af', fontWeight: 600 }}>
               📋 <strong>Important:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
+            </p>
+          </div>
+          <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b' }}>
+            <p style={{ margin: 0, marginBottom: '0.75rem', color: '#92400e', fontWeight: 600 }}>
+              ⚠️ Important Note on PR Checkout (Please Read)
+            </p>
+            <p style={{ margin: 0, marginBottom: '0.75rem', color: '#92400e' }}>
+              When working on a Marlin submission, do <strong>NOT</strong> check out the Pull Request branch itself (e.g. <code style={{ backgroundColor: '#fde68a', padding: '0.125rem 0.375rem', borderRadius: '4px' }}>pr-833</code>) as your working state.
+            </p>
+            <p style={{ margin: 0, marginBottom: '0.75rem', color: '#92400e' }}>
+              Checking out the PR branch will load code that already contains the feature or fix being requested, which defeats the purpose of the task and can invalidate your submission.
+            </p>
+            <p style={{ margin: 0, marginBottom: '0.75rem', color: '#92400e' }}>
+              Always start from the <strong>pre-PR state</strong> of the repository, which represents the code before the PR changes were introduced.
+            </p>
+            <ul style={{ margin: '0.75rem 0', color: '#92400e', paddingLeft: '1.25rem' }}>
+              <li>If your Prompt-Preparation task is approved, you will receive an email with a link to the correct version of the repository.</li>
+              <li>This repository snapshot is already set to the appropriate pre-PR baseline and should be used with the CLI tool.</li>
+              <li>You should not need to manually check out the PR branch or attempt to reconstruct it yourself.</li>
+            </ul>
+            <p style={{ margin: 0, color: '#92400e', fontWeight: 500 }}>
+              If you are ever unsure whether you're on the correct repo state, do not proceed — reach out in Slack for confirmation before continuing.
             </p>
           </div>
         </section>
