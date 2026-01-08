@@ -65,6 +65,11 @@ function ModelWorkspace({ onNavigate }) {
             <li>Generate model responses based on your prepared prompt</li>
             <li>Ensure execution follows the intent defined in the preparation stage</li>
           </ul>
+          <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+            <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+              🚫 <strong>Do not reference the PR in your prompt.</strong> You need to imagine yourself as the developer who was originally building this PR. You cannot reference the PR that already exists to explain how to build it — write instructions as if the PR does not exist yet.
+            </p>
+          </div>
 
           <h3>2. Output Review</h3>
           <ul>
