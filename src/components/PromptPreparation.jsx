@@ -47,6 +47,9 @@ function PromptPreparation({ onNavigate }) {
             <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
               🚫 <strong>Do not use role-based prompting.</strong> Avoid phrases like "You are a senior software engineer..." or "Act as an expert developer...". Write clear, direct instructions that describe exactly what needs to be done.
             </p>
+            <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+                  🚫 <strong>Do not use LLMs</strong> Avoid using any LLMs during the creation of the prompt or during any stage in general.
+                </p>
           </div>
         </section>
 
