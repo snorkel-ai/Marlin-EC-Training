@@ -50,6 +50,9 @@ function PromptPreparation({ onNavigate }) {
             <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
                   🚫 <strong>Do not use LLMs</strong> Avoid using any LLMs during the creation of the prompt or during any stage in general.
                 </p>
+              <p style={{ margin: 0, color: '#991b1b', fontWeight: 600 }}>
+              🚫 <strong>Do not reference the PR in your prompt.</strong> You need to imagine yourself as the developer who was originally building this PR. You cannot reference the PR that already exists to explain how to build it — write instructions as if the PR does not exist yet.
+            </p>
           </div>
         </section>
 
