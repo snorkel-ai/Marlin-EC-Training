@@ -72,3 +72,39 @@
   color: #64748b;
   font-size: 0.875rem;
 }
+
+/* Rating Guidance */
+.rating-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .rating-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rating-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.rating-card-title {
+  margin: 0 0 0.35rem 0;
+}
+
+.rating-card-intro {
+  margin: 0 0 0.75rem 0;
+  color: #4b5563;
+}
+
+.rating-card-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}

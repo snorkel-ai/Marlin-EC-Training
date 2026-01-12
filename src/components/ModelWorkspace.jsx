@@ -102,6 +102,135 @@ function ModelWorkspace({ onNavigate }) {
             <li>Select the response that best implements the intended behavior</li>
             <li>Be prepared to clearly justify why this response was chosen over the alternative</li>
           </ul>
+          <h3 style={{ marginTop: '1.5rem' }}>4. Response Selection</h3>
+<ul>
+  <li>Compare the multiple model responses provided</li>
+  <li>Select the response that best implements the intended behavior</li>
+  <li>Be prepared to clearly justify why this response was chosen over the alternative</li>
+</ul>
+
+<div
+  style={{
+    backgroundColor: '#eff6ff',
+    padding: '1rem 1.25rem',
+    borderRadius: '8px',
+    borderLeft: '4px solid #2563eb',
+    marginTop: '1rem',
+  }}
+>
+  <p style={{ margin: 0, color: '#1e40af', fontWeight: 700 }}>
+    ✅ Rating checklist (use this to justify multi-axis ratings)
+  </p>
+  <p style={{ margin: '0.5rem 0 0', color: '#1e40af' }}>
+    Use the dimensions below to keep ratings consistent and to decide whether the code is production-ready.
+  </p>
+</div>
+
+<div className="content-card-subsection">
+  <h4 style={{ marginTop: '1rem' }}>Logic & Correctness</h4>
+  <ul>
+    <li>Does the implementation match the intended behavior?</li>
+    <li>Are edge cases and error conditions properly handled?</li>
+    <li>Is the control flow clear and free of subtle bugs?</li>
+    <li>Are there any off-by-one errors, null pointer exceptions, or race conditions?</li>
+    <li>Is the algorithm/approach correct for the problem being solved?</li>
+    <li>Are boundary conditions (empty inputs, maximum values, etc.) handled correctly?</li>
+  </ul>
+
+  <h4>Naming & Clarity</h4>
+  <ul>
+    <li>Do variable, function, and class names clearly express their purpose?</li>
+    <li>Is domain terminology used consistently throughout?</li>
+    <li>Are boolean names and conditions expressed positively when possible?</li>
+    <li>Do names avoid ambiguous abbreviations or insider knowledge?</li>
+    <li>Are assumptions about inputs, outputs, or behavior clearly documented?</li>
+    <li>Would a new developer understand what each component does from its name alone?</li>
+    <li>Are units clear in variable names (e.g., delaySeconds vs delay)?</li>
+  </ul>
+
+  <h4>Organization & Modularity</h4>
+  <ul>
+    <li>Are functions/methods focused on a single responsibility?</li>
+    <li>Is there duplicate code that should be extracted into reusable functions?</li>
+    <li>Are source files reasonably sized (not thousands of lines)?</li>
+    <li>Are functions/methods concise and focused (not hundreds of lines)?</li>
+    <li>Is related functionality grouped together logically?</li>
+    <li>Are abstraction levels consistent (not mixing high and low-level operations)?</li>
+    <li>Is there proper separation of concerns (e.g., I/O separate from business logic)?</li>
+    <li>Does each class have high cohesion (all methods relate to its purpose)?</li>
+    <li>Is cyclomatic complexity reasonable (avoiding deeply nested code)?</li>
+    <li>Are there parallel implementations of the same functionality?</li>
+  </ul>
+
+  <h4>Interface Design</h4>
+  <ul>
+    <li>Are APIs intuitive and hard to misuse?</li>
+    <li>Do function signatures minimize coupling (avoiding unnecessary parameters)?</li>
+    <li>Are return values and side effects predictable and well-documented?</li>
+    <li>Is mutability controlled and explicit?</li>
+    <li>Do functions have reasonable parameter counts (use objects for complex configs)?</li>
+    <li>Are return types consistent (avoiding different types based on conditions)?</li>
+    <li>Is it clear what each function does without reading its implementation?</li>
+    <li>Are required vs optional parameters clearly distinguished?</li>
+    <li>Do interfaces follow established patterns and conventions?</li>
+  </ul>
+
+  <h4>Error Handling & Robustness</h4>
+  <ul>
+    <li>Are specific exception types used with contextual error messages?</li>
+    <li>Is there a consistent error handling strategy (fail fast vs recovery)?</li>
+    <li>Is input validation performed early at system boundaries?</li>
+    <li>Are errors properly propagated rather than silently swallowed?</li>
+    <li>Is resource management handled properly (files closed, memory freed)?</li>
+    <li>Are there any bare except clauses that could hide bugs?</li>
+    <li>Do error messages provide enough context to debug issues?</li>
+    <li>Are partial failures handled gracefully?</li>
+    <li>Is defensive programming used appropriately (not excessively)?</li>
+  </ul>
+
+  <h4>Comments & Documentation</h4>
+  <ul>
+    <li>Do comments explain WHY something is done, not WHAT is being done?</li>
+    <li>Are complex algorithms or business logic clearly explained?</li>
+    <li>Have comments been updated to match code changes?</li>
+    <li>Are there any AI-generated chain-of-thought comments that should be removed?</li>
+    <li>Are there placeholder comments saying code was removed/replaced?</li>
+    <li>Is there appropriate documentation for public APIs?</li>
+    <li>Are edge cases and non-obvious behavior documented?</li>
+    <li>Are there too many obvious comments that add noise?</li>
+    <li>Do comments provide value to future maintainers?</li>
+  </ul>
+
+  <h4>Ready for Review / Merge</h4>
+  <ul>
+    <li>Is there any debug code, print statements, or console.log calls?</li>
+    <li>Has all commented-out code been removed?</li>
+    <li>Is the code properly formatted according to project standards?</li>
+    <li>Are all temporary files, build artifacts, or test outputs removed?</li>
+    <li>Does the code follow the established conventions for the codebase?</li>
+    <li>Are commit messages clear and follow project guidelines?</li>
+    <li>Is version control hygiene maintained (no large binary files, etc.)?</li>
+    <li>Are all tests passing and coverage adequate?</li>
+    <li>Has the code been linted and does it pass static analysis?</li>
+    <li>Are there any hardcoded values that should be configurable?</li>
+    <li>Is sensitive information (passwords, keys) properly handled?</li>
+  </ul>
+</div>
+
+<div
+  style={{
+    backgroundColor: '#f3f4f6',
+    padding: '1rem 1.25rem',
+    borderRadius: '8px',
+    borderLeft: '4px solid #6b7280',
+    marginTop: '1rem',
+  }}
+>
+  <p style={{ margin: 0, color: '#374151' }}>
+    Tip: If ratings differ across axes, add a 1–2 sentence justification for each outlier score (e.g., “Correct but poor modularity due to duplicated parsing logic.”).
+  </p>
+</div>
+
 
           <h3>5. Finalization and Submission</h3>
           <ul>
