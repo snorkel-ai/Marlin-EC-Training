@@ -94,18 +94,7 @@ function LandingPage({ onNavigate, onLogout }) {
 
           <p className="overview-intro">We're excited to welcome you to Project Marlin, an initiative focused on advancing AI-assisted software engineering through high-quality Python development and structured collaboration with state-of-the-art AI models.</p>
 
-          {/* Workflow SVG image with zoom/pan */}
-          <div style={{ width: '100%', maxWidth: '1200px', margin: '2rem auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-              <button onClick={handleZoomOut} style={{ padding: '0.5rem 1rem', backgroundColor: '#1e40af', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>−</button>
-              <button onClick={handleReset} style={{ padding: '0.5rem 1rem', backgroundColor: '#64748b', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 500, fontSize: '0.875rem' }}>Reset ({Math.round(scale * 100)}%)</button>
-              <button onClick={handleZoomIn} style={{ padding: '0.5rem 1rem', backgroundColor: '#1e40af', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>+</button>
-            </div>
-            <div ref={containerRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onWheel={handleWheel} style={{ overflow: 'hidden', borderRadius: '12px', border: '1px solid #e2e8f0', cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default', backgroundColor: '#f8fafc' }}>
-              <img src={`${import.meta.env.BASE_URL}media/images/Workflow.svg`} alt="Project Marlin Workflow" draggable={false} style={{ width: '100%', display: 'block', transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`, transformOrigin: 'center center', transition: isDragging ? 'none' : 'transform 0.1s ease-out' }} />
-            </div>
-            <p style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.5rem' }}>Use scroll wheel to zoom • Drag to pan when zoomed in</p>
-          </div>
+       
 
           {/* Step 1: Assessment */}
           <CollapsiblePhase title="Step 1: Assessment">
