@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './LandingPage.css';
 import './Content.css';
@@ -20,29 +20,6 @@ function CollapsiblePhase({ title, children, defaultOpen = false }) {
 
 function LandingPage({ onNavigate, onLogout }) {
   const { hasRole } = useAuth();
-  const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
-
-  const handleZoomIn = () => setScale(s => Math.min(s + 0.25, 3));
-  const handleZoomOut = () => setScale(s => Math.max(s - 0.25, 0.5));
-  const handleReset = () => { setScale(1); setPosition({ x: 0, y: 0 }); };
-  const handleMouseDown = (e) => {
-    if (scale > 1) {
-      setIsDragging(true);
-      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
-    }
-  };
-  const handleMouseMove = (e) => {
-    if (isDragging) setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
-  };
-  const handleMouseUp = () => setIsDragging(false);
-  const handleWheel = (e) => {
-    e.preventDefault();
-    setScale(s => e.deltaY < 0 ? Math.min(s + 0.1, 3) : Math.max(s - 0.1, 0.5));
-  };
 
   return (
     <div className="landing-page">
@@ -54,7 +31,7 @@ function LandingPage({ onNavigate, onLogout }) {
           </div>
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#resources">Training Resources</a></li>
+            <li><a href="#resources">Resources Hub</a></li>
             <li><button onClick={() => onNavigate('glossary')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>Glossary</button></li>
             <li><button onClick={() => onNavigate('faq')} style={{ background: 'none', border: 'none', color: '#4b5563', textDecoration: 'none', fontWeight: 500, cursor: 'pointer', fontSize: '1rem', fontFamily: 'inherit' }}>FAQ</button></li>
             {hasRole('swe') && (
@@ -94,10 +71,43 @@ function LandingPage({ onNavigate, onLogout }) {
 
           <p className="overview-intro">We're excited to welcome you to Project Marlin, an initiative focused on advancing AI-assisted software engineering through high-quality Python development and structured collaboration with state-of-the-art AI models.</p>
 
-       
+          {/* Overview Content */}
+          <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+            <h3 style={{ marginTop: 0, marginBottom: '1rem', fontSize: '1.375rem', fontWeight: 600, color: '#334155' }}>About This Project</h3>
+            <p style={{ color: '#475569', lineHeight: '1.7', marginBottom: '1rem' }}>This project focuses on reviewing and executing Python code changes using real repositories and pull requests.</p>
+            <p style={{ color: '#475569', lineHeight: '1.7', marginBottom: '1rem' }}>Participants work with model-generated responses that attempt to modify existing code. The goal is to evaluate those changes, determine whether they correctly implement the intended behavior, and guide the model toward a correct and complete result.</p>
+            
+            <h3 style={{ marginTop: '2rem', marginBottom: '1rem', fontSize: '1.375rem', fontWeight: 600, color: '#334155' }}>What We Evaluate</h3>
+            <p style={{ color: '#475569', lineHeight: '1.7', marginBottom: '1rem' }}>At each stage, the focus is on concrete outcomes: whether the code behaves as intended, whether changes are complete and consistent, and whether technical decisions can be clearly explained. The project evaluates the ability to work through real codebases, reason about behavior, and make informed decisions when interacting with model-generated output.</p>
+            
+            <h3 style={{ marginTop: '2rem', marginBottom: '1rem', fontSize: '1.375rem', fontWeight: 600, color: '#334155' }}>Workflow Structure</h3>
+            <p style={{ color: '#475569', lineHeight: '1.7', marginBottom: '1rem' }}>The workflow is structured as a sequence of practical steps:</p>
+            <ol style={{ color: '#475569', lineHeight: '1.7', marginBottom: '1rem', paddingLeft: '1.5rem' }}>
+              <li>Complete an assessment to gain access to tasking (one-time)</li>
+              <li>Select a repository and pull request that will serve as the basis for the task</li>
+              <li>Plan the work by writing a prompt that clearly describes the expected changes</li>
+              <li>Go to the provider platform and set up your CLI tool (one-time)</li>
+              <li>Use the CLI tool to create your PR</li>
+              <li>Return to the Snorkel Expert Platform to claim, edit, and finalize your task</li>
+            </ol>
+          </div>
+
+          {/* Workflow image */}
+          <div style={{ width: '100%', maxWidth: '80vw', margin: '2rem auto' }}>
+            <div style={{ borderRadius: '12px', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc', overflow: 'hidden' }}>
+              <img src={`${import.meta.env.BASE_URL}media/images/workflow-v2.png`} alt="Project Marlin Workflow" style={{ width: '100%', display: 'block' }} />
+            </div>
+            <p style={{ textAlign: 'center', color: '#475569', fontSize: '0.875rem', marginTop: '0.75rem' }}>Blue boxes correspond to distinct projects on the Snorkel Expert Platform</p>
+          </div>
+>>>>>>> 20db0ae (Update landing page: restructure workflow, add videos, update guidelines)
 
           {/* Step 1: Assessment */}
-          <CollapsiblePhase title="Step 1: Assessment">
+          <CollapsiblePhase title={
+            <>
+              Step 1: Assessment{' '}
+              <span style={{ fontSize: '0.85em', fontWeight: 400, color: '#64748b', fontFamily: 'monospace' }}>(Marlin-Expert_Assessment-2)</span>
+            </>
+          }>
             <div className="phase-item">
               <p>This step evaluates your ability to review Python code changes critically.</p>
               <p>You'll be given a repository and a set of changes generated by a model. Your task is to assess whether those changes are correct, incomplete, or flawed, and explain your reasoning clearly.</p>
@@ -112,12 +122,36 @@ function LandingPage({ onNavigate, onLogout }) {
           </CollapsiblePhase>
 
           {/* Step 2: Repository & Pull Request Selection */}
-          <CollapsiblePhase title="Step 2: Repository & Pull Request Selection">
+          <CollapsiblePhase title={
+            <>
+              Step 2: Repository & Pull Request Selection{' '}
+              <span style={{ fontSize: '0.85em', fontWeight: 400, color: '#64748b', fontFamily: 'monospace' }}>(Marlin-PR-Selection)</span>
+            </>
+          }>
             <div className="phase-item">
               <p>In this step, you select the repository and pull request you'll work on for the remainder of the workflow.</p>
               <p>You'll review available options, inspect the codebase, and choose a pull request that introduces meaningful behavior changes. The task should require real engineering judgment and should be complex enough to warrant careful planning and iteration.</p>
               <p>Choose work you can reasonably understand and evaluate. A strong selection has clear intent but non-trivial implementation details.</p>
               <div style={{ marginTop: '1.5rem' }}>
+                <p style={{ marginBottom: '1rem' }}>
+                  <button 
+                    onClick={() => onNavigate('prselection')}
+                    style={{
+                      backgroundColor: '#2563eb',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: 500
+                    }}
+                    onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+                    onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+                  >
+                    View additional guidance →
+                  </button>
+                </p>
                 <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
                 <div style={{ position: 'relative', paddingBottom: '62.42774566473989%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
                   <iframe src="https://www.loom.com/embed/a212b65a295c4593bad11ac8bb94055e" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -127,7 +161,12 @@ function LandingPage({ onNavigate, onLogout }) {
           </CollapsiblePhase>
 
           {/* Step 3: Prompt Preparation */}
-          <CollapsiblePhase title="Step 3: Prompt Preparation">
+          <CollapsiblePhase title={
+            <>
+              Step 3: Prompt Preparation{' '}
+              <span style={{ fontSize: '0.85em', fontWeight: 400, color: '#64748b', fontFamily: 'monospace' }}>(Marlin-Prompt-Prep)</span>
+            </>
+          }>
             <div className="phase-item">
               <p>Before running any tools, you plan the work.</p>
               <p>You'll describe what the repository does, what the pull request is intended to change, and write a prompt that will guide the model in implementing those changes using the CLI tool.</p>
@@ -144,6 +183,25 @@ function LandingPage({ onNavigate, onLogout }) {
             </p>
               </div>
               <div style={{ marginTop: '1.5rem' }}>
+                <p style={{ marginBottom: '1rem' }}>
+                  <button 
+                    onClick={() => onNavigate('promptpreparation')}
+                    style={{
+                      backgroundColor: '#2563eb',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: 500
+                    }}
+                    onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+                    onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+                  >
+                    View additional guidance →
+                  </button>
+                </p>
                 <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
                 <div style={{ position: 'relative', paddingBottom: '56.84210526315789%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
                   <iframe src="https://www.loom.com/embed/2280f00825ec460e836575df2544aeb2" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -152,17 +210,43 @@ function LandingPage({ onNavigate, onLogout }) {
             </div>
           </CollapsiblePhase>
 
-          {/* Step 4: Execution & Finalization */}
-          <CollapsiblePhase title="Step 4: Execution & Finalization">
+          {/* Step 4: CLI Setup */}
+          <CollapsiblePhase title="Step 4: CLI Setup (one-time)">
+            <div className="phase-item">
+              <p>Before you can execute tasks in Step 5, you need to set up the CLI tool on your system.</p>
+              <p>The CLI tool requires several system components and dependencies to be properly configured. This includes adding VS Code to your PATH, installing required dependencies like tmux, and preparing your repository for task execution.</p>
+              <p style={{ marginTop: '1rem' }}>
+                <button 
+                  onClick={() => onNavigate('cli')}
+                  style={{
+                    backgroundColor: '#2563eb',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '0.875rem',
+                    fontWeight: 500
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+                >
+                  View Full CLI Setup Guide →
+                </button>
+              </p>
+            </div>
+          </CollapsiblePhase>
+
+          {/* Step 5: PR Creation */}
+          <CollapsiblePhase title={
+            <>
+              Step 5: PR Creation{' '}
+              <span style={{ fontSize: '0.85em', fontWeight: 400, color: '#64748b', fontFamily: 'monospace' }}>(CLI)</span>
+            </>
+          }>
             <div className="phase-item">
               <p>This is where the planned work is carried out.</p>
               <p>You'll run the task using the provided tools, review the generated changes, and iterate as needed until the result matches your intent. You'll compare multiple outputs, discard incorrect approaches, and refine the solution across turns.</p>
-              <p>Once complete, you'll select the stronger of the two model responses and submit your work for review.</p>
-              <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginTop: '1rem' }}>
-                <p style={{ margin: 0, color: '#1e40af', fontWeight: 500 }}>
-                  📋 <strong>Note:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the Snorkel platform.
-                </p>
-              </div>
               <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginTop: '1rem' }}>
                 <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>
                   ⚠️ <strong>Important:</strong> Do not check out the PR branch (e.g. <code style={{ backgroundColor: '#fde68a', padding: '0.125rem 0.375rem', borderRadius: '4px' }}>pr-833</code>) when working on a Marlin submission. PR branches already contain the requested changes.
@@ -172,9 +256,57 @@ function LandingPage({ onNavigate, onLogout }) {
                 </p>
               </div>
               <div style={{ marginTop: '1.5rem' }}>
+                <p style={{ marginBottom: '1rem' }}>
+                  <button 
+                    onClick={() => onNavigate('modelworkspace')}
+                    style={{
+                      backgroundColor: '#2563eb',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '0.875rem',
+                      fontWeight: 500
+                    }}
+                    onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+                    onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+                  >
+                    View additional guidance →
+                  </button>
+                </p>
                 <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
-                <div style={{ position: 'relative', paddingBottom: '64.86161251504213%', height: 0, borderRadius: '8px', overflow: 'hidden' }}>
-                  <iframe src="https://www.loom.com/embed/d368f4ece5d248a3af7ed53edca7ed20" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+                <div style={{ borderRadius: '8px', overflow: 'hidden' }}>
+                  <video controls style={{ width: '100%', display: 'block' }}>
+                    <source src={`${import.meta.env.BASE_URL}media/videos/CLI.mp4`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+          </CollapsiblePhase>
+
+          {/* Step 6: PR Submission */}
+          <CollapsiblePhase title={
+            <>
+              Step 6: PR Submission{' '}
+              <span style={{ fontSize: '0.85em', fontWeight: 400, color: '#64748b', fontFamily: 'monospace' }}>(Marlin-Prompt-Review-V2)</span>
+            </>
+          }>
+            <div className="phase-item">
+              <p>Once your CLI work is complete, you'll submit your work for review using the Marlin-Prompt-Review V2 task on the Snorkel platform.</p>
+              <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb', marginTop: '1rem' }}>
+                <p style={{ margin: 0, color: '#1e40af', fontWeight: 500 }}>
+                  📋 <strong>Note:</strong> For final submission, use <strong>Marlin-Prompt-Review V2</strong> on the <strong>Snorkel platform</strong>, not <strong>Marlin-Prompt-Review</strong> as shown in the video below.
+                </p>
+              </div>
+              <div style={{ marginTop: '1.5rem' }}>
+                <h4 style={{ marginBottom: '0.75rem' }}>Tutorial Video</h4>
+                <div style={{ borderRadius: '8px', overflow: 'hidden' }}>
+                  <video controls style={{ width: '100%', display: 'block' }}>
+                    <source src={`${import.meta.env.BASE_URL}media/videos/PromptReview.mp4`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
@@ -184,21 +316,15 @@ function LandingPage({ onNavigate, onLogout }) {
 
           <h2 className="section-title">Guidelines</h2>
           <div className="resource-buttons">
-            <button className="resource-button" onClick={() => onNavigate('overview')}><span className="button-text">Overview</span><span className="button-description">Provides a high-level explanation of the project, how the full workflow fits together.</span></button>
-            <button className="resource-button" onClick={() => onNavigate('prselection')}><span className="button-text">Step 2: PR Selection</span><span className="button-description">Covers how to choose a valid repository and pull request with the right level of complexity.</span></button>
-            <button className="resource-button" onClick={() => onNavigate('promptpreparation')}><span className="button-text">Step 3: Prompt Preparation</span><span className="button-description">Explains how to outline expected behavior, edge cases, tests, and write a strong prompt.</span></button>
-            <button className="resource-button" onClick={() => onNavigate('modelworkspace')}><span className="button-text">Step 4: CLI and Final Submission</span><span className="button-description">Shows how to run the model, iterate across turns, review updates, and finalize your submission. Use Marlin-Prompt-Review V2.</span></button>
             <button className="resource-button" onClick={() => onNavigate('rulesandrequirements')}><span className="button-text">Rules & Requirements</span><span className="button-description">Details OS requirements, allowed tools, time limits, and project policies you must follow.</span></button>
-            <button className="resource-button" onClick={() => onNavigate('cli')}><span className="button-text">CLI Setup</span><span className="button-description">How to setup the CLI tool to start tasking.</span></button>
           </div>
         </section>
 
         <div style={{ borderTop: '2px solid #e2e8f0', marginTop: '3rem', paddingTop: '2rem' }}>
           <section id="resources" className="resources-section">
-            <h2 className="section-title">Training Resources</h2>
+            <h2 className="section-title">Resources Hub</h2>
             <div style={{ width: '100%', marginBottom: '2rem' }}>
               <div style={{ marginTop: '3rem' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e293b', marginBottom: '1.5rem', textAlign: 'center' }}>Resources Hub</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
                   <div className="resource-hub-card">
                     <h4 className="resource-hub-card-title">☕ Essential Resources</h4>
