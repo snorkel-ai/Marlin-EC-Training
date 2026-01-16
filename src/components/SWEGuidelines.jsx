@@ -82,118 +82,28 @@ function SWEGuidelines({ onNavigate }) {
 
           {/* Welcome */}
           <h3>Welcome</h3>
-          <p>Thank you for helping review Marlin Prompt Review submissions. The SWE Review serves as a comprehensive quality check in our multi-stage review process. Through thorough, in-depth analysis of the code and metadata, you help ensure submissions meet our high quality standards before acceptance and enable accurate feedback to submitters. We expect these reviews to take 30-40 minutes.</p>
+          <p>Thank you for helping review Marlin Prompt Review submissions. The SWE Review step is a fast, focused quality check designed to catch clear, high-impact issues before a submission reaches full audit.</p>
+          <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginBottom: '1.5rem' }}>
+            <p style={{ margin: 0, color: '#92400e', fontWeight: 600 }}>
+              ⏱️ <strong>Time Limit:</strong> Each review is time-boxed to approximately <strong>15 minutes</strong>. You are not expected to find every issue. Your goal is to validate the most important technical claims, confirm or dispute automated evaluations, and ensure the submitter's reasoning is sound and internally consistent.
+            </p>
+          </div>
+
+          {/* Purpose */}
+          <h3>Purpose of the SWE Review</h3>
+          <p>The SWE Review serves as an early quality filter in a multi-stage review process. By identifying obvious technical or reasoning issues early, you help reduce unnecessary work in later stages and enable faster feedback to submitters.</p>
          
 
           {/* Collapsible Sections */}
-          <CollapsibleSection title="What You Are Expected to Do">
-            <p>Start with any automated eval failures and determine whether they are valid. Thoroughly review all claims made by the submitter and verify their technical accuracy against the code changes and metadata.</p>
-            
-            <div style={{ backgroundColor: '#f8fafc', padding: '1rem 1.25rem', borderRadius: '8px', border: '1px solid #e2e8f0', marginTop: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.75rem', fontWeight: 600 }}>Items to Check:</p>
-              <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
-                <li>Verify the conversation has 3+ turns with distinct, material code changes (not redundant)</li>
-                <li>Confirm the code is production-ready and meets the PR specification</li>
-                <li>Check alignment between overall preference, multi-axis ratings, pros/cons, and justification</li>
-                <li>Assess whether pros/cons and justification are thorough (not spammy or superficial)</li>
-                <li>Verify there are no major contradictions between prompts</li>
-                <li>Verify prompts follow core project guidelines (no role-based prompting, no direct PR references)</li>
-                <li>Check code accuracy: verify claims match actual code changes, identify logic errors, and confirm requested features/constraints were implemented</li>
-                <li>Assess whether issues are metadata-only (ratings, pros/cons, justification) or involve prompts/code</li>
-              </ul>
-            </div>
-            
-            <div style={{ backgroundColor: '#f8fafc', padding: '1rem 1.25rem', borderRadius: '8px', border: '1px solid #e2e8f0', marginTop: '1.5rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', fontWeight: 600 }}>What You Are NOT Expected to Do:</p>
-              <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
-                <li>Install or run the repository</li>
-                <li>Execute tests locally</li>
-              </ul>
-            </div>
-          </CollapsibleSection>
-
-          <CollapsibleSection title="When to Accept, Reject, and Send for Revision">
-            <h4>Accept when:</h4>
-            
-            <div style={{ backgroundColor: '#dcfce7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #16a34a', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#166534', fontWeight: 600 }}>✅ Overall Preference Aligns with Ratings, Pros, and Cons</p>
-              <p style={{ margin: 0, color: '#166534' }}>The overall preference for each turn is consistent with the individual ratings, pros, and cons provided. There are no contradictions between the preference selection and the supporting reasoning.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#dcfce7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #16a34a', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#166534', fontWeight: 600 }}>✅ Conversation Has 3+ Turns with Distinct Material Code Changes and Production-Ready Code</p>
-              <p style={{ margin: 0, color: '#166534' }}>The conversation contains at least 3 turns that request distinct, material code changes and results in production-ready code that meets the PR specification. Each prompt asks for distinct changes that are not redundant with previous turns, and the final code fully meets all requirements outlined in the PR.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#dcfce7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #16a34a', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#166534', fontWeight: 600 }}>✅ Thorough Pros and Cons Align with Ratings and Preference</p>
-              <p style={{ margin: 0, color: '#166534' }}>The pros and cons sections are thorough, well-reasoned, and align with both the individual ratings and the overall preference. The analysis demonstrates a clear understanding of the trade-offs between options.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#dcfce7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #16a34a', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#166534', fontWeight: 600 }}>✅ No Major Contradictions Between Prompts</p>
-              <p style={{ margin: 0, color: '#166534' }}>There are no major contradictions between prompts across different turns. The conversation maintains consistency and logical progression without conflicting instructions or requirements.</p>
-            </div>
-            
-            <h4>Send for Revision When:</h4>
-            
-            <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>⚠️ Conversation Has 3+ Turns with Distinct Material Code Changes and Production-Ready Code, But Overall Preference Has Issues</p>
-              <p style={{ margin: 0, marginBottom: '0.75rem', color: '#92400e' }}>The conversation meets the structural requirements (3+ turns, distinct material code changes, production-ready code that meets PR specification), but the overall preference is correct while there are issues with:</p>
-              <ul style={{ margin: 0, color: '#92400e', paddingLeft: '1.25rem' }}>
-                <li>Misalignment with multi-axis ratings and pros/cons</li>
-                <li>Non-thorough pros/cons and/or justification</li>
-                <li>Spammy ratings</li>
-              </ul>
-            </div>
-
-            <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>⚠️ Important: Metadata-Only vs. Code/Prompt Issues</p>
-              <p style={{ margin: 0, color: '#92400e' }}>If the necessary changes are solely to the metadata (i.e. multi-axis ratings, pros/cons, justification), then the submission can be sent for revision to have these fixed. However, if there are issues with the prompts or code itself, the submission needs to be rejected.</p>
-            </div>
-            
-            <h4>Reject when:</h4>
-            
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Incorrect Overall Preference</p>
-              <p style={{ margin: 0, color: '#991b1b' }}>The overall preference for a turn you evaluated is clearly and significantly incorrect, and that incorrect choice is supported by reasoning that does not match the actual evidence.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Core Project Guidelines Not Followed</p>
-              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
-                <li>The prompt uses role-based prompting</li>
-                <li>The prompt directly refers to the PR</li>
-                <li>Later turns introduce new core requirements that should reasonably have been part of the original prompt</li>
-              </ul>
-            </div>
-
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Significant Contradictions</p>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b' }}>Contradictions that cannot be explained by nuance or reasonable differences of opinion:</p>
-              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
-                <li>Turn 1 explicitly instructs the model not to add comments, but the cons section criticizes the model for not adding comments</li>
-                <li>Turn 1 asks for a new test file to be added, while turn 2 asks for that same test file to be deleted</li>
-              </ul>
-            </div>
-
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Spam or Fabricated Reasoning</p>
-              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
-                <li>Pros, cons, or justifications that are completely disconnected from the actual diff or model output</li>
-                <li>Praising a model for work it did not do (e.g., claiming a model added tests when no tests were added)</li>
-              </ul>
-            </div>
-
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Conversation Has Fewer Than 3 Turns</p>
-              <p style={{ margin: 0, color: '#991b1b' }}>The conversation contains fewer than 3 turns, which does not meet the minimum requirement for a complete submission.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626' }}>
-              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Redundant Prompting or No Material Code Changes</p>
-              <p style={{ margin: 0, color: '#991b1b' }}>Later turns contain prompting that is redundant with previous turns, or no material code changes are required or made. The conversation does not demonstrate meaningful progression or refinement.</p>
-            </div>
+          <CollapsibleSection title="What You Are NOT Expected to Do">
+            <p>Because this review is time-limited, you do not need to:</p>
+            <ul>
+              <li>Install or run the repository</li>
+              <li>Execute tests locally</li>
+              <li>Deeply analyze every model turn</li>
+              <li>Flag or diagnose LLM usage (handled in later review stages)</li>
+            </ul>
+            <p>If something appears suspicious, you may note it, but this is not required for acceptance or rejection at this stage.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="Using the Reviewer Interface">
@@ -226,12 +136,87 @@ function SWEGuidelines({ onNavigate }) {
             />
 
             <h4>Conversation View</h4>
-            <p>The conversation view shows the original prompt, model responses, preference ratings, and written reasoning. Review the full conversation context along with the diffs to thoroughly verify the claims being made.</p>
+            <p>The conversation view shows the original prompt, model responses, preference ratings, and written reasoning. In most cases, you do not need to read full model outputs—focus instead on the diffs and the claims being made about them.</p>
             <img 
               src={`${import.meta.env.BASE_URL}media/images/sxs.png`} 
               style={{ maxWidth: '800px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', marginTop: '1rem' }} 
               alt="Conversation View" 
             />
+          </CollapsibleSection>
+
+          <CollapsibleSection title="What to Focus On During Your Review">
+            <p>Start with any automated eval failures and determine whether they are valid. If no evals are flagged, select a small number of high-impact claims made by the submitter and verify their technical accuracy.</p>
+            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginTop: '1rem' }}>
+              <p style={{ margin: 0, marginBottom: '0.75rem', color: '#991b1b', fontWeight: 600 }}>Pay Special Attention To:</p>
+              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
+                <li>Incorrect, missing, or incomplete file changes</li>
+                <li>Logic errors or broken behavior implied by the diff</li>
+                <li>Claims that contradict the actual code changes</li>
+                <li>Requested features or constraints that were not implemented</li>
+                <li>Inconsistencies between ratings, preferences, and written justification</li>
+              </ul>
+            </div>
+            <p><em>You are not expected to verify everything—focus on the areas most likely to reveal meaningful problems.</em></p>
+          </CollapsibleSection>
+
+          <CollapsibleSection title="Accepting vs. Rejecting a Submission">
+            <p>You should reject a submission <strong>only when there are clear, serious problems</strong>. These include major technical misunderstandings, incorrect evaluation of model behavior, contradictions between reasoning and evidence, or violations of core project rules.</p>
+            <p>If an issue is debatable or you are uncertain, it is generally better to <strong>accept the submission and clearly explain your uncertainty in the notes</strong>. The final adjudicator will use your findings to make the ultimate decision.</p>
+          </CollapsibleSection>
+
+          <CollapsibleSection title="Rejection-Worthy Reasons">
+            <p>A submission should be rejected only when one or more of the following are clearly and confidently true:</p>
+            
+            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Incorrect Overall Preference</p>
+              <p style={{ margin: 0, color: '#991b1b' }}>The overall preference for a turn you evaluated is clearly and significantly incorrect, and that incorrect choice is supported by reasoning that does not match the actual evidence.</p>
+            </div>
+
+            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Core Project Guidelines Not Followed</p>
+              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
+                <li>The prompt uses role-based prompting</li>
+                <li>The prompt directly refers to the PR</li>
+                <li>Later turns introduce new core requirements that should reasonably have been part of the original prompt</li>
+              </ul>
+            </div>
+
+            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626', marginBottom: '1rem' }}>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Significant Contradictions</p>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b' }}>Contradictions that cannot be explained by nuance or reasonable differences of opinion:</p>
+              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
+                <li>Turn 1 explicitly instructs the model not to add comments, but the cons section criticizes the model for not adding comments</li>
+                <li>Turn 1 asks for a new test file to be added, while turn 2 asks for that same test file to be deleted</li>
+              </ul>
+            </div>
+
+            <div style={{ backgroundColor: '#fee2e2', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #dc2626' }}>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#991b1b', fontWeight: 600 }}>❌ Spam or Fabricated Reasoning</p>
+              <ul style={{ margin: 0, color: '#991b1b', paddingLeft: '1.25rem' }}>
+                <li>Pros, cons, or justifications that are completely disconnected from the actual diff or model output</li>
+                <li>Praising a model for work it did not do (e.g., claiming a model added tests when no tests were added)</li>
+              </ul>
+            </div>
+          </CollapsibleSection>
+
+          <CollapsibleSection title="Issues You Can Flag (Accept, but Add Notes)">
+            <p>Some issues are important to note but are not sufficient on their own to justify rejection. In these cases, you should <strong>accept the submission and clearly document your concerns</strong> for the final adjudicator.</p>
+            
+            <div style={{ backgroundColor: '#fef3c7', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #f59e0b', marginBottom: '1rem' }}>
+              <p style={{ margin: 0, marginBottom: '0.5rem', color: '#92400e', fontWeight: 600 }}>⚠️ Accept with Notes When:</p>
+              <ul style={{ margin: 0, color: '#92400e', paddingLeft: '1.25rem' }}>
+                <li>Signs of LLM use</li>
+                <li>Disagreement with individual side-by-side (SxS) scores</li>
+                <li>SxS scores that appear suspiciously similar to each other</li>
+                <li>Any rejection-worthy concern where you are not 100% confident</li>
+              </ul>
+            </div>
+
+            <div style={{ backgroundColor: '#dbeafe', padding: '1rem 1.25rem', borderRadius: '8px', borderLeft: '4px solid #2563eb' }}>
+              <p style={{ margin: 0, color: '#1e40af' }}>
+                <strong>Important:</strong> Agreeing with an automated eval failure is not enough, by itself, to reject a submission. Always ensure the failure clearly fits one of the rejection-worthy categories before rejecting.
+              </p>
+            </div>
           </CollapsibleSection>
 
           {/* Non-collapsible sections */}
@@ -260,22 +245,22 @@ function SWEGuidelines({ onNavigate }) {
             <p style={{ margin: 0, marginBottom: '0.5rem', fontWeight: 600 }}>We Want to See Evidence That You:</p>
             <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
               <li>Validated eval results honestly</li>
-              <li>Thoroughly investigated all claims and technical details</li>
+              <li>Investigated high-impact claims</li>
               <li>Explained your conclusions clearly</li>
-              <li>Conducted a comprehensive review of the submission</li>
+              <li>Worked effectively within the 15-minute time limit</li>
             </ul>
           </div>
+          <p><em>Missing lower-priority issues is expected and will not be held against you.</em></p>
 
           <h3>Final Reviewer Checklist</h3>
           <p>Before submitting, confirm that you:</p>
-          <div>
-            <p>☐ Thoroughly investigated all technical claims and evals</p>
-            <p>☐ Confirmed or disputed eval results with evidence</p>
-            <p>☐ Checked alignment between ratings, reasoning, and diffs</p>
-            <p>☐ Reviewed all code changes and verified their accuracy</p>
-            <p>☐ Made a defensible Accept or Reject decision</p>
-            <p>☐ Wrote clear notes explaining your findings</p>
-          </div>
+          <ul>
+            <li>☐ Investigated at least one high-impact technical claim or eval</li>
+            <li>☐ Confirmed or disputed eval results with evidence</li>
+            <li>☐ Checked alignment between ratings, reasoning, and diffs</li>
+            <li>☐ Made a defensible Accept or Reject decision</li>
+            <li>☐ Wrote clear notes explaining your findings</li>
+          </ul>
 
           {/* Rejection Notes Image */}
           <h3>Rejection Notes Field</h3>
