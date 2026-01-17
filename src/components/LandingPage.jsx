@@ -350,7 +350,7 @@ function LandingPage({ onNavigate, onLogout }) {
                   <div className="resource-hub-card">
                     <h4 className="resource-hub-card-title">☕ Essential Resources</h4>
                     <ul className="resource-hub-list">
-                      <li><a href="https://expert.snorkel.ai" target="_blank" rel="noopener noreferrer">Snorkel Expert Platform</a></li>
+                      <li><a href="https://experts.snorkel-ai.com/" target="_blank" rel="noopener noreferrer">Snorkel Expert Platform</a></li>
                       <li><a href="https://snorkel-team.enterprise.slack.com/docs/TFHL9C8JG/F0A1J0370E8" target="_blank" rel="noopener noreferrer">PR Suggestion Form</a></li>
                     </ul>
                   </div>
