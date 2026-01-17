@@ -9,7 +9,6 @@ import Overview from './components/Overview';
 import PRSelection from './components/PRSelection';
 import PromptPreparation from './components/PromptPreparation';
 import ModelWorkspace from './components/ModelWorkspace';
-import RulesAndRequirements from './components/RulesAndRequirements';
 import CLI from './components/CLI';
 import SWEGuidelines from './components/SWEGuidelines';
 import AdminPanel  from './components/AdminPanel';
@@ -36,7 +35,6 @@ function AppContent() {
       {currentView === 'prselection' && <PRSelection onNavigate={handleNavigate} />}
       {currentView === 'promptpreparation' && <PromptPreparation onNavigate={handleNavigate} />}
       {currentView === 'modelworkspace' && <ModelWorkspace onNavigate={handleNavigate} />}
-      {currentView === 'rulesandrequirements' && <RulesAndRequirements onNavigate={handleNavigate} />}
       {currentView === 'cli' && <CLI onNavigate={handleNavigate} />}
       {currentView === 'sweguidelines' && <SWEGuidelines onNavigate={handleNavigate} />}
        {currentView === 'adminpanel' && <AdminPanel onNavigate={handleNavigate} />}

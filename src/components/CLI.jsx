@@ -18,6 +18,14 @@ function CLI({ onNavigate }) {
       <main className="content-card-main">
 
         <section className="content-card-section">
+          <h2>CLI Tool Walkthrough</h2>
+          <p>Watch this video for a complete walkthrough of the CLI tool setup and usage:</p>
+          <div style={{ position: 'relative', paddingBottom: '64.94708994708994%', height: 0, marginTop: '1rem', marginBottom: '2rem', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
+            <iframe src="https://www.loom.com/embed/888ac13d11c24d1099f7ff6b6eaa334b" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+          </div>
+        </section>
+
+        <section className="content-card-section">
           <h2>1. System Requirements</h2>
           <p>Before beginning, ensure that your system has:</p>
           <ul>
